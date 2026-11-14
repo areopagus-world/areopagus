@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { authEnabled, publicOrigin, sameOrigin } from "@/identity/config";
 import { currentUser } from "@/identity/session";
 import { checkHandle, cleanText, parseSkills } from "@/spaces/rules";
+import { findPlace, placeLabel } from "@/places/store";
 import { saveSpace } from "@/spaces/store";
 
 /** Saves the signed-in person's space from the form on /me. */
@@ -20,11 +21,16 @@ export async function POST(request: Request) {
   const name = cleanText(form.get("name"), 80);
   if (!name) return back("name");
 
+  // A place picked from the list ties the space to a settlement; anything else stays plain text.
+  const pickedId = form.get("place_id");
+  const picked = typeof pickedId === "string" && pickedId ? await findPlace(pickedId) : undefined;
+
   const result = await saveSpace(user.id, {
     handle: checked.handle,
     name,
     about: cleanText(form.get("about"), 1000, true),
-    place: cleanText(form.get("place"), 80),
+    place: picked ? placeLabel(picked) : cleanText(form.get("place"), 80),
+    placeId: picked?.id ?? null,
     skills: parseSkills(form.get("skills")),
   });
   if (result === "taken") return back("taken");

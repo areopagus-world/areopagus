@@ -70,7 +70,13 @@ export default async function SpacePage({ params }: { params: Promise<{ handle: 
               boxShadow: "0 0 14px #ff4a1c",
             }}
           />
-          {space.place}
+          {space.placeId ? (
+            <a href={`/places/${space.placeId}`} style={{ color: "inherit" }}>
+              {space.place}
+            </a>
+          ) : (
+            space.place
+          )}
         </p>
       ) : null}
       {space.about ? (
