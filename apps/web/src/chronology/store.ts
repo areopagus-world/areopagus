@@ -9,6 +9,9 @@ export interface TimelineEvent {
   visibility: "public" | "private";
   /** The earlier event this one continues, when it is visible to the reader. */
   continues: { id: string; title: string } | null;
+  /** Set on community events: who wrote it. */
+  authorId?: string | null;
+  author?: { handle: string; name: string } | null;
 }
 
 const SELECT = `
@@ -62,9 +65,9 @@ export async function addEvent(
       return own ? "full" : "no-space";
     }
     const created = await client.query<{ id: string }>(
-      `insert into events (space_id, happened_on, title, body, place_id, visibility)
-       values ($1, $2, $3, $4, $5, $6) returning id`,
-      [own.id, event.happenedOn, event.title, event.body, own.place_id, event.visibility],
+      `insert into events (space_id, author_id, happened_on, title, body, place_id, visibility)
+       values ($1, $2, $3, $4, $5, $6, $7) returning id`,
+      [own.id, userId, event.happenedOn, event.title, event.body, own.place_id, event.visibility],
     );
     if (continuesId) {
       await client.query(

@@ -45,6 +45,12 @@ export function Timeline({
           <p style={{ margin: 0, fontSize: 14, color: "#a39b8f", letterSpacing: "0.04em" }}>
             <time dateTime={event.happenedOn}>{formatDay(event.happenedOn)}</time>
             {event.visibility === "private" ? " · only you" : ""}
+            {event.author ? (
+              <>
+                {" · "}
+                <a href={`/${event.author.handle}`}>{event.author.name}</a>
+              </>
+            ) : null}
           </p>
           <h3
             style={{ margin: "4px 0 0", fontSize: 22, lineHeight: 1.25, overflowWrap: "anywhere" }}

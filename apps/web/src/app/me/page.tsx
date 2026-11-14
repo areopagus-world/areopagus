@@ -182,6 +182,12 @@ export default async function Me({
           />
         </section>
       ) : null}
+      {space ? (
+        <p style={{ margin: "44px 0 0" }}>
+          <a href="/communities">Communities</a> · <a href="/communities/new">Start a community</a>{" "}
+          · <a href="/map">Map</a>
+        </p>
+      ) : null}
       <PasskeyAdd count={passkeys} />
       <p style={{ ...hint, margin: "34px 0 10px" }}>
         Signed in as {user.email}. Your e-mail is never shown on your page.

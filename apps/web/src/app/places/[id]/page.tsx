@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { communitiesAt } from "@/communities/store";
 import { findPlace, spacesAt } from "@/places/store";
+import { CommunityList } from "../../community-list";
 import { Screen } from "../../ui";
 
 export const dynamic = "force-dynamic";
@@ -18,7 +20,7 @@ export async function generateMetadata({
 export default async function PlacePage({ params }: { params: Promise<{ id: string }> }) {
   const place = await findPlace((await params).id);
   if (!place) notFound();
-  const spaces = await spacesAt(place.id);
+  const [spaces, communities] = await Promise.all([spacesAt(place.id), communitiesAt(place.id)]);
   return (
     <Screen title={`${place.name}, ${place.country}`}>
       {spaces.length === 0 ? (
@@ -37,6 +39,12 @@ export default async function PlacePage({ params }: { params: Promise<{ id: stri
           ))}
         </ul>
       )}
+      {communities.length > 0 ? (
+        <>
+          <h2 style={{ fontSize: 22, margin: "40px 0 6px" }}>Communities</h2>
+          <CommunityList communities={communities} />
+        </>
+      ) : null}
       <p style={{ marginTop: 28 }}>
         <a href="/map" style={{ color: "#ff4a1c" }}>
           Back to the map
