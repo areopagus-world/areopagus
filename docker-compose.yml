@@ -1,0 +1,37 @@
+# Local services for development only. Production runs on managed services in the EU.
+# Start with `pnpm services:up`, stop with `pnpm services:down`.
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: areopagus
+      POSTGRES_PASSWORD: areopagus
+      POSTGRES_DB: areopagus
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U areopagus"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.11
+    environment:
+      MEILI_MASTER_KEY: development-only-key
+      MEILI_ENV: development
+    ports:
+      - "7700:7700"
+    volumes:
+      - meili-data:/meili_data
+
+volumes:
+  postgres-data:
+  meili-data:

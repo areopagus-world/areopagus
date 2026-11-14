@@ -1,48 +1,65 @@
 # Areopagus
 
-Open infrastructure for Christians around the world: Scripture in parallel translations, the library of the undivided Church, an interactive map and timeline of Christian history, a map of the Christian world today, community pages, prayer and transparent fundraising.
+A European network of living people. Everyone has a space of their own, people find each other by skill and interest, ask each other directly, sell their work without a middleman and gather into communities that develop their towns and villages.
 
 > "Then Paul stood in the middle of the Areopagus and said..." (Acts 17:22)
 
-Paul spoke at the Areopagus to people who did not share his beliefs, in a place where ideas were debated in the open. That is what this project aims to be: a common square, not a church.
+The Areopagus was a rock in Athens where people spoke in the open to those who did not share their beliefs. This project aims to be that kind of place: a common square that belongs to the people standing on it.
 
-## What Areopagus is
+## Why
 
-- **Infrastructure, not a platform.** Like email, it belongs to no one. Anyone can run a node; a diocese, parish or mission keeps its own data and rules and still sees everyone else.
-- **Open.** Code under AGPL-3.0. Reference data under CC0, community-contributed content under CC BY-SA 4.0.
-- **Federated.** ActivityPub from the first version.
-- **Neutral between traditions.** Every user stays in their own tradition. Tradition and language are attributes of every object, not interface settings.
-- **Rooted in the shared heritage.** The content starts with what all Christians accept: Scripture, the Ecumenical Councils, the Fathers and martyrs of the first millennium. Later history is added in layers, labelled by tradition, with sources.
+Many online services were good until they had owners to pay. Then listings became ads, feeds became bait and sellers became the product. Areopagus is built so that this cannot happen here: it is run by a non-profit association with no shares to sell, the fee ceiling is written into its core rules, the code is open and every space can be exported and taken elsewhere.
 
-## What Areopagus is not
+In an age of AI the network keeps one promise: there is a living person at the other end.
 
-- Not a church, a denomination or a theological authority. The platform shows what Scripture and the traditions say; it does not rule on questions of faith.
-- Not a payment processor. Donations go directly to recipients.
-- Not an advertising business. There are no ads and there will be none.
+## What it is
 
-## Community catalogue criterion
+- **A space for everyone.** A page that belongs to a person, a family, a workshop, a parish or a club, assembled from blocks and styled by its owner.
+- **People ask people.** Search returns people, not pages. A question goes to someone who can answer it, and the answer stays on their space.
+- **A map of Europe.** Country, region, town, village. Every place has a page showing who lives there, what they can do and what the place lacks.
+- **Skills, labs and joint projects.** Skills come from a shared dictionary and are confirmed by people who worked with you. Labs gather people of one skill. Projects assemble a team by skill.
+- **A shop without the squeeze.** Handmade goods and services. Listing is free, placement in search is never for sale, buyers stay with the seller.
+- **Communities.** By place, by trade, by interest or by project. Each has its space, roles, rules, an open ledger and a visible path of development.
+- **Encrypted messaging.** End-to-end encrypted chats and service bots, built on the Matrix protocol.
 
-A community is listed as Christian in the catalogue if it confesses the Nicene-Constantinopolitan Creed (381). This is a classification inherited from the Councils, not a judgement made by the platform.
+## What it stands on
+
+Areopagus is built on Christian values, written as rules for how the network behaves rather than as a creed its members must hold. Anyone who accepts the rules may take part.
+
+- The dignity of every person. Nobody is ranked, scored or sold.
+- Truth. No dark patterns, fake reviews or hidden advertising.
+- Service instead of retention. No endless feed and no engagement algorithms.
+- Protection of children and the family.
+- Mercy in moderation: rules known in advance, decisions explained, a way to appeal and a way back.
+- Open to all. Faith is neither checked nor imposed.
+
+The network is not a church, a denomination or a theological authority.
 
 ## Status
 
-Early. Nothing is built yet. The first public milestone is a map of Christian places of worship built from OpenStreetMap data.
+Early. The concept and the architecture are written down; the product is not built yet. The first version is a space with skills, communities, the map and questions to people, launched in one place.
 
-Roadmap for the first three months:
-
-1. Map of places of worship from OpenStreetMap, coloured by tradition
-2. Stable text addressing (`bible/gen/1/1`) and Scripture in English, French and Russian with parallel reading
-3. Skeleton of first-millennium history from Wikidata on the map and timeline
-4. Daily liturgical calendar, personal prayer book and notes, offline-capable PWA
-5. Community pages: schedule, announcements, location
+- [Concept](docs/concept.md)
+- [Architecture](docs/architecture.md)
+- [Governance](docs/governance.md)
+- [Roadmap](docs/roadmap.md)
+- [Open decisions](docs/open-decisions.md)
+- [Decision records](docs/adr/README.md)
 
 ## Stack
 
-TypeScript modular monolith: Next.js, Node, PostgreSQL with PostGIS and pgvector, Redis, Meilisearch, S3-compatible storage hosted in the EU. Mobile via Expo.
+A TypeScript modular monolith: Next.js, Node, PostgreSQL with PostGIS and pgvector, Redis with BullMQ, Meilisearch, S3-compatible storage hosted in the EU, a Matrix homeserver for messaging. Mobile via Expo.
 
-## Contributing
+## Development
 
-Developers, translators, historians, theologians and editors are all needed; code is about a third of the work. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md).
+```sh
+corepack enable
+pnpm install
+pnpm services:up   # PostgreSQL, Redis and Meilisearch in Docker
+pnpm check         # lint, format, typecheck, tests
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Governance
 
@@ -50,6 +67,6 @@ Areopagus is being set up as a non-profit association under French law (loi 1901
 
 ## Licence
 
-Code: [AGPL-3.0](LICENSE). Data: CC0 for reference datasets, CC BY-SA 4.0 for community contributions. Third-party texts keep their own licences, listed per source.
+Code: [AGPL-3.0](LICENSE). Reference data: CC0. Community-contributed content: CC BY-SA 4.0. Third-party texts keep their own licences, listed per source.
 
-Contact: [areopagus.world](https://areopagus.world)
+Contact: hello@areopagus.world. Security: see [SECURITY.md](SECURITY.md).
