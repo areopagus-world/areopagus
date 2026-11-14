@@ -7,6 +7,21 @@ type Ring = number[][];
 
 let cached: string | undefined;
 
+/**
+ * Removes the jumps of a ring that crosses the antimeridian (Eurasia at Chukotka): each jump of more than
+ * 180 degrees shifts what follows by a full turn, so no line runs across the whole map.
+ */
+export function unwrap(ring: Ring): Ring {
+  let shift = 0;
+  let before: number | undefined;
+  return ring.map(([lon = 0, lat = 0]) => {
+    if (before !== undefined && lon - before > 180) shift -= 360;
+    if (before !== undefined && before - lon > 180) shift += 360;
+    before = lon;
+    return [lon + shift, lat];
+  });
+}
+
 /** SVG path of the land in the map frame, from Natural Earth (public domain). Built once per process. */
 export function europeOutline(): string {
   if (cached) return cached;
@@ -15,26 +30,25 @@ export function europeOutline(): string {
   const land = feature(topology, topology.objects.land);
   const parts: string[] = [];
   const draw = (ring: Ring) => {
-    // A ring that crosses the antimeridian (Chukotka) is unwrapped eastwards, otherwise it draws a band across the map.
-    const crosses = ring.some(
-      ([lon = 0], i) => i > 0 && Math.abs(lon - (ring[i - 1]?.[0] ?? lon)) > 180,
-    );
-    const points = ring.map(([lon = 0, lat = 0]) =>
-      project(crosses && lon < 0 ? lon + 360 : lon, lat),
-    );
-    const visible = points.some(
-      ([x, y]) => x > -50 && x < MAP_WIDTH + 50 && y > -50 && y < MAP_HEIGHT + 50,
-    );
-    if (!visible) return;
-    let previous = "";
-    let d = "";
-    for (const [x, y] of points) {
-      const point = `${Math.round(x)},${Math.round(y)}`;
-      if (point === previous) continue;
-      d += (d ? "L" : "M") + point;
-      previous = point;
+    // The ring may start on either side of the antimeridian, so it is tried one turn west, in place and one
+    // turn east; only the copies that reach the frame are drawn.
+    const unwrapped = unwrap(ring);
+    for (const turn of [-360, 0, 360]) {
+      const points = unwrapped.map(([lon = 0, lat = 0]) => project(lon + turn, lat));
+      const visible = points.some(
+        ([x, y]) => x > -50 && x < MAP_WIDTH + 50 && y > -50 && y < MAP_HEIGHT + 50,
+      );
+      if (!visible) continue;
+      let previous = "";
+      let d = "";
+      for (const [x, y] of points) {
+        const point = `${Math.round(x)},${Math.round(y)}`;
+        if (point === previous) continue;
+        d += (d ? "L" : "M") + point;
+        previous = point;
+      }
+      if (d.includes("L")) parts.push(`${d}Z`);
     }
-    if (d.includes("L")) parts.push(`${d}Z`);
   };
   for (const piece of land.features) {
     const geometry = piece.geometry;
