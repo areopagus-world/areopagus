@@ -1,0 +1,25 @@
+# Review: Nederlands
+
+Model: claude-opus-5-5
+
+## Verdict
+minor issues: the Dutch reads naturally overall, but a few word choices are off: "omtrek", "knippert", "motor", "werkplaats", the anglicism "space", and the churchy echo of "de weg".
+
+## Issues
+| key | current | problem | suggested text |
+|---|---|---|---|
+| meta | Samen en in het openbaar gebouwd. | "In het openbaar gebouwd" is stiff and literal. "In alle openheid" is the idiomatic phrase. | Areopagus: een Europees netwerk van echte mensen. Samen en in alle openheid gebouwd. |
+| ctaPath | Bekijk de weg | "De weg" on its own has a strong biblical ring ("Ik ben de weg"). "Route" carries the roadmap metaphor without that echo. | Bekijk de route |
+| pathTitle | De weg | Same problem as ctaPath. | De route |
+| count | {a} van {b} branden | "branden" can be read as the noun "fires", and the line feels clipped. | {a} van de {b} branden al |
+| pathText | Wat in de maak is, knippert. Wat gepland is, blijft een omtrek. Hier staan geen data… | "Knippert" means blinks, not pulses. "Omtrek" means perimeter, not outline. "Data" is easily misread as data. | Wat af is, brandt. Wat in de maak is, pulseert. Wat gepland is, is nog een contour. Hier staan geen datums, alleen een eerlijke volgorde. |
+| nodes.1 | Documentatie en werkplaats | "Werkplaats" means a physical workshop. A digital workspace is "werkruimte". | Documentatie en werkruimte |
+| nodes.5 | Jouw space | Unnecessary anglicism for a general audience. | Je eigen plek |
+| ways.0.1 | Het verschijnt als omtrek op de weg, naast zijn tak. | Uses "omtrek" and "weg"; must match the pathText and pathTitle fixes. | Het verschijnt als contour op de route, naast zijn tak. |
+| ways.4.1 | Voor één stap op de weg … | Consistency with "route". | Voor één stap op de route of om het netwerk draaiende te houden. |
+| supText | Steun is daarom zijn zakelijk inkomen en geen gift aan een goed doel. | "Zakelijk inkomen" is unidiomatic. The standard term is "inkomsten". | Steun telt daarom als inkomsten van zijn onderneming, niet als gift aan een goed doel. |
+| engText | Areopagus is ook een motor. Jouw space … zelf en gratis hosten. | "Motor" suggests a car engine; in software Dutch the established word is "engine". "Space" is the same anglicism as nodes.5. "Zelf en gratis hosten" is clunky. | Areopagus is ook een engine. Je eigen plek, winkel of gemeenschap kan met een abonnement op je eigen domein draaien. De code is open, dus iedereen mag die gratis zelf draaien. |
+| engDomain | jouw-naam.nl | The original .eu is deliberate for a European network. .nl also excludes Flemish readers. | jouw-naam.eu |
+
+## Register
+The page uses informal "je/jij" throughout, consistently, with "jouw" used only for emphasis. This is the right choice for a direct, warm project aimed at readers aged 15 to 60 in both the Netherlands and Flanders. "U" would feel corporate here.
