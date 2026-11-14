@@ -15,7 +15,8 @@
     "test": "vitest run",
     "check": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm test",
     "services:up": "docker compose up -d",
-    "services:down": "docker compose down"
+    "services:down": "docker compose down",
+    "site:prerender": "node scripts/prerender-site.mjs && prettier --write apps/site"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",

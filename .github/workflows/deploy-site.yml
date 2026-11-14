@@ -41,4 +41,12 @@ jobs:
           "
 
       - name: Smoke check
-        run: curl --fail --silent --show-error --location --retry 5 --retry-delay 10 "$SITE_URL" | grep -q "AREOPAGUS"
+        run: |
+          # The host caches pages for a short while, so allow a few attempts.
+          for attempt in 1 2 3 4 5 6; do
+            if curl --fail --silent --show-error --location "$SITE_URL/?t=$(date +%s)" | grep -q "Built"; then
+              exit 0
+            fi
+            sleep 20
+          done
+          echo "Site did not serve the new page" && exit 1

@@ -397,61 +397,144 @@
           <span style="right: 24%; top: 58%; animation-delay: 1.3s"></span>
           <span style="right: 13%; top: 76%; animation-delay: 2.4s"></span>
         </div>
-        <div class="kicker" data-i18n="kicker"></div>
-        <h1 data-i18n-html="title"></h1>
-        <p class="lead" data-i18n="lead"></p>
+        <div class="kicker" data-i18n="kicker">A European network of living people</div>
+        <h1 data-i18n-html="title">Built <em>together.</em></h1>
+        <p class="lead" data-i18n="lead">
+          Areopagus gives everyone a page, every town a map and every person a voice. No ads, open
+          code. The network is only starting, and you can build it with us.
+        </p>
         <div class="row">
-          <a class="btn fill" href="#path" data-i18n="ctaPath"></a>
-          <a class="btn" href="#join" data-i18n="ctaJoin"></a>
-          <span class="count" id="count"></span>
+          <a class="btn fill" href="#path" data-i18n="ctaPath">See the path</a>
+          <a class="btn" href="#join" data-i18n="ctaJoin">How to take part</a>
+          <span class="count" id="count"><!--pre:count-->3 of 18 lit<!--/pre--></span>
         </div>
       </div>
 
       <section id="path">
-        <h2 data-i18n="pathTitle"></h2>
-        <p class="sub" data-i18n="pathText"></p>
-        <div class="path" id="nodes"></div>
+        <h2 data-i18n="pathTitle">The path</h2>
+        <p class="sub" data-i18n="pathText">
+          What is done is lit. What is in work pulses. What is planned is an outline. No dates here,
+          only an honest order.
+        </p>
+        <div class="path" id="nodes">
+          <!--pre:nodes-->
+          <div class="lit"></div>
+          <div class="stage">Foundation</div>
+          <div class="node done"><b>Concept and core</b><small>done</small></div>
+          <div class="node done"><b>Docs and workspace</b><small>done</small></div>
+          <div class="node done"><b>Hash-chained journal</b><small>done</small></div>
+          <div class="node now"><b>This page</b><small>in work</small></div>
+          <div class="node next"><b>A legal home for the project</b><small>up next</small></div>
+          <div class="stage">Person and place</div>
+          <div class="node next"><b>Your space</b><small>up next</small></div>
+          <div class="node later"><b>Chronicle</b><small>planned</small></div>
+          <div class="node later"><b>Communities</b><small>planned</small></div>
+          <div class="node later"><b>Map of places</b><small>planned</small></div>
+          <div class="stage">Skills and video</div>
+          <div class="node later"><b>Ask a person</b><small>planned</small></div>
+          <div class="node later"><b>Map of skills</b><small>planned</small></div>
+          <div class="node later"><b>Video</b><small>planned</small></div>
+          <div class="stage">Shop and court</div>
+          <div class="node later"><b>Shop</b><small>planned</small></div>
+          <div class="node later"><b>Payments nobody can refuse</b><small>planned</small></div>
+          <div class="node later"><b>Court and general vote</b><small>planned</small></div>
+          <div class="stage">Common work</div>
+          <div class="node later"><b>Encrypted messages</b><small>planned</small></div>
+          <div class="node later"><b>Labs and joint projects</b><small>planned</small></div>
+          <div class="node later"><b>Your own domain</b><small>planned</small></div>
+          <!--/pre-->
+        </div>
       </section>
 
       <section id="join">
-        <h2 data-i18n="joinTitle"></h2>
-        <p class="sub" data-i18n="joinText"></p>
-        <ol class="ways" id="ways"></ol>
+        <h2 data-i18n="joinTitle">Take part</h2>
+        <p class="sub" data-i18n="joinText">
+          Nobody is ranked here. Every release names all who had a hand in it, in alphabetical
+          order.
+        </p>
+        <ol class="ways" id="ways">
+          <!--pre:ways-->
+          <li>
+            <div>
+              <h3>Propose</h3>
+              <p>Add an idea. It appears on the path as an outline next to its branch.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Back it with your voice</h3>
+              <p>One voice per person per idea. Numbers belong to ideas, never to people.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Take a task</h3>
+              <p>Translation, testing on your phone, data about your town, code.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Try it first</h3>
+              <p>Join the circle that gets new things before everyone else.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Support with money</h3>
+              <p>For one step of the path or for keeping the network running.</p>
+            </div>
+          </li>
+          <!--/pre-->
+        </ol>
         <div class="row">
           <a
             class="btn fill"
             href="https://github.com/areopagus-world/areopagus/issues"
             data-i18n="ctaIdea"
-          ></a>
+            >Propose an idea on GitHub</a
+          >
         </div>
       </section>
 
       <section id="support">
-        <h2 data-i18n="supTitle"></h2>
-        <p class="sub" data-i18n="supText"></p>
+        <h2 data-i18n="supTitle">Support</h2>
+        <p class="sub" data-i18n="supText">
+          One number matters: until which month the network is paid for. For now the project is run
+          by its founder as a sole trader in France, so support is his business income, not a
+          charitable gift.
+        </p>
         <div class="paid">
           <div class="until">
-            <span data-i18n="untilLabel"></span>
-            <strong data-i18n="untilValue"></strong>
-            <a class="btn" aria-disabled="true" data-i18n="ctaGive"></a>
+            <span data-i18n="untilLabel">The network is paid until</span>
+            <strong data-i18n="untilValue">Collection not open yet</strong>
+            <a class="btn" aria-disabled="true" data-i18n="ctaGive">Opening soon</a>
             <div class="ledger">
-              <span data-i18n="ledger"></span>: 0<br />
+              <span data-i18n="ledger">journal entries</span>: 0<br />
               head: 0000000000000000000000000000000000000000000000000000000000000000
             </div>
           </div>
-          <ul class="rules" id="rules"></ul>
+          <ul class="rules" id="rules">
+            <!--pre:rules-->
+            <li>Every euro in and every euro out goes into a public journal anyone can verify.</li>
+            <li>A donation buys no voting weight, no placement and no badge.</li>
+            <li>Your name is shown only if you ask for it.</li>
+            <!--/pre-->
+          </ul>
         </div>
       </section>
 
       <section id="engine">
-        <h2 data-i18n="engTitle"></h2>
+        <h2 data-i18n="engTitle">Your own domain</h2>
         <div class="engine">
-          <p class="sub" style="margin: 0" data-i18n="engText"></p>
-          <div class="domain"><u data-i18n="engDomain"></u></div>
+          <p class="sub" style="margin: 0" data-i18n="engText">
+            Areopagus is also an engine. Your space, shop or community can live on your own domain
+            by subscription. The code is open, so anyone may run it themselves for free.
+          </p>
+          <div class="domain"><u data-i18n="engDomain">your-name.eu</u></div>
         </div>
       </section>
 
-      <footer data-i18n="foot"></footer>
+      <footer data-i18n="foot">Open code under AGPL. Data in Europe. No ads, ever.</footer>
     </div>
 
     <script>
