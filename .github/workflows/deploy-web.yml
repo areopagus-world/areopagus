@@ -40,7 +40,8 @@ jobs:
       - name: Deploy
         run: |
           clever link "${{ vars.CLEVER_APP_ID }}"
-          clever deploy --force
+          # A manual re-run on an unchanged commit restarts the app instead of failing.
+          clever deploy --force --same-commit-policy restart
 
       - name: Smoke check
         run: |
