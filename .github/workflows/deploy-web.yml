@@ -45,10 +45,15 @@ jobs:
 
       - name: Smoke check
         run: |
-          for attempt in 1 2 3 4 5 6; do
-            if curl --fail --silent --show-error "$HEALTH_URL" | grep -q '"ok":true'; then
-              exit 0
+          # Healthy is not enough: the answer must come from the commit just deployed.
+          # If the platform does not report a commit, fall back to the plain health check.
+          for attempt in 1 2 3 4 5 6 7 8 9; do
+            body=$(curl --fail --silent --show-error "$HEALTH_URL" || true)
+            echo "$body"
+            if echo "$body" | grep -q '"ok":true'; then
+              if echo "$body" | grep -q "\"commit\":\"$GITHUB_SHA\""; then exit 0; fi
+              if echo "$body" | grep -q '"commit":null'; then echo "No commit reported, accepting health only"; exit 0; fi
             fi
             sleep 20
           done
-          echo "The app did not report healthy" && exit 1
+          echo "The app did not report healthy on $GITHUB_SHA" && exit 1

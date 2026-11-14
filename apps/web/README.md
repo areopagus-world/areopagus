@@ -32,10 +32,12 @@ Environment variables of the application:
 | `CC_NODE_BUILD_TOOL`   | `custom`                                                                            |
 | `CC_PRE_BUILD_HOOK`    | `npm install --global pnpm@10.28.0`                                                 |
 | `CC_CUSTOM_BUILD_TOOL` | `pnpm install --frozen-lockfile --prod=false && pnpm --filter @areopagus/web build` |
-| `CC_PRE_RUN_HOOK`      | `pnpm --filter @areopagus/web migrate`                                              |
+| `CC_PRE_RUN_HOOK`      | `npm install --global pnpm@10.28.0 && pnpm --filter @areopagus/web migrate`         |
 | `CC_RUN_COMMAND`       | `pnpm start`                                                                        |
 
 The PostgreSQL add-on injects `POSTGRESQL_ADDON_URI`, which the app reads when `DATABASE_URL` is not set.
+
+A restart reuses the cached build and skips the build hooks, so the run hook installs pnpm itself.
 
 GitHub side: repository variable `CLEVER_APP_ID`, secrets `CLEVER_TOKEN` and `CLEVER_SECRET`
 (from `~/.config/clever-cloud/clever-tools.json`; they expire after one year).

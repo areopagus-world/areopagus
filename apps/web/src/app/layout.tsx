@@ -10,12 +10,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.bunny.net" />
+        <link
+          href="https://fonts.bunny.net/css?family=unbounded:800|golos-text:400,600"
+          rel="stylesheet"
+        />
+      </head>
       <body
         style={{
           margin: 0,
           background: "#14110f",
           color: "#f3efe6",
-          fontFamily: "system-ui, sans-serif",
+          fontFamily: "'Golos Text', system-ui, sans-serif",
         }}
       >
         {children}
