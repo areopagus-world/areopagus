@@ -3,3 +3,4 @@ dist
 coverage
 .next
 LICENSE
+next-env.d.ts
