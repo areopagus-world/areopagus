@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Areopagus</title>
+    <meta
+      name="description"
+      content="Areopagus: a European network of living people. Built in the open, together."
+    />
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link
+      href="https://fonts.bunny.net/css?family=unbounded:500,800|golos-text:400,600"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f3efe6;
+        --ink: #14110f;
+        --mute: #6b645b;
+        --line: #d6cfc1;
+        --ember: #ff4a1c;
+        --display: "Unbounded", system-ui, sans-serif;
+        --text: "Golos Text", system-ui, -apple-system, "Segoe UI", sans-serif;
+        --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: #14110f;
+          --ink: #f3efe6;
+          --mute: #a39b8f;
+          --line: #3a342e;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font: 400 17px/1.55 var(--text);
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      header.top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 18px 0;
+      }
+      .mark {
+        font: 800 15px/1 var(--display);
+        letter-spacing: 0.08em;
+        text-decoration: none;
+      }
+      .mark i {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        margin-right: 8px;
+        border-radius: 50%;
+        background: var(--ember);
+        box-shadow: 0 0 14px var(--ember);
+      }
+      nav.langs button {
+        font: 600 13px/1 var(--text);
+        padding: 8px 10px;
+        border: 0;
+        background: none;
+        color: var(--mute);
+        cursor: pointer;
+      }
+      nav.langs button[aria-pressed="true"] {
+        color: var(--ink);
+        box-shadow: inset 0 -2px 0 var(--ember);
+      }
+      .hero {
+        position: relative;
+        padding: 9vh 0 10vh;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(var(--line) 1.2px, transparent 1.3px);
+        background-size: 22px 22px;
+        mask-image: linear-gradient(to left, #000 0%, transparent 62%);
+        -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 62%);
+      }
+      .lights span {
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--ember);
+        box-shadow: 0 0 16px 2px var(--ember);
+        animation: breathe 4s ease-in-out infinite;
+      }
+      @keyframes breathe {
+        50% {
+          opacity: 0.35;
+        }
+      }
+      .kicker {
+        position: relative;
+        font: 600 13px/1.3 var(--text);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mute);
+      }
+      h1 {
+        position: relative;
+        margin: 18px 0 22px;
+        font: 800 clamp(44px, 10.5vw, 132px) / 0.95 var(--display);
+        letter-spacing: -0.035em;
+      }
+      h1 em {
+        font-style: normal;
+        color: var(--ember);
+      }
+      .lead {
+        position: relative;
+        max-width: 620px;
+        font-size: clamp(18px, 2.1vw, 22px);
+      }
+      .row {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        margin-top: 30px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 15px 22px;
+        border: 2px solid var(--ink);
+        font: 600 16px/1 var(--text);
+        text-decoration: none;
+        transition: transform 0.15s;
+      }
+      .btn.fill {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0 var(--ember);
+      }
+      .btn[aria-disabled="true"] {
+        border-style: dashed;
+        color: var(--mute);
+        border-color: var(--mute);
+        pointer-events: none;
+      }
+      .count {
+        font: 500 13px/1 var(--mono);
+        color: var(--mute);
+      }
+      section {
+        padding: 72px 0;
+        border-top: 1px solid var(--line);
+      }
+      h2 {
+        margin: 0 0 14px;
+        font: 800 clamp(30px, 5vw, 56px) / 1 var(--display);
+        letter-spacing: -0.03em;
+      }
+      .sub {
+        max-width: 600px;
+        color: var(--mute);
+        margin: 0 0 44px;
+      }
+
+      /* path */
+      .path {
+        position: relative;
+        padding-left: 34px;
+      }
+      .path::before {
+        content: "";
+        position: absolute;
+        left: 9px;
+        top: 6px;
+        bottom: 6px;
+        border-left: 2px dashed var(--line);
+      }
+      .path .lit {
+        position: absolute;
+        left: 9px;
+        top: 6px;
+        width: 2px;
+        background: var(--ember);
+        box-shadow: 0 0 12px var(--ember);
+      }
+      .stage {
+        margin: 34px 0 10px;
+        font: 500 12px/1 var(--display);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--mute);
+      }
+      .stage:first-of-type {
+        margin-top: 0;
+      }
+      .node {
+        position: relative;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .node::before {
+        content: "";
+        position: absolute;
+        left: -32px;
+        top: 17px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid var(--mute);
+        background: var(--paper);
+      }
+      .node b {
+        font: 600 clamp(18px, 2.6vw, 24px) / 1.2 var(--text);
+      }
+      .node small {
+        flex: none;
+        font: 500 12px/1 var(--mono);
+        color: var(--mute);
+      }
+      .node.later b {
+        color: var(--mute);
+      }
+      .node.next::before {
+        border-color: var(--ink);
+      }
+      .node.done::before {
+        border-color: var(--ember);
+        background: var(--ember);
+        box-shadow: 0 0 14px var(--ember);
+      }
+      .node.done small,
+      .node.now small {
+        color: var(--ember);
+      }
+      .node.now::before {
+        border-color: var(--ember);
+        animation: pulse 1.6s ease-out infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 var(--ember);
+        }
+        100% {
+          box-shadow: 0 0 0 12px transparent;
+        }
+      }
+
+      /* join */
+      .ways {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        counter-reset: w;
+      }
+      .ways li {
+        display: grid;
+        grid-template-columns: 64px 1fr;
+        gap: 8px 16px;
+        padding: 22px 0;
+        border-bottom: 1px solid var(--line);
+        counter-increment: w;
+      }
+      .ways li::before {
+        content: counter(w, decimal-leading-zero);
+        font: 800 28px/1 var(--display);
+        color: var(--ember);
+      }
+      .ways h3 {
+        margin: 0 0 4px;
+        font: 600 22px/1.2 var(--text);
+      }
+      .ways p {
+        margin: 0;
+        color: var(--mute);
+      }
+
+      /* support */
+      .paid {
+        display: grid;
+        gap: 28px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 820px) {
+        .paid {
+          grid-template-columns: 1.1fr 1fr;
+        }
+      }
+      .until {
+        padding: 26px;
+        border: 2px solid var(--ink);
+      }
+      .until span {
+        font: 600 13px/1 var(--text);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--mute);
+      }
+      .until strong {
+        display: block;
+        margin: 12px 0 14px;
+        font: 800 clamp(26px, 4.4vw, 44px) / 1.05 var(--display);
+        letter-spacing: -0.02em;
+      }
+      .ledger {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px dashed var(--line);
+        font: 500 12px/1.7 var(--mono);
+        color: var(--mute);
+        word-break: break-all;
+      }
+      .rules {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .rules li {
+        padding: 14px 0 14px 22px;
+        border-bottom: 1px solid var(--line);
+        position: relative;
+      }
+      .rules li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 24px;
+        width: 10px;
+        height: 2px;
+        background: var(--ember);
+      }
+      .engine {
+        display: grid;
+        gap: 18px;
+      }
+      .domain {
+        font: 500 clamp(18px, 4vw, 34px) / 1.2 var(--mono);
+      }
+      .domain u {
+        text-decoration-color: var(--ember);
+        text-underline-offset: 6px;
+      }
+      footer {
+        padding: 34px 0 60px;
+        border-top: 1px solid var(--line);
+        color: var(--mute);
+        font-size: 14px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <a class="mark" href="#"><i></i>AREOPAGUS</a>
+        <nav class="langs" aria-label="Language">
+          <button data-lang="en">EN</button>
+          <button data-lang="fr">FR</button>
+          <button data-lang="ru">RU</button>
+        </nav>
+      </header>
+
+      <div class="hero">
+        <div class="lights" aria-hidden="true">
+          <span style="right: 8%; top: 22%"></span>
+          <span style="right: 24%; top: 58%; animation-delay: 1.3s"></span>
+          <span style="right: 13%; top: 76%; animation-delay: 2.4s"></span>
+        </div>
+        <div class="kicker" data-i18n="kicker"></div>
+        <h1 data-i18n-html="title"></h1>
+        <p class="lead" data-i18n="lead"></p>
+        <div class="row">
+          <a class="btn fill" href="#path" data-i18n="ctaPath"></a>
+          <a class="btn" href="#join" data-i18n="ctaJoin"></a>
+          <span class="count" id="count"></span>
+        </div>
+      </div>
+
+      <section id="path">
+        <h2 data-i18n="pathTitle"></h2>
+        <p class="sub" data-i18n="pathText"></p>
+        <div class="path" id="nodes"></div>
+      </section>
+
+      <section id="join">
+        <h2 data-i18n="joinTitle"></h2>
+        <p class="sub" data-i18n="joinText"></p>
+        <ol class="ways" id="ways"></ol>
+        <div class="row">
+          <a
+            class="btn fill"
+            href="https://github.com/areopagus-world/areopagus/issues"
+            data-i18n="ctaIdea"
+          ></a>
+        </div>
+      </section>
+
+      <section id="support">
+        <h2 data-i18n="supTitle"></h2>
+        <p class="sub" data-i18n="supText"></p>
+        <div class="paid">
+          <div class="until">
+            <span data-i18n="untilLabel"></span>
+            <strong data-i18n="untilValue"></strong>
+            <a class="btn" aria-disabled="true" data-i18n="ctaGive"></a>
+            <div class="ledger">
+              <span data-i18n="ledger"></span>: 0<br />
+              head: 0000000000000000000000000000000000000000000000000000000000000000
+            </div>
+          </div>
+          <ul class="rules" id="rules"></ul>
+        </div>
+      </section>
+
+      <section id="engine">
+        <h2 data-i18n="engTitle"></h2>
+        <div class="engine">
+          <p class="sub" style="margin: 0" data-i18n="engText"></p>
+          <div class="domain"><u data-i18n="engDomain"></u></div>
+        </div>
+      </section>
+
+      <footer data-i18n="foot"></footer>
+    </div>
+
+    <script>
+      // Roadmap data. State: done | now | next | later. Order is the promise, dates are not.
+      const ROADMAP = [
+        {
+          stage: { en: "Foundation", fr: "Fondation", ru: "Основание" },
+          nodes: [
+            ["done", { en: "Concept and core", fr: "Concept et noyau", ru: "Концепция и ядро" }],
+            [
+              "done",
+              {
+                en: "Docs and workspace",
+                fr: "Documentation et atelier",
+                ru: "Документация и мастерская",
+              },
+            ],
+            [
+              "done",
+              {
+                en: "Hash-chained journal",
+                fr: "Journal à chaîne de hachage",
+                ru: "Журнал с хеш-цепочкой",
+              },
+            ],
+            ["now", { en: "This page", fr: "Cette page", ru: "Эта страница" }],
+            ["next", { en: "The association", fr: "L'association", ru: "Ассоциация" }],
+          ],
+        },
+        {
+          stage: { en: "Person and place", fr: "La personne et le lieu", ru: "Человек и место" },
+          nodes: [
+            ["next", { en: "Your space", fr: "Votre espace", ru: "Спэйс" }],
+            ["later", { en: "Chronicle", fr: "Chronologie", ru: "Хронология" }],
+            ["later", { en: "Communities", fr: "Communautés", ru: "Комьюнити" }],
+            ["later", { en: "Map of places", fr: "Carte des lieux", ru: "Карта мест" }],
+          ],
+        },
+        {
+          stage: { en: "Skills and video", fr: "Compétences et vidéo", ru: "Навыки и видео" },
+          nodes: [
+            ["later", { en: "Ask a person", fr: "Demander à quelqu'un", ru: "Вопрос человеку" }],
+            ["later", { en: "Map of skills", fr: "Carte des compétences", ru: "Карта навыков" }],
+            ["later", { en: "Video", fr: "Vidéo", ru: "Видео" }],
+          ],
+        },
+        {
+          stage: { en: "Shop and court", fr: "Boutique et tribunal", ru: "Лавка и суд" },
+          nodes: [
+            ["later", { en: "Shop", fr: "Boutique", ru: "Лавка" }],
+            [
+              "later",
+              {
+                en: "Payments nobody can refuse",
+                fr: "Paiements sans refus",
+                ru: "Оплата без отказов",
+              },
+            ],
+            [
+              "later",
+              {
+                en: "Court and general vote",
+                fr: "Tribunal et vote général",
+                ru: "Суд и всеобщее голосование",
+              },
+            ],
+          ],
+        },
+        {
+          stage: { en: "Common work", fr: "Œuvre commune", ru: "Общее дело" },
+          nodes: [
+            [
+              "later",
+              { en: "Encrypted messages", fr: "Messages chiffrés", ru: "Сообщения с шифрованием" },
+            ],
+            [
+              "later",
+              {
+                en: "Labs and joint projects",
+                fr: "Laboratoires et projets communs",
+                ru: "Лаборатории и проекты",
+              },
+            ],
+            ["later", { en: "Your own domain", fr: "Votre propre domaine", ru: "Свой домен" }],
+          ],
+        },
+      ];
+
+      const T = {
+        en: {
+          kicker: "A European network of living people",
+          title: "Built <em>together.</em>",
+          lead: "Areopagus gives everyone a page, every town a map and every person a voice. No ads, open code. The network is only starting, and you can build it with us.",
+          ctaPath: "See the path",
+          ctaJoin: "How to take part",
+          count: "{a} of {b} lit",
+          pathTitle: "The path",
+          pathText:
+            "What is done is lit. What is in work pulses. What is planned is an outline. No dates here, only an honest order.",
+          state: { done: "done", now: "in work", next: "up next", later: "planned" },
+          joinTitle: "Take part",
+          joinText:
+            "Nobody is ranked here. Every release names all who had a hand in it, in alphabetical order.",
+          ways: [
+            ["Propose", "Add an idea. It appears on the path as an outline next to its branch."],
+            [
+              "Back it with your voice",
+              "One voice per person per idea. Numbers belong to ideas, never to people.",
+            ],
+            ["Take a task", "Translation, testing on your phone, data about your town, code."],
+            ["Try it first", "Join the circle that gets new things before everyone else."],
+            ["Support with money", "For one step of the path or for keeping the network running."],
+          ],
+          ctaIdea: "Propose an idea on GitHub",
+          supTitle: "Support",
+          supText: "One number matters: until which month the network is paid for.",
+          untilLabel: "The network is paid until",
+          untilValue: "Collection not open yet",
+          ctaGive: "Opens once the association is registered",
+          ledger: "journal entries",
+          rules: [
+            "Every euro in and every euro out goes into a public journal anyone can verify.",
+            "A donation buys no voting weight, no placement and no badge.",
+            "Your name is shown only if you ask for it.",
+          ],
+          engTitle: "Your own domain",
+          engText:
+            "Areopagus is also an engine. Your space, shop or community can live on your own domain by subscription. The code is open, so anyone may run it themselves for free.",
+          engDomain: "your-name.eu",
+          foot: "Open code under AGPL. Data in Europe. No ads, ever.",
+        },
+        fr: {
+          kicker: "Un réseau européen de personnes vivantes",
+          title: "Construit <em>ensemble.</em>",
+          lead: "Areopagus donne une page à chacun, une carte à chaque commune et une voix à chaque personne. Sans publicité, code ouvert. Le réseau commence à peine, et vous pouvez le construire avec nous.",
+          ctaPath: "Voir le chemin",
+          ctaJoin: "Comment participer",
+          count: "{a} sur {b} allumés",
+          pathTitle: "Le chemin",
+          pathText:
+            "Ce qui est fait est allumé. Ce qui est en cours clignote. Ce qui est prévu reste en contour. Pas de dates ici, seulement un ordre honnête.",
+          state: { done: "fait", now: "en cours", next: "ensuite", later: "prévu" },
+          joinTitle: "Participer",
+          joinText:
+            "Personne n'est classé ici. Chaque version nomme tous ceux qui y ont mis la main, par ordre alphabétique.",
+          ways: [
+            [
+              "Proposer",
+              "Ajoutez une idée. Elle apparaît en contour sur le chemin, près de sa branche.",
+            ],
+            [
+              "Soutenir par votre voix",
+              "Une voix par personne et par idée. Les chiffres sont ceux des idées, jamais des personnes.",
+            ],
+            [
+              "Prendre une tâche",
+              "Traduction, test sur votre téléphone, données de votre commune, code.",
+            ],
+            [
+              "Essayer en premier",
+              "Rejoignez le cercle qui reçoit les nouveautés avant tout le monde.",
+            ],
+            ["Soutenir financièrement", "Pour une étape du chemin ou pour faire vivre le réseau."],
+          ],
+          ctaIdea: "Proposer une idée sur GitHub",
+          supTitle: "Soutien",
+          supText: "Un seul chiffre compte : jusqu'à quel mois le réseau est payé.",
+          untilLabel: "Le réseau est payé jusqu'à",
+          untilValue: "Collecte pas encore ouverte",
+          ctaGive: "Ouverture après la création de l'association",
+          ledger: "écritures au journal",
+          rules: [
+            "Chaque euro reçu et chaque euro dépensé figure dans un journal public vérifiable par tous.",
+            "Un don n'achète ni poids de vote, ni mise en avant, ni badge.",
+            "Votre nom n'apparaît que si vous le demandez.",
+          ],
+          engTitle: "Votre propre domaine",
+          engText:
+            "Areopagus est aussi un moteur. Votre espace, votre boutique ou votre communauté peut vivre sur votre propre domaine, par abonnement. Le code est ouvert : chacun peut l'héberger soi-même gratuitement.",
+          engDomain: "votre-nom.fr",
+          foot: "Code ouvert sous AGPL. Données en Europe. Jamais de publicité.",
+        },
+        ru: {
+          kicker: "Европейская сеть живых людей",
+          title: "Строим <em>вместе.</em>",
+          lead: "Ареопаг даёт каждому страницу, каждому городу карту и каждому человеку голос. Без рекламы, с открытым кодом. Сеть только начинается, и её можно строить вместе с нами.",
+          ctaPath: "Смотреть путь",
+          ctaJoin: "Как участвовать",
+          count: "горит {a} из {b}",
+          pathTitle: "Путь",
+          pathText:
+            "Сделанное горит. То, что в работе, мерцает. Задуманное видно контуром. Дат здесь нет, есть честный порядок.",
+          state: { done: "сделано", now: "в работе", next: "следом", later: "задумано" },
+          joinTitle: "Участвовать",
+          joinText:
+            "Здесь никого не ранжируют. Каждый выпуск называет всех, кто приложил к нему руку, по алфавиту.",
+          ways: [
+            ["Предложить", "Добавьте идею. Она встанет на путь контуром рядом со своей ветвью."],
+            [
+              "Поддержать голосом",
+              "Один голос от человека на идею. Числа стоят у идей и никогда у людей.",
+            ],
+            ["Взять дело", "Перевод, проверка на своём телефоне, данные о своём городе, код."],
+            ["Попробовать первым", "Войдите в круг, которому новое включают раньше всех."],
+            ["Поддержать деньгами", "На один шаг пути или на то, чтобы сеть жила."],
+          ],
+          ctaIdea: "Предложить идею на GitHub",
+          supTitle: "Поддержка",
+          supText: "Важно одно число: до какого месяца сеть оплачена.",
+          untilLabel: "Сеть оплачена до",
+          untilValue: "Сбор ещё не открыт",
+          ctaGive: "Откроется после регистрации ассоциации",
+          ledger: "записей в журнале",
+          rules: [
+            "Каждый полученный и каждый потраченный евро попадает в открытый журнал, который может проверить любой.",
+            "Пожертвование не покупает вес голоса, место в выдаче и знак отличия.",
+            "Ваше имя видно, только если вы об этом попросите.",
+          ],
+          engTitle: "Свой домен",
+          engText:
+            "Ареопаг ещё и движок. Спэйс, лавку или комьюнити можно вынести на собственный домен по подписке. Код открыт, поэтому любой может поднять его сам и бесплатно.",
+          engDomain: "ваше-имя.eu",
+          foot: "Открытый код, AGPL. Данные в Европе. Рекламы нет и не будет.",
+        },
+      };
+
+      const el = (tag, cls, text) => {
+        const n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (text) n.textContent = text;
+        return n;
+      };
+
+      function pickLang() {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("lang");
+        } catch {
+          /* storage may be unavailable */
+        }
+        const want = saved || (navigator.language || "en").slice(0, 2);
+        return T[want] ? want : "en";
+      }
+
+      function render(lang) {
+        const t = T[lang];
+        document.documentElement.lang = lang;
+        document
+          .querySelectorAll("[data-i18n]")
+          .forEach((n) => (n.textContent = t[n.dataset.i18n]));
+        document
+          .querySelectorAll("[data-i18n-html]")
+          .forEach((n) => (n.innerHTML = t[n.dataset.i18nHtml]));
+        document
+          .querySelectorAll("[data-lang]")
+          .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+
+        const box = document.getElementById("nodes");
+        box.replaceChildren();
+        const lit = el("div", "lit");
+        box.append(lit);
+        let total = 0;
+        let done = 0;
+        let last = null;
+        for (const group of ROADMAP) {
+          box.append(el("div", "stage", group.stage[lang]));
+          for (const [state, title] of group.nodes) {
+            const row = el("div", "node " + state);
+            row.append(el("b", "", title[lang]), el("small", "", t.state[state]));
+            box.append(row);
+            total += 1;
+            if (state === "done") done += 1;
+            if (state === "done" || state === "now") last = row;
+          }
+        }
+        if (last) lit.style.height = last.offsetTop + 12 + "px";
+        document.getElementById("count").textContent = t.count
+          .replace("{a}", done)
+          .replace("{b}", total);
+
+        const ways = document.getElementById("ways");
+        ways.replaceChildren(
+          ...t.ways.map(([h, p]) => {
+            const li = el("li");
+            const d = el("div");
+            d.append(el("h3", "", h), el("p", "", p));
+            li.append(d);
+            return li;
+          }),
+        );
+        document.getElementById("rules").replaceChildren(...t.rules.map((r) => el("li", "", r)));
+      }
+
+      document.querySelectorAll("[data-lang]").forEach((b) =>
+        b.addEventListener("click", () => {
+          try {
+            localStorage.setItem("lang", b.dataset.lang);
+          } catch {
+            /* storage may be unavailable */
+          }
+          render(b.dataset.lang);
+        }),
+      );
+      render(pickLang());
+      addEventListener("resize", () => render(document.documentElement.lang));
+    </script>
+  </body>
+</html>
