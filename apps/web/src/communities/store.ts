@@ -42,7 +42,7 @@ const CARD = `c.handle, c.name, c.place,
 
 export async function findCommunity(handle: string): Promise<Community | undefined> {
   const { rows } = await getPool().query<Community>(
-    `select ${COLUMNS} from communities where handle = $1`,
+    `select ${COLUMNS} from communities where handle = $1 and hidden_at is null`,
     [handle],
   );
   return rows[0];
@@ -122,7 +122,7 @@ export async function membersOf(communityId: string): Promise<Member[]> {
   const { rows } = await getPool().query<Member>(
     `select s.handle, s.name, m.role
      from community_members m join spaces s on s.user_id = m.user_id
-     where m.community_id = $1
+     where m.community_id = $1 and s.hidden_at is null
      order by (m.role = 'founder') desc, m.joined_at
      limit 500`,
     [communityId],
@@ -132,7 +132,7 @@ export async function membersOf(communityId: string): Promise<Member[]> {
 
 export async function listCommunities(): Promise<CommunityCard[]> {
   const { rows } = await getPool().query<CommunityCard>(
-    `select ${CARD} from communities c order by members desc, c.created_at limit 200`,
+    `select ${CARD} from communities c where c.hidden_at is null order by members desc, c.created_at limit 200`,
   );
   return rows;
 }
@@ -141,6 +141,7 @@ export async function communitiesOf(userId: string): Promise<CommunityCard[]> {
   const { rows } = await getPool().query<CommunityCard>(
     `select ${CARD} from communities c
      join community_members mine on mine.community_id = c.id and mine.user_id = $1
+     where c.hidden_at is null
      order by mine.joined_at`,
     [userId],
   );
@@ -153,6 +154,7 @@ export async function communitiesOfSpace(handle: string): Promise<CommunityCard[
     `select ${CARD} from communities c
      join community_members mine on mine.community_id = c.id
      join spaces s on s.user_id = mine.user_id and s.handle = $1
+     where c.hidden_at is null
      order by mine.joined_at`,
     [handle],
   );
@@ -161,7 +163,7 @@ export async function communitiesOfSpace(handle: string): Promise<CommunityCard[
 
 export async function communitiesAt(placeId: string): Promise<CommunityCard[]> {
   const { rows } = await getPool().query<CommunityCard>(
-    `select ${CARD} from communities c where c.place_id = $1 order by c.name`,
+    `select ${CARD} from communities c where c.place_id = $1 and c.hidden_at is null order by c.name`,
     [placeId],
   );
   return rows;
@@ -174,8 +176,8 @@ export async function communityTimeline(communityId: string): Promise<TimelineEv
             null as continues, e.author_id as "authorId",
             case when s.handle is null then null
                  else json_build_object('handle', s.handle, 'name', s.name) end as author
-     from events e left join spaces s on s.user_id = e.author_id
-     where e.community_id = $1
+     from events e left join spaces s on s.user_id = e.author_id and s.hidden_at is null
+     where e.community_id = $1 and e.hidden_at is null
      order by e.happened_on desc, e.created_at desc
      limit $2`,
     [communityId, MAX_EVENTS],

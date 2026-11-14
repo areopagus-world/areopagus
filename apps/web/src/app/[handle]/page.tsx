@@ -5,7 +5,7 @@ import { communitiesOfSpace, findCommunity } from "@/communities/store";
 import { checkHandle } from "@/spaces/rules";
 import { findSpaceByHandle } from "@/spaces/store";
 import { CommunityList } from "../community-list";
-import { sectionTitle, Timeline } from "../timeline";
+import { reportEvent, sectionTitle, Timeline } from "../timeline";
 import { CommunityPage } from "./community";
 
 export const dynamic = "force-dynamic";
@@ -160,9 +160,14 @@ export default async function SpacePage({
       {events.length > 0 ? (
         <section>
           <h2 style={sectionTitle}>Chronology</h2>
-          <Timeline events={events} />
+          <Timeline events={events} action={reportEvent} />
         </section>
       ) : null}
+      <p style={{ margin: "64px 0 0", fontSize: 14 }}>
+        <a href={`/report?space=${space.handle}`} style={{ color: "#6b645b" }}>
+          Report this page
+        </a>
+      </p>
     </main>
   );
 }

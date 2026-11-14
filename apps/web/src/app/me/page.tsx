@@ -47,6 +47,13 @@ export default async function Me({
       {problem && PROBLEMS[problem] ? (
         <p style={{ color: "#ff4a1c" }}>{PROBLEMS[problem]}</p>
       ) : null}
+      {space?.hiddenNote != null ? (
+        <p style={{ color: "#ff4a1c" }}>
+          A moderator has hidden your space from public view
+          {space.hiddenNote ? `: ${space.hiddenNote}` : "."} You can answer through the contact on
+          the <a href="/legal">legal notice</a>.
+        </p>
+      ) : null}
       {saved && space ? (
         <p>
           Saved. Your page:{" "}

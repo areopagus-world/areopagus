@@ -27,7 +27,7 @@ export async function searchPeople(
               s.skills[1:3]
             ) as skills
      from spaces s
-     where ($2::bigint is null or s.place_id = $2)
+     where s.hidden_at is null and ($2::bigint is null or s.place_id = $2)
        and ($1::text is null
             or exists (select 1 from unnest(s.skills) k where lower(k) like $1)
             or lower(s.name) like $1
@@ -50,7 +50,7 @@ export async function searchCommunities(
     `select c.handle, c.name, c.place,
             (select count(*)::int from community_members m where m.community_id = c.id) as members
      from communities c
-     where ($2::bigint is null or c.place_id = $2)
+     where c.hidden_at is null and ($2::bigint is null or c.place_id = $2)
        and ($1::text is null or lower(c.name) like $1 or lower(c.about) like $1)
      order by members desc, c.name
      limit 30`,

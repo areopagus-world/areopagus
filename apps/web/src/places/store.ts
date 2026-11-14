@@ -46,6 +46,7 @@ export async function lights(): Promise<Light[]> {
   const { rows } = await getPool().query<Light>(
     `select p.id::text, p.name, p.country, p.lat, p.lon, count(*)::int as spaces
      from spaces s join places p on p.id = s.place_id
+     where s.hidden_at is null
      group by p.id
      order by spaces desc, p.name`,
   );
@@ -54,7 +55,7 @@ export async function lights(): Promise<Light[]> {
 
 export async function spacesAt(placeId: string): Promise<{ handle: string; name: string }[]> {
   const { rows } = await getPool().query<{ handle: string; name: string }>(
-    "select handle, name from spaces where place_id = $1 order by name",
+    "select handle, name from spaces where place_id = $1 and hidden_at is null order by name",
     [placeId],
   );
   return rows;

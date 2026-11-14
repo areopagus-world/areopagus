@@ -10,12 +10,16 @@ export interface TimelineEvent {
   /** The earlier event this one continues, when it is visible to the reader. */
   continues: { id: string; title: string } | null;
   /** Set on community events: who wrote it. */
+  /** Set on the owner's own view when a moderator has hidden the event. */
+  hidden?: boolean;
+  hiddenNote?: string | null;
   authorId?: string | null;
   author?: { handle: string; name: string } | null;
 }
 
 const SELECT = `
   select e.id, to_char(e.happened_on, 'YYYY-MM-DD') as "happenedOn", e.title, e.body, e.visibility,
+         e.hidden_note as "hiddenNote", (e.hidden_at is not null) as hidden,
          case when p.id is null then null else json_build_object('id', p.id, 'title', p.title) end as continues
   from events e
   join spaces s on s.id = e.space_id
@@ -27,7 +31,7 @@ const ORDER = "order by e.happened_on desc, e.created_at desc";
 export async function publicTimeline(handle: string): Promise<TimelineEvent[]> {
   const { rows } = await getPool().query<TimelineEvent>(
     `${SELECT} and p.visibility = 'public'
-     where s.handle = $1 and e.visibility = 'public' ${ORDER} limit $2`,
+     where s.handle = $1 and e.visibility = 'public' and e.hidden_at is null ${ORDER} limit $2`,
     [handle, MAX_EVENTS],
   );
   return rows;
