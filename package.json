@@ -18,7 +18,8 @@
     "services:down": "docker compose down",
     "site:check": "node scripts/check-locales.mjs",
     "site:build": "node scripts/build-site.mjs",
-    "site:review": "node scripts/review-locales.mjs"
+    "site:review": "node scripts/review-locales.mjs",
+    "start": "pnpm --filter @areopagus/web start"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",

@@ -1,0 +1,53 @@
+name: deploy-web
+
+# Sends the network app to Clever Cloud on every change merged into main, then checks it answers.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/web/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/deploy-web.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-web
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # Skipped until the Clever Cloud application exists and its id is set as a repository variable.
+    if: vars.CLEVER_APP_ID != ''
+    runs-on: ubuntu-latest
+    env:
+      CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+      CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+      HEALTH_URL: ${{ vars.WEB_HEALTH_URL || 'https://beta.areopagus.world/api/health' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Clever Tools
+        run: npm install --global clever-tools
+
+      - name: Deploy
+        run: |
+          clever link "${{ vars.CLEVER_APP_ID }}"
+          clever deploy --force
+
+      - name: Smoke check
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            if curl --fail --silent --show-error "$HEALTH_URL" | grep -q '"ok":true'; then
+              exit 0
+            fi
+            sleep 20
+          done
+          echo "The app did not report healthy" && exit 1

@@ -21,15 +21,21 @@ build keeps working against the new schema and a rollback of the code is always 
 
 ## Clever Cloud
 
-Node.js application linked to this GitHub repository, with a PostgreSQL add-on. Environment variables:
+A Node.js application with a PostgreSQL add-on. Clever Cloud has no access to GitHub: the
+`deploy-web` workflow pushes the code after the checks pass, then calls `/api/health`.
 
-| Variable               | Value                                                             |
-| ---------------------- | ----------------------------------------------------------------- |
-| `APP_FOLDER`           | `apps/web`                                                        |
-| `CC_NODE_BUILD_TOOL`   | `custom`                                                          |
-| `CC_CUSTOM_BUILD_TOOL` | `corepack enable && pnpm install --frozen-lockfile && pnpm build` |
-| `CC_PRE_RUN_HOOK`      | `node scripts/migrate.mjs`                                        |
-| `CC_RUN_COMMAND`       | `pnpm start`                                                      |
-| `CC_NODE_VERSION`      | `22`                                                              |
+Environment variables of the application:
+
+| Variable               | Value                                                                               |
+| ---------------------- | ----------------------------------------------------------------------------------- |
+| `CC_NODE_VERSION`      | `22`                                                                                |
+| `CC_NODE_BUILD_TOOL`   | `custom`                                                                            |
+| `CC_PRE_BUILD_HOOK`    | `corepack enable pnpm`                                                              |
+| `CC_CUSTOM_BUILD_TOOL` | `pnpm install --frozen-lockfile --prod=false && pnpm --filter @areopagus/web build` |
+| `CC_PRE_RUN_HOOK`      | `pnpm --filter @areopagus/web migrate`                                              |
+| `CC_RUN_COMMAND`       | `pnpm start`                                                                        |
 
 The PostgreSQL add-on injects `POSTGRESQL_ADDON_URI`, which the app reads when `DATABASE_URL` is not set.
+
+GitHub side: repository variable `CLEVER_APP_ID`, secrets `CLEVER_TOKEN` and `CLEVER_SECRET`
+(from `~/.config/clever-cloud/clever-tools.json`; they expire after one year).
