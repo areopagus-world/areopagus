@@ -133,16 +133,20 @@ export default async function SpacePage({
           }}
         >
           {space.skills.map((skill) => (
-            <li
-              key={skill}
-              style={{
-                padding: "9px 14px",
-                border: "2px solid #f3efe6",
-                fontSize: 16,
-                fontWeight: 600,
-              }}
-            >
-              {skill}
+            <li key={skill}>
+              <a
+                href={`/search?q=${encodeURIComponent(skill)}`}
+                style={{
+                  padding: "9px 14px",
+                  border: "2px solid #f3efe6",
+                  fontSize: 16,
+                  fontWeight: 600,
+                  display: "block",
+                  textDecoration: "none",
+                }}
+              >
+                {skill}
+              </a>
             </li>
           ))}
         </ul>
