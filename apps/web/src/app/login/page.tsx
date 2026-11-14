@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { authEnabled } from "@/identity/config";
 import { currentUser } from "@/identity/session";
+import { PasskeySignIn } from "../passkey-buttons";
 import { button, field, Screen } from "../ui";
 
 export const dynamic = "force-dynamic";
@@ -20,6 +21,7 @@ export default async function Login() {
           Send me the link
         </button>
       </form>
+      <PasskeySignIn />
     </Screen>
   );
 }

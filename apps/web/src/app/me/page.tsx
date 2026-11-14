@@ -1,8 +1,10 @@
 import { notFound, redirect } from "next/navigation";
 import { authEnabled } from "@/identity/config";
+import { countPasskeys } from "@/identity/passkeys";
 import { currentUser } from "@/identity/session";
 import { HANDLE_FIELD_PATTERN, MAX_SKILLS } from "@/spaces/rules";
 import { findSpaceByUser } from "@/spaces/store";
+import { PasskeyAdd } from "../passkey-buttons";
 import { button, field, Screen } from "../ui";
 import { PlaceField } from "./place-field";
 
@@ -25,7 +27,11 @@ export default async function Me({
   if (!authEnabled()) notFound();
   const user = await currentUser();
   if (!user) redirect("/login");
-  const [space, { problem, saved }] = await Promise.all([findSpaceByUser(user.id), searchParams]);
+  const [space, { problem, saved }, passkeys] = await Promise.all([
+    findSpaceByUser(user.id),
+    searchParams,
+    countPasskeys(user.id),
+  ]);
 
   return (
     <Screen title={space ? "Your space" : "Make your space"}>
@@ -101,6 +107,7 @@ export default async function Me({
           {space ? "Save" : "Create my space"}
         </button>
       </form>
+      <PasskeyAdd count={passkeys} />
       <p style={{ ...hint, margin: "34px 0 10px" }}>
         Signed in as {user.email}. Your e-mail is never shown on your page.
       </p>
