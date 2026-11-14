@@ -39,3 +39,23 @@ The PostgreSQL add-on injects `POSTGRESQL_ADDON_URI`, which the app reads when `
 
 GitHub side: repository variable `CLEVER_APP_ID`, secrets `CLEVER_TOKEN` and `CLEVER_SECRET`
 (from `~/.config/clever-cloud/clever-tools.json`; they expire after one year).
+
+## Sign-in
+
+By e-mail link: a person enters an address, receives a link that works once and for 15 minutes,
+and confirms with one button. Only hashes of links and sessions are stored. Passkeys come next.
+
+Sign-in ships switched off. Application variables:
+
+| Variable              | Value                                                             |
+| --------------------- | ----------------------------------------------------------------- |
+| `AUTH_ENABLED`        | `true` to switch sign-in on                                       |
+| `AUTH_ALLOWED_EMAILS` | Comma-separated first circle; empty means everyone may sign in    |
+| `APP_ORIGIN`          | Public address, e.g. `https://beta.areopagus.world`               |
+| `SMTP_HOST`           | Mail server; without SMTP settings the link is written to the log |
+| `SMTP_PORT`           | `587` by default                                                  |
+| `SMTP_USER`           | Mail account                                                      |
+| `SMTP_PASS`           | Mail secret                                                       |
+| `MAIL_FROM`           | Sender, e.g. `Areopagus <hello@areopagus.world>`                  |
+
+Do not open sign-in to everyone before the privacy notice is published: an e-mail address is personal data.
