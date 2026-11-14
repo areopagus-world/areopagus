@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { authEnabled } from "@/identity/config";
 import { currentUser } from "@/identity/session";
+import { publisher } from "@/legal/details";
 import { PasskeySignIn } from "../passkey-buttons";
 import { button, field, Screen } from "../ui";
 
@@ -22,6 +23,12 @@ export default async function Login() {
         </button>
       </form>
       <PasskeySignIn />
+      {publisher() ? (
+        <p style={{ color: "#a39b8f", fontSize: 15, marginTop: 34 }}>
+          What we store and why: <a href="/privacy">privacy</a>. Who runs the site:{" "}
+          <a href="/legal">legal notice</a>.
+        </p>
+      ) : null}
     </Screen>
   );
 }

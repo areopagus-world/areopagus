@@ -362,6 +362,9 @@ footer {
   color: var(--mute);
   font-size: 14px;
 }
+footer a {
+  color: inherit;
+}
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
