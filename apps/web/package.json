@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node ../../scripts/build-site.mjs --out public/site && next build",
     "start": "next start --port ${PORT:-8080} --hostname 0.0.0.0",
     "migrate": "node scripts/migrate.mjs && node scripts/import-places.mjs --if-empty",
     "typecheck": "tsc --noEmit",

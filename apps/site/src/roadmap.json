@@ -1,7 +1,7 @@
 {
   "stages": [
     ["done", "done", "done", "done", "next"],
-    ["next", "later", "later", "later"],
+    ["now", "later", "later", "now"],
     ["later", "later", "later"],
     ["later", "later", "later"],
     ["later", "later", "later"]
