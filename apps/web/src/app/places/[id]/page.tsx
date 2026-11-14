@@ -49,6 +49,8 @@ export default async function PlacePage({ params }: { params: Promise<{ id: stri
         <a href="/map" style={{ color: "#ff4a1c" }}>
           Back to the map
         </a>
+        {" · "}
+        <a href={`/search?place_id=${place.id}`}>Search here</a>
       </p>
     </Screen>
   );

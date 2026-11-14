@@ -91,6 +91,8 @@ export default async function MapPage() {
         </ul>
       ) : null}
       <p style={{ fontSize: 13, color: "#6b645b", marginTop: 30 }}>
+        <a href="/search">Search</a> · <a href="/communities">Communities</a>
+        <br />
         Places: GeoNames, CC BY 4.0. Outline: Natural Earth, public domain.
       </p>
     </main>
