@@ -1,0 +1,61 @@
+import { getPool } from "@/db/pool";
+
+export interface Place {
+  id: string;
+  name: string;
+  country: string;
+}
+
+export interface Light extends Place {
+  lat: number;
+  lon: number;
+  spaces: number;
+}
+
+const label = (place: Place) => `${place.name}, ${place.country}`;
+export { label as placeLabel };
+
+/** Settlements whose name starts with the query, biggest first. */
+export async function searchPlaces(query: string): Promise<Place[]> {
+  const q = query
+    .trim()
+    .toLowerCase()
+    .replace(/[%_\\]/g, "");
+  if (q.length < 2) return [];
+  const { rows } = await getPool().query<Place>(
+    `select id::text, name, country from places
+     where lower(ascii) like $1 or lower(name) like $1
+     order by population desc, name
+     limit 8`,
+    [`${q}%`],
+  );
+  return rows;
+}
+
+export async function findPlace(id: string): Promise<Place | undefined> {
+  if (!/^\d{1,12}$/.test(id)) return undefined;
+  const { rows } = await getPool().query<Place>(
+    "select id::text, name, country from places where id = $1",
+    [id],
+  );
+  return rows[0];
+}
+
+/** Every settlement that has at least one space: the lights of the map. */
+export async function lights(): Promise<Light[]> {
+  const { rows } = await getPool().query<Light>(
+    `select p.id::text, p.name, p.country, p.lat, p.lon, count(*)::int as spaces
+     from spaces s join places p on p.id = s.place_id
+     group by p.id
+     order by spaces desc, p.name`,
+  );
+  return rows;
+}
+
+export async function spacesAt(placeId: string): Promise<{ handle: string; name: string }[]> {
+  const { rows } = await getPool().query<{ handle: string; name: string }>(
+    "select handle, name from spaces where place_id = $1 order by name",
+    [placeId],
+  );
+  return rows;
+}

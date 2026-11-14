@@ -4,6 +4,7 @@ import { currentUser } from "@/identity/session";
 import { HANDLE_PATTERN, MAX_SKILLS } from "@/spaces/rules";
 import { findSpaceByUser } from "@/spaces/store";
 import { button, field, Screen } from "../ui";
+import { PlaceField } from "./place-field";
 
 export const dynamic = "force-dynamic";
 
@@ -69,9 +70,11 @@ export default async function Me({
         </label>
         <label>
           Place
-          <input style={field} name="place" defaultValue={space?.place ?? ""} maxLength={80} />
+          <PlaceField initialLabel={space?.place ?? ""} initialId={space?.placeId ?? ""} />
         </label>
-        <p style={hint}>Your town or village. It will become a point on the map.</p>
+        <p style={hint}>
+          Start typing your town or village and pick it from the list: it lights up on the map.
+        </p>
         <label>
           Skills
           <textarea

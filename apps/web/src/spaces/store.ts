@@ -6,9 +6,11 @@ export interface Space {
   about: string;
   place: string;
   skills: string[];
+  /** Settlement the space is tied to, if the place was picked from the list. */
+  placeId: string | null;
 }
 
-const COLUMNS = "handle, name, about, place, skills";
+const COLUMNS = 'handle, name, about, place, skills, place_id::text as "placeId"';
 
 export async function findSpaceByHandle(handle: string): Promise<Space | undefined> {
   const { rows } = await getPool().query<Space>(`select ${COLUMNS} from spaces where handle = $1`, [
@@ -29,12 +31,13 @@ export async function findSpaceByUser(userId: string): Promise<Space | undefined
 export async function saveSpace(userId: string, space: Space): Promise<"saved" | "taken"> {
   try {
     await getPool().query(
-      `insert into spaces (user_id, handle, name, about, place, skills)
-       values ($1, $2, $3, $4, $5, $6)
+      `insert into spaces (user_id, handle, name, about, place, skills, place_id)
+       values ($1, $2, $3, $4, $5, $6, $7)
        on conflict (user_id) do update
          set handle = excluded.handle, name = excluded.name, about = excluded.about,
-             place = excluded.place, skills = excluded.skills, updated_at = now()`,
-      [userId, space.handle, space.name, space.about, space.place, space.skills],
+             place = excluded.place, skills = excluded.skills, place_id = excluded.place_id,
+             updated_at = now()`,
+      [userId, space.handle, space.name, space.about, space.place, space.skills, space.placeId],
     );
     return "saved";
   } catch (error) {
