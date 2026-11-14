@@ -30,7 +30,7 @@ Environment variables of the application:
 | ---------------------- | ----------------------------------------------------------------------------------- |
 | `CC_NODE_VERSION`      | `22`                                                                                |
 | `CC_NODE_BUILD_TOOL`   | `custom`                                                                            |
-| `CC_PRE_BUILD_HOOK`    | `corepack enable pnpm`                                                              |
+| `CC_PRE_BUILD_HOOK`    | `npm install --global pnpm@10.28.0`                                                 |
 | `CC_CUSTOM_BUILD_TOOL` | `pnpm install --frozen-lockfile --prod=false && pnpm --filter @areopagus/web build` |
 | `CC_PRE_RUN_HOOK`      | `pnpm --filter @areopagus/web migrate`                                              |
 | `CC_RUN_COMMAND`       | `pnpm start`                                                                        |
