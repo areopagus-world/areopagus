@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { publicTimeline } from "@/chronology/store";
+import { communitiesOfSpace, findCommunity } from "@/communities/store";
 import { checkHandle } from "@/spaces/rules";
 import { findSpaceByHandle } from "@/spaces/store";
+import { CommunityList } from "../community-list";
 import { sectionTitle, Timeline } from "../timeline";
+import { CommunityPage } from "./community";
 
 export const dynamic = "force-dynamic";
 
-async function load(raw: string) {
+function handleOf(raw: string): string | undefined {
   const checked = checkHandle(decodeURIComponent(raw));
-  return "handle" in checked ? findSpaceByHandle(checked.handle) : undefined;
+  return "handle" in checked ? checked.handle : undefined;
 }
 
 export async function generateMetadata({
@@ -17,17 +20,40 @@ export async function generateMetadata({
 }: {
   params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
-  const space = await load((await params).handle);
-  return space
-    ? { title: `${space.name} · Areopagus`, description: space.about.slice(0, 160) }
+  const handle = handleOf((await params).handle);
+  const found = handle
+    ? ((await findSpaceByHandle(handle)) ?? (await findCommunity(handle)))
+    : undefined;
+  return found
+    ? { title: `${found.name} · Areopagus`, description: found.about.slice(0, 160) }
     : {};
 }
 
-/** The public page of a space: areopagus.world/<handle>. */
-export default async function SpacePage({ params }: { params: Promise<{ handle: string }> }) {
-  const space = await load((await params).handle);
-  if (!space) notFound();
-  const events = await publicTimeline(space.handle);
+/** The public page behind an address: a space, or a community. areopagus.world/<handle>. */
+export default async function SpacePage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ handle: string }>;
+  searchParams: Promise<{ problem?: string }>;
+}) {
+  const handle = handleOf((await params).handle);
+  if (!handle) notFound();
+  const space = await findSpaceByHandle(handle);
+  if (!space) {
+    const community = await findCommunity(handle);
+    if (!community) notFound();
+    const { problem } = await searchParams;
+    return problem ? (
+      <CommunityPage community={community} problem={problem} />
+    ) : (
+      <CommunityPage community={community} />
+    );
+  }
+  const [events, communities] = await Promise.all([
+    publicTimeline(space.handle),
+    communitiesOfSpace(space.handle),
+  ]);
   return (
     <main style={{ maxWidth: 760, margin: "0 auto", padding: "12vh 20px 16vh" }}>
       <p
@@ -120,6 +146,12 @@ export default async function SpacePage({ params }: { params: Promise<{ handle: 
             </li>
           ))}
         </ul>
+      ) : null}
+      {communities.length > 0 ? (
+        <section>
+          <h2 style={sectionTitle}>Communities</h2>
+          <CommunityList communities={communities} />
+        </section>
       ) : null}
       {events.length > 0 ? (
         <section>
