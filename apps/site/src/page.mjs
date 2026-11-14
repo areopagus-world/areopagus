@@ -132,7 +132,7 @@ ${css}
         </div>
       </section>
 
-      <footer>${esc(t.foot)}</footer>
+      <footer>${esc(t.foot)}${app ? `<br /><a href="/legal">${esc(t.legal)}</a> · <a href="/privacy">${esc(t.privacy)}</a>` : ""}</footer>
     </div>
 
     <script>

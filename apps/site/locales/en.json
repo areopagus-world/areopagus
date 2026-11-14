@@ -65,5 +65,7 @@
   "engTitle": "Your own domain",
   "engText": "Areopagus is also an engine. Your space, shop or community can live on your own domain by subscription. The code is open, so anyone may run it themselves for free.",
   "engDomain": "your-name.eu",
+  "legal": "Legal notice",
+  "privacy": "Privacy",
   "foot": "Open code under AGPL. Data in Europe. No ads, ever."
 }

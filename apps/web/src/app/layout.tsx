@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           href="https://fonts.bunny.net/css?family=unbounded:800|golos-text:400,600"
           rel="stylesheet"
         />
+        <style>{"a{color:inherit}"}</style>
       </head>
       <body
         style={{
