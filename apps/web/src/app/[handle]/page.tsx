@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { publicTimeline } from "@/chronology/store";
 import { checkHandle } from "@/spaces/rules";
 import { findSpaceByHandle } from "@/spaces/store";
+import { sectionTitle, Timeline } from "../timeline";
 
 export const dynamic = "force-dynamic";
 
@@ -25,6 +27,7 @@ export async function generateMetadata({
 export default async function SpacePage({ params }: { params: Promise<{ handle: string }> }) {
   const space = await load((await params).handle);
   if (!space) notFound();
+  const events = await publicTimeline(space.handle);
   return (
     <main style={{ maxWidth: 760, margin: "0 auto", padding: "12vh 20px 16vh" }}>
       <p
@@ -117,6 +120,12 @@ export default async function SpacePage({ params }: { params: Promise<{ handle: 
             </li>
           ))}
         </ul>
+      ) : null}
+      {events.length > 0 ? (
+        <section>
+          <h2 style={sectionTitle}>Chronology</h2>
+          <Timeline events={events} />
+        </section>
       ) : null}
     </main>
   );
