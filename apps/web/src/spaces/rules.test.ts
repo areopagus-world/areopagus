@@ -59,3 +59,13 @@ describe("parseSkills", () => {
     expect(parseSkills(many)).toHaveLength(MAX_SKILLS);
   });
 });
+
+describe("the form field pattern", () => {
+  it("lets capitals through, since the server lowers them", async () => {
+    const { HANDLE_FIELD_PATTERN } = await import("./rules");
+    const field = new RegExp(`^(?:${HANDLE_FIELD_PATTERN})$`);
+    expect(field.test("Pavel")).toBe(true);
+    expect(field.test("pavel@example.org")).toBe(false);
+    expect(checkHandle("Pavel")).toEqual({ handle: "pavel" });
+  });
+});

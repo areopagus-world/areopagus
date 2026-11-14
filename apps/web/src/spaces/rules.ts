@@ -54,6 +54,8 @@ const RESERVED = new Set([
 
 export const HANDLE_PATTERN = "[a-z0-9]([a-z0-9\\-]{1,28})[a-z0-9]";
 const HANDLE = new RegExp(`^${HANDLE_PATTERN}$`);
+/** What the form field accepts: capitals are allowed while typing and are lowered on save. */
+export const HANDLE_FIELD_PATTERN = "[A-Za-z0-9]([A-Za-z0-9\\-]{1,28})[A-Za-z0-9]";
 
 export type HandleProblem = "format" | "reserved";
 
