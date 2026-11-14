@@ -1,0 +1,47 @@
+name: Feature
+description: A piece of work from the roadmap or a proposal for one
+labels: [feature]
+body:
+  - type: textarea
+    id: who
+    attributes:
+      label: Who needs this and what for
+      description: A person, a community or a place. One real situation is better than a general statement.
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Done when
+      description: What a person can do once this is finished.
+    validations:
+      required: true
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      options:
+        - identity
+        - spaces
+        - places
+        - skills
+        - communities
+        - questions
+        - search
+        - moderation
+        - journal
+        - notifications
+        - ai
+        - governance
+        - shop
+        - payments
+        - messaging
+        - projects
+        - library
+        - federation
+        - not sure
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Stage
+      options: ["1", "2", "3", "later"]
