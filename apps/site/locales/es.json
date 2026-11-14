@@ -1,0 +1,69 @@
+{
+  "name": "Español",
+  "meta": "Areopagus: una red europea de personas reales. Construida en abierto, entre todos.",
+  "kicker": "Una red europea de personas reales",
+  "titleA": "Construida",
+  "titleB": "entre todos.",
+  "lead": "Areopagus da a cada persona una página, a cada pueblo un mapa y a cada cual una voz. Sin publicidad y con código abierto. La red acaba de empezar, y puedes construirla con nosotros.",
+  "ctaPath": "Ver el camino",
+  "ctaJoin": "Cómo participar",
+  "count": "{a} de {b} encendidos",
+  "pathTitle": "El camino",
+  "pathText": "Lo hecho está encendido. Lo que está en marcha parpadea. Lo previsto se ve en contorno. Aquí no hay fechas, solo un orden honesto.",
+  "state": { "done": "hecho", "now": "en marcha", "next": "a continuación", "later": "previsto" },
+  "stages": [
+    "Cimientos",
+    "La persona y el lugar",
+    "Habilidades y vídeo",
+    "Tienda y tribunal",
+    "Obra común"
+  ],
+  "nodes": [
+    "Concepto y núcleo",
+    "Documentación y taller",
+    "Registro con cadena de hashes",
+    "Esta página",
+    "Una forma jurídica para el proyecto",
+    "Tu espacio",
+    "Cronología",
+    "Comunidades",
+    "Mapa de lugares",
+    "Preguntar a una persona",
+    "Mapa de habilidades",
+    "Vídeo",
+    "Tienda",
+    "Pagos que nadie puede rechazar",
+    "Tribunal y votación general",
+    "Mensajes cifrados",
+    "Laboratorios y proyectos conjuntos",
+    "Tu propio dominio"
+  ],
+  "joinTitle": "Participar",
+  "joinText": "Aquí no se clasifica a nadie. Cada versión nombra a todos los que han echado una mano, por orden alfabético.",
+  "ways": [
+    ["Proponer", "Añade una idea. Aparece en el camino como un contorno junto a su rama."],
+    [
+      "Apoyar con tu voz",
+      "Una voz por persona y por idea. Los números son de las ideas, nunca de las personas."
+    ],
+    ["Asumir una tarea", "Traducción, pruebas en tu teléfono, datos de tu pueblo, código."],
+    ["Probarlo antes", "Entra en el círculo que recibe las novedades antes que nadie."],
+    ["Apoyar con dinero", "Para un paso del camino o para que la red siga en pie."]
+  ],
+  "ctaIdea": "Proponer una idea en GitHub",
+  "supTitle": "Apoyo",
+  "supText": "Solo importa una cifra: hasta qué mes está pagada la red. Por ahora el proyecto lo lleva su fundador como autónomo en Francia, así que el apoyo es un ingreso de su actividad y no un donativo benéfico.",
+  "untilLabel": "La red está pagada hasta",
+  "untilValue": "Recaudación aún no abierta",
+  "ctaGive": "Se abre pronto",
+  "ledger": "asientos en el registro",
+  "rules": [
+    "Cada euro que entra y cada euro que sale queda en un registro público que cualquiera puede comprobar.",
+    "Una donación no compra peso de voto, ni posición, ni insignia.",
+    "Tu nombre solo aparece si lo pides."
+  ],
+  "engTitle": "Tu propio dominio",
+  "engText": "Areopagus es también un motor. Tu espacio, tu tienda o tu comunidad pueden vivir en tu propio dominio mediante suscripción. El código es abierto, así que cualquiera puede alojarlo por su cuenta y gratis.",
+  "engDomain": "tu-nombre.es",
+  "foot": "Código abierto bajo AGPL. Datos en Europa. Sin publicidad, nunca."
+}

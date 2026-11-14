@@ -1,0 +1,63 @@
+{
+  "name": "English",
+  "meta": "Areopagus: a European network of real people. Built in the open, together.",
+  "kicker": "A European network of real people",
+  "titleA": "Built",
+  "titleB": "together.",
+  "lead": "Areopagus gives everyone a page, every town a map and every person a voice. No ads, open code. The network is only starting, and you can build it with us.",
+  "ctaPath": "See the path",
+  "ctaJoin": "How to take part",
+  "count": "{a} of {b} lit",
+  "pathTitle": "The path",
+  "pathText": "What is done is lit. What is in work pulses. What is planned is an outline. No dates here, only an honest order.",
+  "state": { "done": "done", "now": "in work", "next": "up next", "later": "planned" },
+  "stages": ["Foundation", "Person and place", "Skills and video", "Shop and court", "Common work"],
+  "nodes": [
+    "Concept and core",
+    "Docs and workspace",
+    "Hash-chained journal",
+    "This page",
+    "A legal home for the project",
+    "Your space",
+    "Chronicle",
+    "Communities",
+    "Map of places",
+    "Ask a person",
+    "Map of skills",
+    "Video",
+    "Shop",
+    "Payments nobody can refuse",
+    "Court and general vote",
+    "Encrypted messages",
+    "Labs and joint projects",
+    "Your own domain"
+  ],
+  "joinTitle": "Take part",
+  "joinText": "Nobody is ranked here. Every release names all who had a hand in it, in alphabetical order.",
+  "ways": [
+    ["Propose", "Add an idea. It appears on the path as an outline next to its branch."],
+    [
+      "Back it with your voice",
+      "One voice per person per idea. Numbers belong to ideas, never to people."
+    ],
+    ["Take a task", "Translation, testing on your phone, data about your town, code."],
+    ["Try it first", "Join the circle that gets new things before everyone else."],
+    ["Support with money", "For one step of the path or for keeping the network running."]
+  ],
+  "ctaIdea": "Propose an idea on GitHub",
+  "supTitle": "Support",
+  "supText": "One number matters: until which month the network is paid for. For now the project is run by its founder as a sole trader in France, so support is his business income, not a charitable gift.",
+  "untilLabel": "The network is paid until",
+  "untilValue": "Collection not open yet",
+  "ctaGive": "Opening soon",
+  "ledger": "journal entries",
+  "rules": [
+    "Every euro in and every euro out goes into a public journal anyone can verify.",
+    "A donation buys no voting weight, no placement and no badge.",
+    "Your name is shown only if you ask for it."
+  ],
+  "engTitle": "Your own domain",
+  "engText": "Areopagus is also an engine. Your space, shop or community can live on your own domain by subscription. The code is open, so anyone may run it themselves for free.",
+  "engDomain": "your-name.eu",
+  "foot": "Open code under AGPL. Data in Europe. No ads, ever."
+}

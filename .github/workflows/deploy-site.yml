@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "apps/site/**"
+      - "scripts/**"
       - ".github/workflows/deploy-site.yml"
   workflow_dispatch:
 
@@ -22,10 +23,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build the site
+        run: node scripts/build-site.mjs
+
       - name: Install lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
-      - name: Upload apps/site to www
+      - name: Upload the built site to www
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
@@ -36,7 +44,7 @@ jobs:
             set net:max-retries 2;
             set net:timeout 20;
             open --user '$DEPLOY_USER' --env-password '$DEPLOY_PROTOCOL://$DEPLOY_HOST';
-            mirror --reverse --delete --verbose apps/site/ www/;
+            mirror --reverse --delete --verbose apps/site/dist/ www/;
             bye
           "
 
