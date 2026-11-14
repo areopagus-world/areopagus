@@ -1,0 +1,75 @@
+{
+  "name": "Nederlands",
+  "meta": "Areopagus: een Europees netwerk van echte mensen. Samen en in het openbaar gebouwd.",
+  "kicker": "Een Europees netwerk van echte mensen",
+  "titleA": "Samen",
+  "titleB": "gebouwd.",
+  "lead": "Areopagus geeft iedereen een pagina, elke plaats een kaart en ieder mens een stem. Zonder reclame, met open code. Het netwerk staat nog maar aan het begin, en je kunt het met ons opbouwen.",
+  "ctaPath": "Bekijk de weg",
+  "ctaJoin": "Zo doe je mee",
+  "count": "{a} van {b} branden",
+  "pathTitle": "De weg",
+  "pathText": "Wat af is, brandt. Wat in de maak is, knippert. Wat gepland is, blijft een omtrek. Hier staan geen data, alleen een eerlijke volgorde.",
+  "state": { "done": "af", "now": "in de maak", "next": "hierna", "later": "gepland" },
+  "stages": [
+    "Fundament",
+    "Mens en plaats",
+    "Vaardigheden en video",
+    "Winkel en rechtbank",
+    "Gezamenlijk werk"
+  ],
+  "nodes": [
+    "Concept en kern",
+    "Documentatie en werkplaats",
+    "Journaal met hashketen",
+    "Deze pagina",
+    "Een rechtsvorm voor het project",
+    "Jouw space",
+    "Kroniek",
+    "Gemeenschappen",
+    "Kaart van plaatsen",
+    "Vraag het een mens",
+    "Kaart van vaardigheden",
+    "Video",
+    "Winkel",
+    "Betalingen die niemand kan weigeren",
+    "Rechtbank en algemene stemming",
+    "Versleutelde berichten",
+    "Labs en gezamenlijke projecten",
+    "Je eigen domein"
+  ],
+  "joinTitle": "Meedoen",
+  "joinText": "Hier wordt niemand gerangschikt. Elke versie noemt iedereen die eraan heeft meegewerkt, in alfabetische volgorde.",
+  "ways": [
+    ["Voorstellen", "Voeg een idee toe. Het verschijnt als omtrek op de weg, naast zijn tak."],
+    [
+      "Steunen met je stem",
+      "Eén stem per persoon per idee. Aantallen horen bij ideeën, nooit bij mensen."
+    ],
+    [
+      "Een taak oppakken",
+      "Vertalen, testen op je eigen telefoon, gegevens over je woonplaats, code."
+    ],
+    [
+      "Als eerste proberen",
+      "Sluit je aan bij de kring die nieuwe dingen eerder krijgt dan de rest."
+    ],
+    ["Steunen met geld", "Voor één stap op de weg of om het netwerk draaiende te houden."]
+  ],
+  "ctaIdea": "Stel een idee voor op GitHub",
+  "supTitle": "Steun",
+  "supText": "Eén getal telt: tot welke maand het netwerk betaald is. Voorlopig runt de oprichter het project als eenmanszaak in Frankrijk. Steun is daarom zijn zakelijk inkomen en geen gift aan een goed doel.",
+  "untilLabel": "Het netwerk is betaald tot",
+  "untilValue": "Inzameling nog niet geopend",
+  "ctaGive": "Gaat binnenkort open",
+  "ledger": "boekingen in het journaal",
+  "rules": [
+    "Elke euro die binnenkomt en elke euro die eruit gaat, staat in een openbaar journaal dat iedereen kan controleren.",
+    "Een gift koopt geen stemgewicht, geen plek vooraan en geen badge.",
+    "Je naam wordt alleen getoond als je daarom vraagt."
+  ],
+  "engTitle": "Je eigen domein",
+  "engText": "Areopagus is ook een motor. Jouw space, winkel of gemeenschap kan met een abonnement op je eigen domein draaien. De code is open, dus iedereen mag die zelf en gratis hosten.",
+  "engDomain": "jouw-naam.nl",
+  "foot": "Open code onder AGPL. Gegevens in Europa. Nooit reclame."
+}
