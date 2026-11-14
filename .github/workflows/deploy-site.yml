@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DEPLOY_PROTOCOL: ${{ vars.DEPLOY_PROTOCOL || 'sftp' }}
-      SITE_URL: ${{ vars.SITE_URL || 'http://areopagus.world' }}
+      SITE_URL: ${{ vars.SITE_URL || 'https://areopagus.world' }}
     steps:
       - uses: actions/checkout@v4
 
