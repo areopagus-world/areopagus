@@ -1,6 +1,6 @@
 {
   "name": "Italiano",
-  "meta": "Areopagus: una rete europea di persone vere. Costruita insieme, allo scoperto.",
+  "meta": "Areopagus: una rete europea di persone vere. Costruita insieme, alla luce del sole.",
   "kicker": "Una rete europea di persone vere",
   "titleA": "Costruita",
   "titleB": "insieme.",
@@ -10,7 +10,12 @@
   "count": "{a} su {b} accesi",
   "pathTitle": "Il percorso",
   "pathText": "Ciò che è fatto è acceso. Ciò che è in corso pulsa. Ciò che è previsto resta un contorno. Qui non ci sono date, solo un ordine onesto.",
-  "state": { "done": "fatto", "now": "in corso", "next": "a seguire", "later": "previsto" },
+  "state": {
+    "done": "fatto",
+    "now": "in corso",
+    "next": "a seguire",
+    "later": "previsto"
+  },
   "stages": [
     "Fondamenta",
     "La persona e il luogo",
@@ -20,7 +25,7 @@
   ],
   "nodes": [
     "Idea e nucleo",
-    "Documentazione e officina",
+    "Documentazione e spazio di lavoro",
     "Registro con catena di hash",
     "Questa pagina",
     "Una forma giuridica per il progetto",
@@ -47,15 +52,15 @@
       "Una voce per persona e per idea. I numeri riguardano le idee, mai le persone."
     ],
     ["Prendere un compito", "Traduzione, prove sul tuo telefono, dati sul tuo paese, codice."],
-    ["Provare per primi", "Entra nel cerchio che riceve le novità prima di tutti."],
-    ["Sostenere con denaro", "Per un passo del percorso o per tenere viva la rete."]
+    ["Provare in anteprima", "Entra nella cerchia che riceve le novità prima di tutti."],
+    ["Sostenere con denaro", "Per una tappa del percorso o per tenere viva la rete."]
   ],
   "ctaIdea": "Proponi un'idea su GitHub",
   "supTitle": "Sostegno",
-  "supText": "Conta un solo numero: fino a quale mese la rete è pagata. Per ora il progetto è portato avanti dal fondatore come imprenditore individuale in Francia, quindi il sostegno è un suo reddito d'impresa e non una donazione benefica.",
+  "supText": "Conta un solo numero: fino a quale mese la rete è pagata. Per ora il progetto è portato avanti dal fondatore come imprenditore individuale in Francia, quindi il sostegno è reddito della sua attività, non una donazione benefica.",
   "untilLabel": "La rete è pagata fino a",
   "untilValue": "Raccolta non ancora aperta",
-  "ctaGive": "Apre presto",
+  "ctaGive": "In arrivo",
   "ledger": "voci nel registro",
   "rules": [
     "Ogni euro in entrata e ogni euro in uscita finisce in un registro pubblico che chiunque può verificare.",
@@ -64,6 +69,6 @@
   ],
   "engTitle": "Il tuo dominio",
   "engText": "Areopagus è anche un motore. Il tuo spazio, la tua bottega o la tua comunità possono vivere sul tuo dominio, in abbonamento. Il codice è aperto, quindi chiunque può ospitarlo da sé, gratis.",
-  "engDomain": "tuo-nome.it",
-  "foot": "Codice aperto con licenza AGPL. Dati in Europa. Mai pubblicità."
+  "engDomain": "tuo-nome.eu",
+  "foot": "Codice aperto con licenza AGPL. Dati in Europa. Niente pubblicità, mai."
 }

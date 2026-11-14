@@ -13,9 +13,15 @@ if (failed.length > 0) {
   process.exit(1);
 }
 
-// French puts a no-break space before double punctuation.
+// French typography: no-break spaces before double punctuation and a typographic apostrophe.
 function french(value) {
-  if (typeof value === "string") return value.replace(/ ([:;!?»])/g, " $1").replace(/« /g, "« ");
+  if (typeof value === "string") {
+    return value
+      .replace(/ ([;!?»])/g, "\u202f$1")
+      .replace(/ :/g, "\u00a0:")
+      .replace(/« /g, "«\u00a0")
+      .replace(/'/g, "\u2019");
+  }
   if (Array.isArray(value)) return value.map(french);
   return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, french(child)]));
 }

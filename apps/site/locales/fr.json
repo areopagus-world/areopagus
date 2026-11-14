@@ -1,16 +1,21 @@
 {
   "name": "Français",
-  "meta": "Areopagus : un réseau européen de vraies personnes. Construit ensemble, à découvert.",
+  "meta": "Areopagus : un réseau européen de vraies personnes. Construit ensemble, au grand jour.",
   "kicker": "Un réseau européen de vraies personnes",
   "titleA": "Construit",
   "titleB": "ensemble.",
-  "lead": "Areopagus donne une page à chacun, une carte à chaque commune et une voix à chaque personne. Sans publicité, avec un code ouvert. Le réseau ne fait que commencer, et vous pouvez le construire avec nous.",
+  "lead": "Areopagus donne une page à chacun, une carte à chaque commune et une voix à chaque personne. Sans publicité, code ouvert. Le réseau ne fait que commencer, et vous pouvez le construire avec nous.",
   "ctaPath": "Voir le chemin",
   "ctaJoin": "Comment participer",
   "count": "{a} sur {b} allumés",
   "pathTitle": "Le chemin",
-  "pathText": "Ce qui est fait est allumé. Ce qui est en cours clignote. Ce qui est prévu reste en contour. Pas de dates ici, seulement un ordre honnête.",
-  "state": { "done": "fait", "now": "en cours", "next": "ensuite", "later": "prévu" },
+  "pathText": "Ce qui est fait est allumé. Ce qui est en cours palpite. Ce qui est prévu n'est qu'un contour. Pas de dates ici, seulement un ordre honnête.",
+  "state": {
+    "done": "fait",
+    "now": "en cours",
+    "next": "à suivre",
+    "later": "prévu"
+  },
   "stages": [
     "Fondation",
     "La personne et le lieu",
@@ -21,7 +26,7 @@
   "nodes": [
     "Concept et noyau",
     "Documentation et atelier",
-    "Journal à chaîne de hachage",
+    "Journal chaîné par hachage",
     "Cette page",
     "Une structure juridique pour le projet",
     "Votre espace",
@@ -32,27 +37,33 @@
     "Carte des compétences",
     "Vidéo",
     "Boutique",
-    "Des paiements que nul ne peut refuser",
+    "Des paiements que personne ne peut refuser",
     "Tribunal et vote général",
     "Messages chiffrés",
     "Laboratoires et projets communs",
     "Votre propre domaine"
   ],
   "joinTitle": "Participer",
-  "joinText": "Ici, personne n'est classé. Chaque version nomme tous ceux qui y ont mis la main, par ordre alphabétique.",
+  "joinText": "Ici, personne n'est classé. Chaque version cite toutes les personnes qui y ont contribué, par ordre alphabétique.",
   "ways": [
     ["Proposer", "Ajoutez une idée. Elle apparaît en contour sur le chemin, près de sa branche."],
     [
-      "Soutenir par votre voix",
+      "Soutenir de votre voix",
       "Une voix par personne et par idée. Les chiffres appartiennent aux idées, jamais aux personnes."
     ],
-    ["Prendre une tâche", "Traduction, test sur votre téléphone, données de votre commune, code."],
-    ["Essayer en premier", "Rejoignez le cercle qui reçoit les nouveautés avant tout le monde."],
+    [
+      "Prendre une tâche",
+      "Traduction, tests sur votre téléphone, données sur votre commune, code."
+    ],
+    [
+      "Tester en avant-première",
+      "Rejoignez le cercle qui reçoit les nouveautés avant tout le monde."
+    ],
     ["Soutenir financièrement", "Pour une étape du chemin ou pour faire vivre le réseau."]
   ],
   "ctaIdea": "Proposer une idée sur GitHub",
   "supTitle": "Soutien",
-  "supText": "Un seul chiffre compte : jusqu'à quel mois le réseau est financé. Pour l'instant, le projet est porté par son fondateur, entrepreneur individuel en France : votre soutien est un revenu professionnel, pas un don caritatif.",
+  "supText": "Un seul chiffre compte : jusqu'à quel mois le réseau est financé. Pour l'instant, le projet est porté par son fondateur, entrepreneur individuel en France : votre soutien est donc son revenu professionnel, pas un don caritatif.",
   "untilLabel": "Le réseau est financé jusqu'à",
   "untilValue": "Collecte pas encore ouverte",
   "ctaGive": "Ouverture prochaine",
@@ -63,7 +74,7 @@
     "Votre nom n'apparaît que si vous le demandez."
   ],
   "engTitle": "Votre propre domaine",
-  "engText": "Areopagus est aussi un moteur. Votre espace, votre boutique ou votre communauté peut vivre sur votre propre domaine, par abonnement. Le code est ouvert : chacun peut l'héberger soi-même, gratuitement.",
-  "engDomain": "votre-nom.fr",
+  "engText": "Areopagus est aussi un moteur. Votre espace, votre boutique ou votre communauté peut vivre sur votre propre domaine, par abonnement. Le code est ouvert : chacun peut l'héberger lui-même, gratuitement.",
+  "engDomain": "votre-nom.eu",
   "foot": "Code ouvert sous AGPL. Données en Europe. Jamais de publicité."
 }

@@ -9,18 +9,23 @@
   "ctaJoin": "Como participar",
   "count": "{a} de {b} acesos",
   "pathTitle": "O caminho",
-  "pathText": "O que está feito está aceso. O que está em curso pisca. O que está previsto fica em contorno. Aqui não há datas, só uma ordem honesta.",
-  "state": { "done": "feito", "now": "em curso", "next": "a seguir", "later": "previsto" },
+  "pathText": "O que está feito está aceso. O que está em curso pulsa. O que está previsto é só um contorno. Aqui não há datas, só uma ordem honesta.",
+  "state": {
+    "done": "feito",
+    "now": "em curso",
+    "next": "a seguir",
+    "later": "previsto"
+  },
   "stages": [
     "Fundação",
-    "A pessoa e o lugar",
+    "Pessoa e lugar",
     "Competências e vídeo",
     "Loja e tribunal",
-    "Obra comum"
+    "Trabalho em comum"
   ],
   "nodes": [
     "Conceito e núcleo",
-    "Documentação e oficina",
+    "Documentação e espaço de trabalho",
     "Registo com cadeia de hashes",
     "Esta página",
     "Uma forma jurídica para o projeto",
@@ -39,9 +44,9 @@
     "O seu próprio domínio"
   ],
   "joinTitle": "Participar",
-  "joinText": "Aqui ninguém é classificado. Cada versão nomeia todos os que nela puseram a mão, por ordem alfabética.",
+  "joinText": "Aqui ninguém é classificado. Cada versão indica o nome de todas as pessoas que contribuíram para ela, por ordem alfabética.",
   "ways": [
-    ["Propor", "Acrescente uma ideia. Ela aparece no caminho como um contorno, junto do seu ramo."],
+    ["Propor", "Acrescente uma ideia. Aparece no caminho como contorno, junto ao seu ramo."],
     [
       "Apoiar com a sua voz",
       "Uma voz por pessoa e por ideia. Os números pertencem às ideias, nunca às pessoas."
@@ -52,9 +57,9 @@
   ],
   "ctaIdea": "Propor uma ideia no GitHub",
   "supTitle": "Apoio",
-  "supText": "Só um número conta: até que mês a rede está paga. Por agora, o projeto é conduzido pelo fundador como empresário em nome individual em França, pelo que o apoio é rendimento da sua atividade e não um donativo de beneficência.",
+  "supText": "Só um número conta: até que mês a rede está paga. Por agora, o projeto é gerido pelo fundador como empresário em nome individual em França, pelo que o apoio é rendimento da sua atividade e não um donativo de beneficência.",
   "untilLabel": "A rede está paga até",
-  "untilValue": "Recolha ainda não aberta",
+  "untilValue": "A angariação ainda não abriu",
   "ctaGive": "Abre em breve",
   "ledger": "lançamentos no registo",
   "rules": [
@@ -64,6 +69,6 @@
   ],
   "engTitle": "O seu próprio domínio",
   "engText": "O Areopagus é também um motor. O seu espaço, a sua loja ou a sua comunidade podem viver no seu próprio domínio, por subscrição. O código é aberto, por isso qualquer pessoa o pode alojar por conta própria, gratuitamente.",
-  "engDomain": "o-seu-nome.pt",
-  "foot": "Código aberto sob AGPL. Dados na Europa. Sem publicidade, nunca."
+  "engDomain": "o-seu-nome.eu",
+  "foot": "Código aberto sob AGPL. Dados na Europa. Publicidade, nunca."
 }
