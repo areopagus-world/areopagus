@@ -1,7 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { authEnabled } from "@/identity/config";
 import { currentUser } from "@/identity/session";
-import { HANDLE_PATTERN, MAX_SKILLS } from "@/spaces/rules";
+import { HANDLE_FIELD_PATTERN, MAX_SKILLS } from "@/spaces/rules";
 import { findSpaceByUser } from "@/spaces/store";
 import { button, field, Screen } from "../ui";
 import { PlaceField } from "./place-field";
@@ -48,7 +48,8 @@ export default async function Me({
             style={field}
             name="handle"
             defaultValue={space?.handle ?? ""}
-            pattern={HANDLE_PATTERN}
+            pattern={HANDLE_FIELD_PATTERN}
+            title="3 to 30 characters: Latin letters, digits and hyphens. Not an e-mail address."
             minLength={3}
             maxLength={30}
             autoCapitalize="none"
@@ -57,7 +58,10 @@ export default async function Me({
             required
           />
         </label>
-        <p style={hint}>areopagus.world/your-address. Latin letters, digits and hyphens.</p>
+        <p style={hint}>
+          areopagus.world/your-address, for example areopagus.world/pavel. Latin letters, digits and
+          hyphens, 3 to 30 characters.
+        </p>
         <label>
           Name
           <input
