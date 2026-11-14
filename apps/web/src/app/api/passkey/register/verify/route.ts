@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   if (!user) return new NextResponse(null, { status: 401 });
   const secret = (await cookies()).get(CHALLENGE_COOKIE)?.value;
   const body = await readJson(request);
-  const ok =
+  const outcome =
     secret && body
       ? await finishRegistration(
           user,
@@ -21,8 +21,12 @@ export async function POST(request: Request) {
           body as RegistrationResponseJSON,
           publicOrigin(request),
         )
-      : false;
-  const response = NextResponse.json({ ok }, { status: ok ? 200 : 400 });
+      : "challenge";
+  const ok = outcome === "ok";
+  const response = NextResponse.json(
+    { ok, reason: ok ? undefined : outcome },
+    { status: ok ? 200 : 400 },
+  );
   response.cookies.delete(CHALLENGE_COOKIE);
   return response;
 }

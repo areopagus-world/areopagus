@@ -17,6 +17,9 @@ export const CHALLENGE_MINUTES = 5;
 export const MAX_PASSKEYS = 10;
 const RP_NAME = "Areopagus";
 
+/** How adding a passkey ended. Anything but "ok" is shown to the person as a short code, to tell failures apart. */
+export type Outcome = "ok" | "challenge" | "limit" | "verification" | "exists";
+
 async function saveChallenge(challenge: string, userId: string | null): Promise<string> {
   const pool = getPool();
   await pool.query("delete from webauthn_challenges where expires_at < now()");
@@ -74,23 +77,24 @@ export async function finishRegistration(
   secret: string,
   response: RegistrationResponseJSON,
   origin: string,
-): Promise<boolean> {
+): Promise<Outcome> {
   const stored = await takeChallenge(secret);
-  if (!stored || stored.userId !== user.id) return false;
-  if ((await countPasskeys(user.id)) >= MAX_PASSKEYS) return false;
+  if (!stored || stored.userId !== user.id) return "challenge";
+  if ((await countPasskeys(user.id)) >= MAX_PASSKEYS) return "limit";
   let verification;
   try {
     verification = await verifyRegistrationResponse({
       response,
       expectedChallenge: stored.challenge,
-      expectedOrigin: origin,
+      expectedOrigin: new URL(origin).origin,
       expectedRPID: relyingPartyId(origin),
       requireUserVerification: false,
     });
-  } catch {
-    return false;
+  } catch (error) {
+    console.error("passkey registration refused:", error instanceof Error ? error.message : error);
+    return "verification";
   }
-  if (!verification.verified) return false;
+  if (!verification.verified) return "verification";
   const { credential, credentialDeviceType, credentialBackedUp } = verification.registrationInfo;
   const saved = await getPool().query(
     `insert into passkeys (id, user_id, public_key, counter, transports, device_type, backed_up)
@@ -106,7 +110,7 @@ export async function finishRegistration(
       credentialBackedUp,
     ],
   );
-  return saved.rowCount === 1;
+  return saved.rowCount === 1 ? "ok" : "exists";
 }
 
 /** First half of signing in: the browser offers whichever passkeys it holds for this domain. */
@@ -146,7 +150,7 @@ export async function finishAuthentication(
     verification = await verifyAuthenticationResponse({
       response,
       expectedChallenge: stored.challenge,
-      expectedOrigin: origin,
+      expectedOrigin: new URL(origin).origin,
       expectedRPID: relyingPartyId(origin),
       requireUserVerification: false,
       credential: {
@@ -156,7 +160,8 @@ export async function finishAuthentication(
         transports: passkey.transports,
       },
     });
-  } catch {
+  } catch (error) {
+    console.error("passkey sign-in refused:", error instanceof Error ? error.message : error);
     return undefined;
   }
   if (!verification.verified) return undefined;
