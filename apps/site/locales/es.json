@@ -1,6 +1,6 @@
 {
   "name": "Español",
-  "meta": "Areopagus: una red europea de personas reales. Construida en abierto, entre todos.",
+  "meta": "Areopagus: una red europea de personas reales. Construida de forma abierta, entre todos.",
   "kicker": "Una red europea de personas reales",
   "titleA": "Construida",
   "titleB": "entre todos.",
@@ -9,18 +9,23 @@
   "ctaJoin": "Cómo participar",
   "count": "{a} de {b} encendidos",
   "pathTitle": "El camino",
-  "pathText": "Lo hecho está encendido. Lo que está en marcha parpadea. Lo previsto se ve en contorno. Aquí no hay fechas, solo un orden honesto.",
-  "state": { "done": "hecho", "now": "en marcha", "next": "a continuación", "later": "previsto" },
+  "pathText": "Lo hecho está encendido. Lo que está en marcha late. Lo previsto aparece como un contorno. Aquí no hay fechas, solo un orden honesto.",
+  "state": {
+    "done": "hecho",
+    "now": "en marcha",
+    "next": "lo siguiente",
+    "later": "previsto"
+  },
   "stages": [
     "Cimientos",
-    "La persona y el lugar",
+    "Persona y lugar",
     "Habilidades y vídeo",
     "Tienda y tribunal",
     "Obra común"
   ],
   "nodes": [
     "Concepto y núcleo",
-    "Documentación y taller",
+    "Documentación y espacio de trabajo",
     "Registro con cadena de hashes",
     "Esta página",
     "Una forma jurídica para el proyecto",
@@ -47,23 +52,23 @@
       "Una voz por persona y por idea. Los números son de las ideas, nunca de las personas."
     ],
     ["Asumir una tarea", "Traducción, pruebas en tu teléfono, datos de tu pueblo, código."],
-    ["Probarlo antes", "Entra en el círculo que recibe las novedades antes que nadie."],
+    ["Probarlo primero", "Entra en el círculo que recibe las novedades antes que nadie."],
     ["Apoyar con dinero", "Para un paso del camino o para que la red siga en pie."]
   ],
   "ctaIdea": "Proponer una idea en GitHub",
   "supTitle": "Apoyo",
   "supText": "Solo importa una cifra: hasta qué mes está pagada la red. Por ahora el proyecto lo lleva su fundador como autónomo en Francia, así que el apoyo es un ingreso de su actividad y no un donativo benéfico.",
   "untilLabel": "La red está pagada hasta",
-  "untilValue": "Recaudación aún no abierta",
-  "ctaGive": "Se abre pronto",
+  "untilValue": "La recaudación aún no está abierta",
+  "ctaGive": "Próximamente",
   "ledger": "asientos en el registro",
   "rules": [
     "Cada euro que entra y cada euro que sale queda en un registro público que cualquiera puede comprobar.",
-    "Una donación no compra peso de voto, ni posición, ni insignia.",
+    "Una donación no compra más peso en las votaciones, ni un lugar destacado, ni insignias.",
     "Tu nombre solo aparece si lo pides."
   ],
   "engTitle": "Tu propio dominio",
   "engText": "Areopagus es también un motor. Tu espacio, tu tienda o tu comunidad pueden vivir en tu propio dominio mediante suscripción. El código es abierto, así que cualquiera puede alojarlo por su cuenta y gratis.",
-  "engDomain": "tu-nombre.es",
-  "foot": "Código abierto bajo AGPL. Datos en Europa. Sin publicidad, nunca."
+  "engDomain": "tu-nombre.eu",
+  "foot": "Código abierto bajo AGPL. Datos en Europa. Sin publicidad. Nunca."
 }

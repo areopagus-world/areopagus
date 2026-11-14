@@ -25,13 +25,13 @@ say it your way and keep the meaning.
 | Language   | Code | Written by | Editor review | Native review |
 | ---------- | ---- | ---------- | ------------- | ------------- |
 | English    | en   | Claude     | no            | no            |
-| Français   | fr   | Claude     | no            | no            |
-| Deutsch    | de   | Claude     | no            | no            |
-| Español    | es   | Claude     | no            | no            |
-| Italiano   | it   | Claude     | no            | no            |
-| Português  | pt   | Claude     | no            | no            |
-| Nederlands | nl   | Claude     | no            | no            |
-| Polski     | pl   | Claude     | no            | no            |
-| Русский    | ru   | Claude     | no            | founder       |
+| Français   | fr   | Claude     | 2026-11-14    | no            |
+| Deutsch    | de   | Claude     | 2026-11-14    | no            |
+| Español    | es   | Claude     | 2026-11-14    | no            |
+| Italiano   | it   | Claude     | 2026-11-14    | no            |
+| Português  | pt   | Claude     | 2026-11-14    | no            |
+| Nederlands | nl   | Claude     | 2026-11-14    | no            |
+| Polski     | pl   | Claude     | 2026-11-14    | no            |
+| Русский    | ru   | Claude     | 2026-11-14    | founder       |
 
 A language counts as checked only when a native speaker has read it on the live page.

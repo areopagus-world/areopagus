@@ -54,7 +54,7 @@ for (const code of targets) {
     },
     body: JSON.stringify({
       model,
-      max_tokens: 4000,
+      max_tokens: 8000,
       system: brief,
       messages: [
         { role: "user", content: `Target language: ${locales[code].name} (${code}).\n\n${rows}` },

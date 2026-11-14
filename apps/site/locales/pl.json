@@ -4,19 +4,24 @@
   "kicker": "Europejska sieć prawdziwych ludzi",
   "titleA": "Budujemy",
   "titleB": "razem.",
-  "lead": "Areopagus daje każdemu stronę, każdej miejscowości mapę, a każdemu człowiekowi głos. Bez reklam, z otwartym kodem. Sieć dopiero się zaczyna i możesz budować ją razem z nami.",
+  "lead": "Areopagus daje każdemu stronę, każdej miejscowości mapę, a każdemu człowiekowi głos. Bez reklam, z otwartym kodem. Sieć dopiero powstaje i możesz budować ją razem z nami.",
   "ctaPath": "Zobacz drogę",
   "ctaJoin": "Jak wziąć udział",
   "count": "świeci {a} z {b}",
   "pathTitle": "Droga",
-  "pathText": "To, co zrobione, świeci. To, co w toku, pulsuje. To, co planowane, widać jako zarys. Nie ma tu dat, jest uczciwa kolejność.",
-  "state": { "done": "zrobione", "now": "w toku", "next": "następne", "later": "w planie" },
+  "pathText": "To, co zrobione, świeci. To, co w toku, pulsuje. To, co planowane, widać jako zarys. Nie ma tu dat, jest tylko uczciwa kolejność.",
+  "state": {
+    "done": "zrobione",
+    "now": "w toku",
+    "next": "następne",
+    "later": "w planie"
+  },
   "stages": [
     "Fundament",
     "Człowiek i miejsce",
     "Umiejętności i wideo",
     "Sklep i sąd",
-    "Wspólna sprawa"
+    "Wspólna praca"
   ],
   "nodes": [
     "Koncepcja i rdzeń",
@@ -32,23 +37,23 @@
     "Mapa umiejętności",
     "Wideo",
     "Sklep",
-    "Płatności, których nikt nie może odmówić",
+    "Płatności, których nikt nie może odrzucić",
     "Sąd i głosowanie powszechne",
     "Szyfrowane wiadomości",
     "Laboratoria i wspólne projekty",
     "Własna domena"
   ],
   "joinTitle": "Weź udział",
-  "joinText": "Tutaj nikogo się nie szereguje. Każde wydanie wymienia wszystkich, którzy przyłożyli do niego rękę, w kolejności alfabetycznej.",
+  "joinText": "Nie ma tu żadnych rankingów. Każde wydanie wymienia wszystkich, którzy przyłożyli do niego rękę, w kolejności alfabetycznej.",
   "ways": [
     ["Zaproponuj", "Dodaj pomysł. Pojawi się na drodze jako zarys obok swojej gałęzi."],
     [
       "Poprzyj swoim głosem",
-      "Jeden głos od osoby na pomysł. Liczby należą do pomysłów, nigdy do ludzi."
+      "Każda osoba ma jeden głos na każdy pomysł. Liczby należą do pomysłów, nigdy do ludzi."
     ],
     ["Weź zadanie", "Tłumaczenie, testy na własnym telefonie, dane o swojej miejscowości, kod."],
-    ["Wypróbuj jako pierwszy", "Dołącz do kręgu, który dostaje nowości przed wszystkimi."],
-    ["Wesprzyj finansowo", "Na jeden krok drogi albo na to, żeby sieć działała."]
+    ["Wypróbuj nowości wcześniej", "Dołącz do kręgu, który dostaje nowości przed wszystkimi."],
+    ["Wesprzyj finansowo", "Na jeden krok drogi albo na utrzymanie sieci."]
   ],
   "ctaIdea": "Zaproponuj pomysł na GitHubie",
   "supTitle": "Wsparcie",
@@ -64,6 +69,6 @@
   ],
   "engTitle": "Własna domena",
   "engText": "Areopagus to także silnik. Twoja przestrzeń, sklep albo społeczność mogą działać we własnej domenie w ramach subskrypcji. Kod jest otwarty, więc każdy może uruchomić go samodzielnie i za darmo.",
-  "engDomain": "twoje-imie.pl",
+  "engDomain": "twoje-imie.eu",
   "foot": "Otwarty kod na licencji AGPL. Dane w Europie. Żadnych reklam, nigdy."
 }

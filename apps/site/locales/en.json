@@ -10,7 +10,12 @@
   "count": "{a} of {b} lit",
   "pathTitle": "The path",
   "pathText": "What is done is lit. What is in work pulses. What is planned is an outline. No dates here, only an honest order.",
-  "state": { "done": "done", "now": "in work", "next": "up next", "later": "planned" },
+  "state": {
+    "done": "done",
+    "now": "in work",
+    "next": "up next",
+    "later": "planned"
+  },
   "stages": ["Foundation", "Person and place", "Skills and video", "Shop and court", "Common work"],
   "nodes": [
     "Concept and core",
@@ -19,7 +24,7 @@
     "This page",
     "A legal home for the project",
     "Your space",
-    "Chronicle",
+    "Timeline",
     "Communities",
     "Map of places",
     "Ask a person",

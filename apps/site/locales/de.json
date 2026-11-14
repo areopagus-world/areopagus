@@ -7,16 +7,21 @@
   "lead": "Areopagus gibt jedem Menschen eine Seite, jedem Ort eine Karte und jeder Person eine Stimme. Ohne Werbung, mit offenem Code. Das Netzwerk steht ganz am Anfang, und du kannst es mit uns aufbauen.",
   "ctaPath": "Den Weg ansehen",
   "ctaJoin": "So machst du mit",
-  "count": "{a} von {b} leuchten",
+  "count": "Leuchtend: {a} von {b}",
   "pathTitle": "Der Weg",
-  "pathText": "Was fertig ist, leuchtet. Was in Arbeit ist, pulsiert. Was geplant ist, bleibt ein Umriss. Hier stehen keine Termine, nur eine ehrliche Reihenfolge.",
-  "state": { "done": "fertig", "now": "in Arbeit", "next": "als Nächstes", "later": "geplant" },
+  "pathText": "Was fertig ist, leuchtet. Was in Arbeit ist, pulsiert. Was geplant ist, ist vorerst ein Umriss. Hier stehen keine Termine, nur eine ehrliche Reihenfolge.",
+  "state": {
+    "done": "fertig",
+    "now": "in Arbeit",
+    "next": "als Nächstes",
+    "later": "geplant"
+  },
   "stages": [
     "Fundament",
     "Mensch und Ort",
     "Fähigkeiten und Video",
     "Laden und Gericht",
-    "Gemeinsame Sache"
+    "Gemeinsame Arbeit"
   ],
   "nodes": [
     "Konzept und Kern",
@@ -24,7 +29,7 @@
     "Journal mit Hash-Kette",
     "Diese Seite",
     "Eine Rechtsform für das Projekt",
-    "Dein Space",
+    "Dein Bereich",
     "Chronik",
     "Gemeinschaften",
     "Karte der Orte",
@@ -32,7 +37,7 @@
     "Karte der Fähigkeiten",
     "Video",
     "Laden",
-    "Zahlungen, die niemand verweigern kann",
+    "Zahlungen, die niemand blockieren kann",
     "Gericht und allgemeine Abstimmung",
     "Verschlüsselte Nachrichten",
     "Labore und gemeinsame Projekte",
@@ -53,23 +58,26 @@
       "Eine Aufgabe übernehmen",
       "Übersetzen, auf dem eigenen Handy testen, Daten zu deinem Ort, Code."
     ],
-    ["Als Erste ausprobieren", "Komm in den Kreis, der Neues vor allen anderen bekommt."],
-    ["Mit Geld unterstützen", "Für einen Schritt auf dem Weg oder dafür, dass das Netzwerk läuft."]
+    ["Vorab ausprobieren", "Komm in den Kreis, der Neues vor allen anderen bekommt."],
+    [
+      "Mit Geld unterstützen",
+      "Für einen Schritt auf dem Weg oder dafür, dass das Netzwerk weiterläuft."
+    ]
   ],
   "ctaIdea": "Idee auf GitHub vorschlagen",
   "supTitle": "Unterstützung",
-  "supText": "Eine Zahl zählt: bis zu welchem Monat das Netzwerk bezahlt ist. Vorerst führt der Gründer das Projekt als Einzelunternehmer in Frankreich. Unterstützung ist deshalb sein Geschäftseinkommen und keine gemeinnützige Spende.",
+  "supText": "Eine Zahl zählt: bis zu welchem Monat das Netzwerk bezahlt ist. Vorerst führt der Gründer das Projekt als Einzelunternehmer in Frankreich. Unterstützung ist deshalb eine Einnahme seines Unternehmens und keine gemeinnützige Spende.",
   "untilLabel": "Das Netzwerk ist bezahlt bis",
   "untilValue": "Sammlung noch nicht eröffnet",
   "ctaGive": "Startet bald",
   "ledger": "Einträge im Journal",
   "rules": [
     "Jeder eingenommene und jeder ausgegebene Euro steht in einem öffentlichen Journal, das alle prüfen können.",
-    "Eine Spende kauft kein Stimmgewicht, keine Platzierung und kein Abzeichen.",
+    "Geld kauft hier kein Stimmgewicht, keine Platzierung und kein Abzeichen.",
     "Dein Name erscheint nur, wenn du es möchtest."
   ],
   "engTitle": "Deine eigene Domain",
-  "engText": "Areopagus ist auch ein Baukasten. Dein Space, dein Laden oder deine Gemeinschaft kann im Abo unter deiner eigenen Domain laufen. Der Code ist offen, deshalb darf ihn jeder selbst und kostenlos betreiben.",
-  "engDomain": "dein-name.de",
+  "engText": "Areopagus ist auch ein Baukasten. Dein Bereich, dein Laden oder deine Gemeinschaft kann im Abo unter deiner eigenen Domain laufen. Der Code ist offen, deshalb darf ihn jeder selbst und kostenlos betreiben.",
+  "engDomain": "dein-name.eu",
   "foot": "Offener Code unter AGPL. Daten in Europa. Keine Werbung, niemals."
 }
