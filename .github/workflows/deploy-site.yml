@@ -1,0 +1,44 @@
+name: deploy-site
+
+# Publishes apps/site to the public web host on every change merged into main.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/site/**"
+      - ".github/workflows/deploy-site.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_PROTOCOL: ${{ vars.DEPLOY_PROTOCOL || 'sftp' }}
+      SITE_URL: ${{ vars.SITE_URL || 'http://areopagus.world' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Upload apps/site to www
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          LFTP_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
+        run: |
+          lftp -e "
+            set sftp:auto-confirm yes;
+            set net:max-retries 2;
+            set net:timeout 20;
+            open --user '$DEPLOY_USER' --env-password '$DEPLOY_PROTOCOL://$DEPLOY_HOST';
+            mirror --reverse --delete --verbose apps/site/ www/;
+            bye
+          "
+
+      - name: Smoke check
+        run: curl --fail --silent --show-error --location --retry 5 --retry-delay 10 "$SITE_URL" | grep -q "AREOPAGUS"
