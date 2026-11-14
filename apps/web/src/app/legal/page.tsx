@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { HOST, publisher } from "@/legal/details";
 import { Screen } from "../ui";
 import { Language, Links, Part, Updated } from "./text";
@@ -9,21 +8,33 @@ export const metadata: Metadata = { title: "Mentions légales · Areopagus" };
 
 export default function Legal() {
   const p = publisher();
-  if (!p) notFound();
+  const contact = <a href={p.contactHref}>{p.contactLabel}</a>;
   return (
     <Screen title="Mentions légales">
       <Updated label="Mise à jour :" />
-      <Part title="Éditeur du site">
+      <Part title="Éditeur et développement">
         <p>
-          {p.name}, entrepreneur individuel.
+          Site édité et développé par {p.name}.
+          {p.siret ? (
+            <>
+              <br />
+              SIRET : {p.siret}
+            </>
+          ) : null}
+          {p.address ? (
+            <>
+              <br />
+              Adresse : {p.address}
+            </>
+          ) : null}
           <br />
-          SIRET : {p.siret}
-          <br />
-          Adresse : {p.address}
-          <br />
-          Courriel : <a href={`mailto:${p.email}`}>{p.email}</a>
-          <br />
-          Téléphone : {p.phone}
+          Contact : {contact}
+          {p.phone ? (
+            <>
+              <br />
+              Téléphone : {p.phone}
+            </>
+          ) : null}
         </p>
         <p>Directeur de la publication : {p.name}.</p>
       </Part>
@@ -52,25 +63,37 @@ export default function Legal() {
       </Part>
       <Part title="Signaler un contenu">
         <p>
-          Pour signaler un contenu illicite ou une erreur, écrivez à{" "}
-          <a href={`mailto:${p.email}`}>{p.email}</a> en indiquant l’adresse de la page et le motif.
+          Pour signaler un contenu illicite ou une erreur, écrivez à {contact} en indiquant
+          l’adresse de la page et le motif.
         </p>
       </Part>
 
       <Language lang="en">
         <h2 style={{ fontSize: 28, margin: "24px 0 0" }}>Legal notice</h2>
         <Updated label="Updated:" />
-        <Part title="Publisher">
+        <Part title="Publisher and development">
           <p>
-            {p.name}, sole proprietor registered in France (entrepreneur individuel).
+            Published and developed by {p.name}.
+            {p.siret ? (
+              <>
+                <br />
+                SIRET: {p.siret}
+              </>
+            ) : null}
+            {p.address ? (
+              <>
+                <br />
+                Address: {p.address}
+              </>
+            ) : null}
             <br />
-            SIRET: {p.siret}
-            <br />
-            Address: {p.address}
-            <br />
-            E-mail: <a href={`mailto:${p.email}`}>{p.email}</a>
-            <br />
-            Phone: {p.phone}
+            Contact: {contact}
+            {p.phone ? (
+              <>
+                <br />
+                Phone: {p.phone}
+              </>
+            ) : null}
           </p>
         </Part>
         <Part title="Hosting">
@@ -87,8 +110,8 @@ export default function Legal() {
         </Part>
         <Part title="Report content">
           <p>
-            To report unlawful content or a mistake, write to{" "}
-            <a href={`mailto:${p.email}`}>{p.email}</a> with the address of the page and the reason.
+            To report unlawful content or a mistake, write to {contact} with the address of the page
+            and the reason.
           </p>
         </Part>
       </Language>

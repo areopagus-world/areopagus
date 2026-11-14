@@ -1,25 +1,29 @@
 import { describe, expect, it } from "vitest";
 import { publisher } from "./details";
 
-const full = {
-  LEGAL_NAME: "Jeanne Martin EI",
-  LEGAL_ADDRESS: "1 rue de la Paix, 75002 Paris, France",
-  LEGAL_SIRET: "123 456 789 00012",
-  LEGAL_EMAIL: "hello@example.org",
-  LEGAL_PHONE: "+33 1 23 45 67 89",
-};
-
 describe("publisher", () => {
-  it("reads the details when all are set", () => {
-    expect(publisher(full)?.name).toBe("Jeanne Martin EI");
-    expect(publisher({ ...full, LEGAL_EMAIL: "  hello@example.org " })?.email).toBe(
-      "hello@example.org",
-    );
+  it("names donnee.dev and points to its site when nothing is set", () => {
+    expect(publisher({})).toEqual({
+      name: "donnee.dev",
+      contactHref: "https://donnee.dev",
+      contactLabel: "donnee.dev",
+      address: undefined,
+      siret: undefined,
+      phone: undefined,
+    });
   });
 
-  it("is undefined while anything is missing, so the pages stay unpublished", () => {
-    expect(publisher({})).toBeUndefined();
-    expect(publisher({ ...full, LEGAL_PHONE: "" })).toBeUndefined();
-    expect(publisher({ ...full, LEGAL_SIRET: undefined })).toBeUndefined();
+  it("uses the details that are set and an e-mail as the contact", () => {
+    const p = publisher({
+      LEGAL_NAME: "Jeanne Martin EI",
+      LEGAL_EMAIL: " hello@example.org ",
+      LEGAL_SIRET: "123 456 789 00012",
+      LEGAL_PHONE: "",
+    });
+    expect(p.name).toBe("Jeanne Martin EI");
+    expect(p.contactHref).toBe("mailto:hello@example.org");
+    expect(p.contactLabel).toBe("hello@example.org");
+    expect(p.siret).toBe("123 456 789 00012");
+    expect(p.phone).toBeUndefined();
   });
 });

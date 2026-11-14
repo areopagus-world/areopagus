@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { LOGIN_TOKEN_MINUTES, SESSION_DAYS } from "@/identity/tokens";
 import { HOST, publisher } from "@/legal/details";
 import { Language, Links, Part, Updated } from "../legal/text";
@@ -10,14 +9,14 @@ export const metadata: Metadata = { title: "Données personnelles · Areopagus" 
 
 export default function Privacy() {
   const p = publisher();
-  if (!p) notFound();
-  const mail = <a href={`mailto:${p.email}`}>{p.email}</a>;
+  const mail = <a href={p.contactHref}>{p.contactLabel}</a>;
+  const who = p.address ? `${p.name}, ${p.address}` : p.name;
   return (
     <Screen title="Données personnelles">
       <Updated label="Mise à jour :" />
       <p>
         Areopagus est en version bêta. Cette page dit ce que le site enregistre, pourquoi, et
-        comment le faire effacer. Responsable du traitement : {p.name}, {p.address}, {mail}.
+        comment le faire effacer. Responsable du traitement : {who}, {mail}.
       </p>
       <Part title="Ce que le site enregistre">
         <ul>
@@ -93,7 +92,7 @@ export default function Privacy() {
         <Updated label="Updated:" />
         <p>
           Areopagus is in beta. This page says what the site stores, why, and how to have it erased.
-          Controller: {p.name}, {p.address}, {mail}.
+          Controller: {who}, {mail}.
         </p>
         <Part title="What the site stores">
           <ul>
