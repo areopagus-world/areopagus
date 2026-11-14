@@ -4,3 +4,6 @@ coverage
 .next
 LICENSE
 next-env.d.ts
+
+# Public page built into the network app
+apps/web/public/site

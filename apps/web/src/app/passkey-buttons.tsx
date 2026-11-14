@@ -30,8 +30,11 @@ async function reasonOf(error: unknown): Promise<string> {
       return `server ${error.status}`;
     }
   }
-  if (error instanceof Error)
-    return `${error.name}${"code" in error ? ` ${String(error.code)}` : ""}`;
+  if (error instanceof Error) {
+    // The library wraps the browser's own error; its message says what actually happened.
+    const cause = error.cause instanceof Error ? error.cause.message : "";
+    return cause ? `${error.name}: ${cause}` : error.name;
+  }
   return "unknown";
 }
 

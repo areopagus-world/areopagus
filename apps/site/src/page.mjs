@@ -28,7 +28,7 @@ function renderPath(t, roadmap) {
   return out;
 }
 
-export function renderPage({ lang, t, langs, defaultLang, roadmap, css }) {
+export function renderPage({ lang, t, langs, defaultLang, roadmap, css, app = false }) {
   const { done, total } = countLit(roadmap);
   const count = t.count.replace("{a}", done).replace("{b}", total);
   const alternates = langs
@@ -82,7 +82,12 @@ ${css}
         <p class="lead">${esc(t.lead)}</p>
         <div class="row">
           <a class="btn fill" href="#path">${esc(t.ctaPath)}</a>
-          <a class="btn" href="#join">${esc(t.ctaJoin)}</a>
+          <a class="btn" href="#join">${esc(t.ctaJoin)}</a>${
+            app
+              ? `
+          <a class="btn" href="/map">${esc(t.ctaMap)}</a>`
+              : ""
+          }
           <span class="count">${esc(count)}</span>
         </div>
       </div>

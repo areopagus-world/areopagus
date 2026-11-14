@@ -144,3 +144,6 @@ vite.config.ts.timestamp-*
 
 # Next.js
 next-env.d.ts
+
+# Public page built into the network app
+apps/web/public/site
