@@ -40,4 +40,4 @@ export const HOST = {
 } as const;
 
 /** Date of the last change to the legal texts, shown on both pages. */
-export const LEGAL_UPDATED = "2026-11-14";
+export const LEGAL_UPDATED = "2026-11-15";

@@ -41,6 +41,11 @@ export default function Privacy() {
             e-mails sur votre page.
           </li>
           <li>
+            Vos instantanés d’un lieu : la position que vous donnez à chaque niveau d’un lieu. Ils
+            ne sont jamais affichés avec votre nom ni un par un : le site montre seulement un
+            résumé, à partir de 10 personnes. Vous seul voyez vos propres instantanés.
+          </li>
+          <li>
             Si vous signalez un contenu : votre message, une empreinte chiffrée de votre adresse IP
             et, si vous la donnez, votre adresse e-mail pour la réponse.
           </li>
@@ -81,7 +86,8 @@ export default function Privacy() {
       <Part title="Durées de conservation">
         <p>
           Lien de connexion : valable {LOGIN_TOKEN_MINUTES} minutes, effacé au bout d’un jour.
-          Session : {SESSION_DAYS} jours. Compte et espace : jusqu’à votre demande de suppression.
+          Session : {SESSION_DAYS} jours. Compte, espace et instantanés : jusqu’à votre demande de
+          suppression.
         </p>
       </Part>
       <Part title="Vos droits">
@@ -124,6 +130,11 @@ export default function Privacy() {
               your page.
             </li>
             <li>
+              Your snapshots of a place: the position you give each level of a place. They are never
+              shown with your name or one by one: the site shows only a summary, from 10 people on.
+              Only you see your own snapshots.
+            </li>
+            <li>
               If you report content: your message, a hashed form of your IP address and, if you give
               it, your e-mail address for the answer.
             </li>
@@ -158,7 +169,7 @@ export default function Privacy() {
         <Part title="How long">
           <p>
             Sign-in link: valid {LOGIN_TOKEN_MINUTES} minutes, erased after one day. Session:{" "}
-            {SESSION_DAYS} days. Account and space: until you ask for deletion.
+            {SESSION_DAYS} days. Account, space and snapshots: until you ask for deletion.
           </p>
         </Part>
         <Part title="Your rights">
