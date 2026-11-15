@@ -1,6 +1,6 @@
 // Renders one language version of the public page as a complete static HTML document.
 
-const esc = (value) =>
+export const esc = (value) =>
   String(value)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -9,6 +9,7 @@ const esc = (value) =>
 
 export const ORIGIN = "https://areopagus.world";
 export const pathFor = (lang, defaultLang) => (lang === defaultLang ? "/" : `/${lang}/`);
+export const legendPath = (lang, defaultLang) => `${pathFor(lang, defaultLang)}legend/`;
 
 export function countLit(roadmap) {
   const all = roadmap.stages.flat();
@@ -28,7 +29,6 @@ function renderPath(t, roadmap) {
   return out;
 }
 
-// The station loop and its still. The version is in the file name so the files can be cached for good.
 // Quotation marks as each language writes them.
 const QUOTES = {
   en: ["\u201c", "\u201d"],
@@ -46,6 +46,7 @@ export const quote = (lang, text) => {
   return `${open}${esc(text)}${close}`;
 };
 
+// The station loop and its still. The version is in the file name so the files can be cached for good.
 export const HERO = "station-v2";
 export const heroBase = (app) => (app ? "/site/hero" : "/hero");
 
@@ -157,6 +158,9 @@ ${css}
             </div>
           </div>
           <p class="note">${esc(t.stationNote)}</p>
+          <div class="row">
+            <a class="btn" href="${legendPath(lang, defaultLang)}">${esc(t.legend.more)}</a>
+          </div>
         </div>
       </section>
 

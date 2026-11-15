@@ -11,7 +11,7 @@
   "count": "{a} su {b} accesi",
   "stationTitle": "La stazione",
   "stationText": "Areopagus è anche una leggenda: una stazione orbitale costruita dall'umanità intera. Prende il nome dalla collina di Atene dove l'apostolo Paolo parlò ai filosofi nella loro lingua (Atti 17). Tutto ciò che serve per costruirla sale dalla Terra con navi cargo, e chiunque può spedire un carico. L'equipaggio della stazione è fatto di cristiani che servono l'opera comune: si ritrovano a bordo per accordarsi sulle cose del mondo e tornano a lavorare sulla Terra, perché la Terra diventi un giardino per tutti quelli che la abitano.",
-  "stationVerse": "La tua volontà sia fatta in terra come in cielo",
+  "stationVerse": "Sia fatta la tua volontà anche in terra com'è fatta nel cielo",
   "stationVerseRef": "Matteo 6,10",
   "earthTitle": "La Terra",
   "earthText": "Aperta a tutti. Ognuno ha uno spazio per le cose della terra: una pagina, un porto di appartenenza, competenze, un diario di bordo, domande, comunità. Tutti vedono cosa fa la stazione e dove è diretta.",
@@ -82,5 +82,94 @@
   "engDomain": "tuo-nome.eu",
   "legal": "Note legali",
   "privacy": "Privacy",
-  "foot": "Codice aperto con licenza AGPL. Dati in Europa. Niente pubblicità, mai."
+  "foot": "Codice aperto con licenza AGPL. Dati in Europa. Niente pubblicità, mai.",
+  "legend": {
+    "title": "La leggenda della stazione",
+    "meta": "Come una stazione orbitale costruita dall'umanità intera ha preso il nome da una collina di Atene, raccontato in otto immagini.",
+    "lead": "Areopagus prende il nome da una collina di Atene dove, verso l'anno 50, l'apostolo Paolo parlò ai filosofi nella loro lingua. Ecco questa storia e ciò che la stazione ne trae.",
+    "back": "Torna ad Areopagus",
+    "more": "Leggi la leggenda",
+    "ch": [
+      {
+        "k": "Atene, verso l'anno 50",
+        "h": "La collina di Ares",
+        "p": "Accanto all'Acropoli si alza una roccia nuda, la collina di Ares. Lì si riuniva il più antico consiglio di Atene, che da essa prese il nome: l'Areopago. In epoca romana vegliava ancora su ciò che si insegnava in città.",
+        "alt": "Incisione: l'Acropoli con i suoi templi vista dalla collina di Ares, sotto la città."
+      },
+      {
+        "k": "Atti 17:16-21",
+        "h": "Una città piena di idoli",
+        "p": "Paolo aspettava ad Atene i suoi compagni. La città era piena di idoli, e questo lo turbava. Ogni giorno parlava nella sinagoga e in piazza con chi incontrava. Filosofi epicurei e stoici discutevano con lui. Alcuni lo chiamavano ciarlatano, in greco beccatore di semi, uno che raccoglie le briciole delle idee altrui. Lo condussero all'Areopago e gli chiesero:",
+        "q": "Potremmo noi sapere qual sia questa nuova dottrina che tu proponi?",
+        "r": "Atti 17:19",
+        "alt": "Incisione: la piazza di Atene con un lungo portico, erme e statue, l'Acropoli sopra."
+      },
+      {
+        "k": "Atti 17:22-23",
+        "h": "Al dio sconosciuto",
+        "p": "Paolo non cominciò accusandoli. Cominciò da ciò che già avevano. Passando per la città aveva trovato un altare con l'iscrizione ΑΓΝΩΣΤΩ ΘΕΩ, al dio sconosciuto.",
+        "q": "Ciò dunque che voi adorate senza conoscerlo, io ve l'annunzio.",
+        "r": "Atti 17:23",
+        "alt": "Incisione: un altare di marmo con un'iscrizione greca a un dio sconosciuto, dietro un portico."
+      },
+      {
+        "k": "Atti 17:24-28",
+        "h": "Tutte le nazioni",
+        "p": "Parlò del Dio che ha fatto il mondo e non abita in templi fatti da mano d'uomo, che non è lontano da ciascuno di noi. Citò i loro stessi poeti: in lui viviamo, ci muoviamo e siamo; siamo sua progenie. Quel secondo verso è di Arato, un poeta della Cilicia, la terra di Paolo.",
+        "q": "Egli ha tratto da un solo tutte le nazioni degli uomini perché abitino su tutta la faccia della terra",
+        "r": "Atti 17:26",
+        "alt": "Incisione: un globo con Europa, Africa e Asia, Atene segnata da un anello."
+      },
+      {
+        "k": "Atti 17:30-34",
+        "h": "Alcuni risero, altri restarono",
+        "p": "Paolo concluse con un invito a tornare a Dio e parlò dell'uomo che Dio ha risuscitato dai morti. Alla parola risurrezione gli ascoltatori si divisero. Alcuni se ne facevano beffe. Altri dicevano:",
+        "q": "Su questo noi ti sentiremo un'altra volta.",
+        "r": "Atti 17:32",
+        "a": "Alcuni credettero, fra loro Dionigi, membro del consiglio, e una donna di nome Damaris. Secondo la tradizione Dionigi fu il primo vescovo di Atene.",
+        "alt": "Incisione: notte sulla collina di Ares, l'Acropoli scura davanti alla luna."
+      },
+      {
+        "k": "La leggenda",
+        "h": "La stazione",
+        "p": "Areopagus è anche il nome di una stazione orbitale costruita dall'umanità intera. Tutto ciò che serve sale dalla Terra con navi cargo, e chiunque può spedire un carico: codice, un contributo, una traduzione, un'osservazione sul proprio luogo.",
+        "alt": "La stazione sopra le Alpi e l'Italia, navi cargo in viaggio verso di essa."
+      },
+      {
+        "k": "Marco 10:42-45",
+        "h": "Sotto la cupola",
+        "p": "L'equipaggio della stazione è fatto di cristiani. Si ritrovano sotto la cupola per accordarsi sulle cose della Terra, poi tornano giù a lavorare. Qui guidare vuol dire servire.",
+        "q": "Ma non è così tra voi; anzi chiunque vorrà esser grande fra voi, sarà vostro servitore.",
+        "r": "Marco 10:43",
+        "alt": "La sala a cupola della stazione con le finestre accese, una nave cargo in arrivo."
+      },
+      {
+        "k": "Matteo 6:10",
+        "h": "Un giardino per tutti",
+        "p": "La stazione non si costruisce per se stessa. Lo scopo è che la Terra diventi un giardino per tutti quelli che la abitano.",
+        "q": "Sia fatta la tua volontà anche in terra com'è fatta nel cielo",
+        "r": "Matteo 6:10",
+        "alt": "La stazione, piccola, sopra la curva della Terra di giorno."
+      }
+    ],
+    "wordsTitle": "Parole di Gesù, regole della stazione",
+    "words": [
+      {
+        "q": "Così risplenda la vostra luce nel cospetto degli uomini, affinché veggano le vostre buone opere e glorifichino il Padre vostro che è ne' cieli.",
+        "r": "Matteo 5:16",
+        "rule": "Il diario di bordo è aperto: tutti vedono cosa fa la stazione."
+      },
+      {
+        "q": "Infatti chi è fra voi colui che, volendo edificare una torre, non si metta prima a sedere e calcoli la spesa per vedere se ha da poterla finire?",
+        "r": "Luca 14:28",
+        "rule": "La stazione non spende più di quanto ha fatto salire."
+      },
+      {
+        "q": "Da questo conosceranno tutti che siete miei discepoli, se avete amore gli uni per gli altri.",
+        "r": "Giovanni 13:35",
+        "rule": "L'equipaggio si riconosce da come i suoi membri si trattano."
+      }
+    ],
+    "credits": "Immagini fatte in Blender per Areopagus; le scene antiche sono incise dagli stessi modelli. Terra: NASA Earth Observatory. Scrittura: Riveduta 1927 (Luzzi), pubblico dominio."
+  }
 }

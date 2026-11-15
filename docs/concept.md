@@ -16,6 +16,8 @@ Areopagus has a legend, and the pictures and the words of the network follow it.
 
 The station in the pictures is drawn close to how such a station would really be built: two rings of 250 m radius turning against each other at 1.9 turns a minute for one g, a non-rotating axis for docking, power and radiators, an orbit of 800 km below the radiation belt. Classical architecture appears where it does a job: a coffered dome over the docking hub, a colonnade that carries the berthing ring, frames that read as pilasters. Earth imagery: NASA Earth Observatory.
 
+The whole legend is told on its own page, `/legend/`, in eight chapters. Old Athens is drawn as engravings, made from Blender scenes by hatching that follows the light and the shape of each surface; the station is shown as photographs from the same scene as the landing. No people are drawn, neither Paul nor anyone else: the places, the stone and the light carry the story. Scripture on the page is quoted from an old public translation in each language.
+
 ## The pieces
 
 ### Space

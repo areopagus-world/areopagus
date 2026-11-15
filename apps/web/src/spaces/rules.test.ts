@@ -25,7 +25,7 @@ describe("checkHandle", () => {
   });
 
   it("rejects addresses the app needs for itself", () => {
-    for (const taken of ["login", "API", "map", "areopagus"]) {
+    for (const taken of ["login", "API", "map", "areopagus", "legend"]) {
       expect(checkHandle(taken)).toEqual({ problem: "reserved" });
     }
     // Two-letter addresses such as "me" or "fr" are already too short.

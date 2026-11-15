@@ -91,5 +91,94 @@
   "engDomain": "dein-name.eu",
   "legal": "Impressum",
   "privacy": "Datenschutz",
-  "foot": "Offener Code unter AGPL. Daten in Europa. Keine Werbung, niemals."
+  "foot": "Offener Code unter AGPL. Daten in Europa. Keine Werbung, niemals.",
+  "legend": {
+    "title": "Die Legende der Station",
+    "meta": "Wie eine Raumstation, die die ganze Menschheit baut, zum Namen eines Hügels in Athen kam, erzählt in acht Bildern.",
+    "lead": "Areopagus trägt den Namen eines Hügels in Athen, auf dem der Apostel Paulus um das Jahr 50 mit den Philosophen in ihrer eigenen Sprache sprach. Hier ist diese Geschichte und was die Station daraus mitnimmt.",
+    "back": "Zurück zu Areopagus",
+    "more": "Die Legende lesen",
+    "ch": [
+      {
+        "k": "Athen, um das Jahr 50",
+        "h": "Der Hügel des Ares",
+        "p": "Neben der Akropolis erhebt sich ein kahler Fels, der Hügel des Ares. Dort tagte der älteste Rat Athens und erhielt von ihm seinen Namen: der Areopag. In römischer Zeit wachte er noch immer darüber, was in der Stadt gelehrt wurde.",
+        "alt": "Stich: die Akropolis mit ihren Tempeln vom Hügel des Ares aus gesehen, darunter die Stadt."
+      },
+      {
+        "k": "Apostelgeschichte 17,16-21",
+        "h": "Eine Stadt voller Götzenbilder",
+        "p": "Paulus wartete in Athen auf seine Gefährten. Die Stadt war voller Götzenbilder, und das bedrückte ihn. Jeden Tag redete er in der Synagoge und auf dem Markt mit allen, die da waren. Epikureische und stoische Philosophen stritten mit ihm. Manche nannten ihn einen Schwätzer, auf Griechisch einen Körnerpicker, der fremde Gedanken aufpickt. Sie führten ihn auf den Areopag und fragten:",
+        "q": "Können wir auch erfahren, was das für eine neue Lehre sei, die du lehrst?",
+        "r": "Apostelgeschichte 17,19",
+        "alt": "Stich: der Markt von Athen mit einer langen Säulenhalle, Hermen und Statuen, darüber die Akropolis."
+      },
+      {
+        "k": "Apostelgeschichte 17,22-23",
+        "h": "Dem unbekannten Gott",
+        "p": "Paulus begann nicht mit Vorwürfen. Er begann bei dem, was sie schon hatten. Beim Gang durch die Stadt hatte er einen Altar mit der Inschrift ΑΓΝΩΣΤΩ ΘΕΩ gefunden, dem unbekannten Gott.",
+        "q": "Nun verkündige ich euch denselben, dem ihr unwissend Gottesdienst tut.",
+        "r": "Apostelgeschichte 17,23",
+        "alt": "Stich: ein Marmoraltar mit griechischer Inschrift für einen unbekannten Gott, dahinter eine Säulenhalle."
+      },
+      {
+        "k": "Apostelgeschichte 17,24-28",
+        "h": "Von einem Blut",
+        "p": "Er sprach von dem Gott, der die Welt gemacht hat und nicht in Tempeln wohnt, die mit Händen gemacht sind, und der nicht ferne ist von einem jeden unter uns. Er zitierte ihre eigenen Dichter: in ihm leben, weben und sind wir; wir sind seines Geschlechts. Diese zweite Zeile stammt von Aratos, einem Dichter aus Kilikien, der Heimat des Paulus.",
+        "q": "Und er hat gemacht, daß von einem Blut aller Menschen Geschlechter auf dem ganzen Erdboden wohnen",
+        "r": "Apostelgeschichte 17,26",
+        "alt": "Stich: ein Globus mit Europa, Afrika und Asien, Athen mit einem Ring markiert."
+      },
+      {
+        "k": "Apostelgeschichte 17,30-34",
+        "h": "Manche spotteten, manche blieben",
+        "p": "Paulus schloss mit dem Ruf zur Umkehr und sprach von dem Mann, den Gott von den Toten auferweckt hat. Beim Wort Auferstehung teilten sich die Zuhörer. Manche spotteten. Andere sagten:",
+        "q": "Wir wollen dich davon weiter hören.",
+        "r": "Apostelgeschichte 17,32",
+        "a": "Einige glaubten, unter ihnen Dionysius, ein Mitglied des Rates, und eine Frau namens Damaris. Nach der Überlieferung wurde Dionysius der erste Bischof von Athen.",
+        "alt": "Stich: Nacht auf dem Hügel des Ares, die Akropolis dunkel vor dem Mond."
+      },
+      {
+        "k": "Die Legende",
+        "h": "Die Station",
+        "p": "Areopagus ist auch der Name einer Raumstation, die die ganze Menschheit baut. Alles für den Bau kommt mit Frachtschiffen von der Erde herauf, und jeder kann Fracht schicken: Code, einen Beitrag, eine Übersetzung, eine Beobachtung vom eigenen Ort.",
+        "alt": "Die Station über den Alpen und Italien, Frachtschiffe auf dem Weg zu ihr."
+      },
+      {
+        "k": "Markus 10,42-45",
+        "h": "Unter der Kuppel",
+        "p": "Die Besatzung der Station sind Christen. Sie treffen sich unter der Kuppel, um sich über die Angelegenheiten der Erde zu einigen, und gehen dann hinunter an die Arbeit. Führen heißt hier dienen.",
+        "q": "Aber also soll es unter euch nicht sein. Sondern welcher will groß werden unter euch, der soll euer Diener sein.",
+        "r": "Markus 10,43",
+        "alt": "Die Kuppelhalle der Station mit erleuchteten Fenstern, ein Frachtschiff kommt an."
+      },
+      {
+        "k": "Matthäus 6,10",
+        "h": "Ein Garten für alle",
+        "p": "Die Station wird nicht um ihrer selbst willen gebaut. Das Ziel ist, dass die Erde ein Garten wird für alle, die auf ihr leben.",
+        "q": "Dein Wille geschehe auf Erden wie im Himmel",
+        "r": "Matthäus 6,10",
+        "alt": "Die Station, klein, über der Rundung der Erde bei Tag."
+      }
+    ],
+    "wordsTitle": "Worte Jesu, Regeln der Station",
+    "words": [
+      {
+        "q": "Also laßt euer Licht leuchten vor den Leuten, daß sie eure guten Werke sehen und euren Vater im Himmel preisen.",
+        "r": "Matthäus 5,16",
+        "rule": "Das Logbuch ist offen: Alle sehen, was die Station tut."
+      },
+      {
+        "q": "Wer ist aber unter euch, der einen Turm bauen will, und sitzt nicht zuvor und überschlägt die Kosten, ob er's habe, hinauszuführen?",
+        "r": "Lukas 14,28",
+        "rule": "Die Station gibt nicht mehr aus, als sie heraufgebracht hat."
+      },
+      {
+        "q": "Dabei wird jedermann erkennen, daß ihr meine Jünger seid, so ihr Liebe untereinander habt.",
+        "r": "Johannes 13,35",
+        "rule": "Die Besatzung erkennt man daran, wie ihre Leute miteinander umgehen."
+      }
+    ],
+    "credits": "Bilder in Blender für Areopagus gemacht; die alten Szenen sind aus denselben Modellen gestochen. Erde: NASA Earth Observatory. Bibeltext: Lutherbibel 1912, gemeinfrei."
+  }
 }

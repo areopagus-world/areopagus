@@ -39,6 +39,11 @@ A language counts as checked only when a native speaker has read it on the live 
 The station section (keys `stationTitle` to `stationNote`) was added on 2026-11-15 in all nine languages. It has not had
 an editor pass or a native review yet.
 
-`stationVerse` is Matthew 6:10 from an old public domain translation in each language, not our own translation: World
-English Bible (en), Louis Segond 1910 (fr), Luther 1912 (de), Reina-Valera 1909 (es), Diodati (it), Almeida (pt),
-Statenvertaling (nl), Biblia Gdańska (pl), Synodal (ru). Keep the wording as printed there.
+Scripture on the site (`stationVerse` and the quotes in `legend`) comes from an old public translation in each
+language, never from our own translation: World English Bible (en), Louis Segond 1910 (fr), Luther 1912 (de),
+Reina-Valera 1909 (es), Riveduta 1927 (it), Bíblia Livre, CC BY 4.0 Brasil (pt), Statenvertaling (nl), Biblia Gdańska
+(pl), Synodal (ru). Keep the wording as printed there; only the final punctuation of a cut verse may change, and the
+Portuguese credit says so, as its licence asks.
+
+The `legend` keys (the legend page at `/legend/`) were added on 2026-11-15 in all nine languages. Like the station
+section, they have not had an editor pass or a native review yet.

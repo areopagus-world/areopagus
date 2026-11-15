@@ -2,7 +2,8 @@
 // Builds apps/site/dist: one static page per language, readable without JavaScript.
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
-import { pathFor, renderPage } from "../apps/site/src/page.mjs";
+import { renderLegend } from "../apps/site/src/legend.mjs";
+import { legendPath, pathFor, renderPage } from "../apps/site/src/page.mjs";
 import { checkLocale, DEFAULT_LANG, loadLocales, SITE } from "./site-locales.mjs";
 
 const { langs, locales } = loadLocales();
@@ -44,7 +45,7 @@ const dist = outDir
 rmSync(dist, { recursive: true, force: true });
 if (outDir) mkdirSync(dist, { recursive: true });
 else cpSync(new URL("public/", SITE), dist, { recursive: true });
-// The station still and loop go with the page in both cases.
+// The station still, its loop and the legend pictures go with the page in both cases.
 cpSync(new URL("hero/", SITE), new URL("hero/", dist), { recursive: true });
 for (const lang of langs) {
   const t = lang === "fr" ? french(locales[lang]) : locales[lang];
@@ -63,6 +64,13 @@ for (const lang of langs) {
       css,
       app: Boolean(outDir),
     }),
+  );
+  // The legend of the station, one page per language next to the main one.
+  const legendDir = new URL(`.${legendPath(lang, DEFAULT_LANG)}`, dist);
+  mkdirSync(legendDir, { recursive: true });
+  writeFileSync(
+    new URL("index.html", legendDir),
+    renderLegend({ lang, t, langs, names, defaultLang: DEFAULT_LANG, css, app: Boolean(outDir) }),
   );
 }
 console.log(`built ${langs.length} languages: ${langs.join(", ")}`);

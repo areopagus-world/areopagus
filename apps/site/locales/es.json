@@ -82,5 +82,94 @@
   "engDomain": "tu-nombre.eu",
   "legal": "Aviso legal",
   "privacy": "Privacidad",
-  "foot": "Código abierto bajo AGPL. Datos en Europa. Sin publicidad. Nunca."
+  "foot": "Código abierto bajo AGPL. Datos en Europa. Sin publicidad. Nunca.",
+  "legend": {
+    "title": "La leyenda de la estación",
+    "meta": "Cómo una estación orbital que construye toda la humanidad tomó el nombre de una colina de Atenas, contado en ocho imágenes.",
+    "lead": "Areopagus toma su nombre de una colina de Atenas donde, hacia el año 50, el apóstol Pablo habló con los filósofos en su propia lengua. Esta es esa historia y lo que la estación toma de ella.",
+    "back": "Volver a Areopagus",
+    "more": "Leer la leyenda",
+    "ch": [
+      {
+        "k": "Atenas, hacia el año 50",
+        "h": "La colina de Ares",
+        "p": "Junto a la Acrópolis se alza una roca desnuda, la colina de Ares. Allí se reunía el consejo más antiguo de Atenas y de ella tomó su nombre: el Areópago. En tiempos de Roma aún velaba por lo que se enseñaba en la ciudad.",
+        "alt": "Grabado: la Acrópolis y sus templos vistos desde la colina de Ares, la ciudad abajo."
+      },
+      {
+        "k": "Hechos 17:16-21",
+        "h": "Una ciudad llena de ídolos",
+        "p": "Pablo esperaba en Atenas a sus compañeros. La ciudad estaba llena de ídolos, y eso le dolía. Cada día hablaba en la sinagoga y en la plaza con quien encontraba. Filósofos epicúreos y estoicos discutían con él. Algunos lo llamaban charlatán, en griego picoteador de semillas, el que recoge migajas de ideas ajenas. Lo llevaron al Areópago y le preguntaron:",
+        "q": "¿Podremos saber qué sea esta nueva doctrina que dices?",
+        "r": "Hechos 17:19",
+        "alt": "Grabado: la plaza de Atenas con un largo pórtico, hermas y estatuas, la Acrópolis arriba."
+      },
+      {
+        "k": "Hechos 17:22-23",
+        "h": "Al Dios no conocido",
+        "p": "Pablo no empezó acusándolos. Empezó por lo que ya tenían. Recorriendo la ciudad había encontrado un altar con la inscripción ΑΓΝΩΣΤΩ ΘΕΩ, al Dios no conocido.",
+        "q": "Aquél pues, que vosotros honráis sin conocerle, á éste os anuncio yo.",
+        "r": "Hechos 17:23",
+        "alt": "Grabado: un altar de mármol con una inscripción griega a un dios desconocido, un pórtico detrás."
+      },
+      {
+        "k": "Hechos 17:24-28",
+        "h": "De una sangre",
+        "p": "Habló del Dios que hizo el mundo y no habita en templos hechos por manos, que no está lejos de cada uno de nosotros. Citó a sus propios poetas: en él vivimos, y nos movemos, y somos; linaje suyo somos. Ese segundo verso es de Arato, un poeta de Cilicia, la tierra de Pablo.",
+        "q": "Y de una sangre ha hecho todo el linaje de los hombres, para que habitasen sobre toda la faz de la tierra",
+        "r": "Hechos 17:26",
+        "alt": "Grabado: un globo con Europa, África y Asia, Atenas marcada con un anillo."
+      },
+      {
+        "k": "Hechos 17:30-34",
+        "h": "Unos se burlaron, otros se quedaron",
+        "p": "Pablo terminó con una llamada a volverse a Dios y habló del hombre al que Dios resucitó de los muertos. Al oír la palabra resurrección, los oyentes se dividieron. Unos se burlaban. Otros decían:",
+        "q": "Te oiremos acerca de esto otra vez.",
+        "r": "Hechos 17:32",
+        "a": "Algunos creyeron, entre ellos Dionisio, miembro del consejo, y una mujer llamada Dámaris. Según la tradición, Dionisio fue el primer obispo de Atenas.",
+        "alt": "Grabado: noche en la colina de Ares, la Acrópolis oscura ante la luna."
+      },
+      {
+        "k": "La leyenda",
+        "h": "La estación",
+        "p": "Areopagus es también el nombre de una estación orbital que construye toda la humanidad. Todo lo necesario sube de la Tierra en naves de carga, y cualquiera puede enviar carga: código, una aportación, una traducción, una observación de su propio lugar.",
+        "alt": "La estación sobre los Alpes e Italia, naves de carga camino de ella."
+      },
+      {
+        "k": "Marcos 10:42-45",
+        "h": "Bajo la cúpula",
+        "p": "La tripulación de la estación son cristianos. Se reúnen bajo la cúpula para ponerse de acuerdo sobre los asuntos de la Tierra y luego vuelven abajo a trabajar. Aquí dirigir quiere decir servir.",
+        "q": "Mas no será así entre vosotros: antes cualquiera que quisiere hacerse grande entre vosotros, será vuestro servidor.",
+        "r": "Marcos 10:43",
+        "alt": "La sala con cúpula de la estación, con las ventanas encendidas y una nave de carga que llega."
+      },
+      {
+        "k": "Mateo 6:10",
+        "h": "Un jardín para todos",
+        "p": "La estación no se construye por sí misma. El fin es que la Tierra sea un jardín para todos los que viven en ella.",
+        "q": "Sea hecha tu voluntad, como en el cielo, así también en la tierra",
+        "r": "Mateo 6:10",
+        "alt": "La estación, pequeña, sobre la curva de la Tierra de día."
+      }
+    ],
+    "wordsTitle": "Palabras de Jesús, reglas de la estación",
+    "words": [
+      {
+        "q": "Así alumbre vuestra luz delante de los hombres, para que vean vuestras obras buenas, y glorifiquen á vuestro Padre que está en los cielos.",
+        "r": "Mateo 5:16",
+        "rule": "El cuaderno de bitácora está abierto: todos ven lo que hace la estación."
+      },
+      {
+        "q": "Porque ¿cuál de vosotros, queriendo edificar una torre, no cuenta primero sentado los gastos, si tiene lo que necesita para acabarla?",
+        "r": "Lucas 14:28",
+        "rule": "La estación no gasta más de lo que ha subido."
+      },
+      {
+        "q": "En esto conocerán todos que sois mis discípulos, si tuviereis amor los unos con los otros.",
+        "r": "Juan 13:35",
+        "rule": "A la tripulación se la conoce por cómo se tratan sus miembros."
+      }
+    ],
+    "credits": "Imágenes hechas en Blender para Areopagus; las escenas antiguas están grabadas a partir de los mismos modelos. Tierra: NASA Earth Observatory. Escritura: Reina-Valera 1909, dominio público."
+  }
 }
