@@ -43,7 +43,7 @@ A community chooses its lead the same way.
 
 ## Development of communities and places
 
-Spiral Dynamics is used openly as the skeleton of development for communities and places. It is never applied to individual people ([ADR 0003](adr/0003-no-individual-scoring.md)).
+Areopagus uses its own level model, part of the Earth Integral Balance System, openly as the skeleton of development for communities and places. It is never applied to individual people ([ADR 0003](adr/0003-no-individual-scoring.md)).
 
 | Stage         | Colour in the model | What the community has built                                | What the network offers at this stage          |
 | ------------- | ------------------- | ----------------------------------------------------------- | ---------------------------------------------- |
@@ -70,9 +70,14 @@ How a stage is determined:
 
 Limits of the model:
 
-- Spiral Dynamics is a working scheme without rigorous scientific validation. The methodology says so, and the stages are tested on the first real communities and revised.
+- The level model is a working scheme without rigorous scientific validation. The methodology says so, and the stages are tested on the first real communities and revised.
 - A stage describes how a community is arranged, not the worth of its people. The model is used as a method, not as a teaching.
-- In the interface the stages have plain names. The model's name and colours appear in the open methodology.
+- In the interface the stages have plain names. The colours appear in the open methodology.
+
+Sources of ideas:
+
+- The model is our own: its names, descriptions and rules were written for Areopagus. It draws on ideas, not texts: Clare W. Graves's research on emerging levels of existence, the old idea of a middle way between two extremes, Kate Raworth's doughnut model and planetary boundaries science.
+- Spiral Dynamics is a name that belongs to its owner. Areopagus is not affiliated with it and does not use its materials, tests or name in the product.
 
 ## Legal form
 
