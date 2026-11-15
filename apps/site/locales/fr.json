@@ -88,5 +88,94 @@
   "engDomain": "votre-nom.eu",
   "legal": "Mentions légales",
   "privacy": "Données personnelles",
-  "foot": "Code ouvert sous AGPL. Données en Europe. Jamais de publicité."
+  "foot": "Code ouvert sous AGPL. Données en Europe. Jamais de publicité.",
+  "legend": {
+    "title": "La légende de la station",
+    "meta": "Comment une station orbitale que toute l'humanité construit a pris le nom d'une colline d'Athènes, en huit images.",
+    "lead": "Areopagus tient son nom d'une colline d'Athènes où, vers l'an 50, l'apôtre Paul a parlé aux philosophes dans leur propre langue. Voici cette histoire et ce que la station en retient.",
+    "back": "Retour à Areopagus",
+    "more": "Lire la légende",
+    "ch": [
+      {
+        "k": "Athènes, vers l'an 50",
+        "h": "La colline d'Arès",
+        "p": "À côté de l'Acropole se dresse un rocher nu, la colline d'Arès. Le plus ancien conseil d'Athènes y siégeait et en a pris le nom : l'Aréopage. À l'époque romaine, il veillait encore sur ce qui s'enseignait dans la ville.",
+        "alt": "Gravure : l'Acropole et ses temples vus de la colline d'Arès, la ville en contrebas."
+      },
+      {
+        "k": "Actes 17:16-21",
+        "h": "Une ville pleine d'idoles",
+        "p": "Paul attendait à Athènes ses compagnons. La ville était pleine d'idoles, et cela le troublait. Chaque jour, il parlait à la synagogue et sur la place avec ceux qu'il rencontrait. Des philosophes épicuriens et stoïciens discutaient avec lui. Certains le traitaient de discoureur, en grec un picoreur de graines, qui ramasse les miettes des idées des autres. On le conduisit à l'Aréopage et on lui demanda :",
+        "q": "Pourrions-nous savoir quelle est cette nouvelle doctrine que tu enseignes?",
+        "r": "Actes 17:19",
+        "alt": "Gravure : la place d'Athènes avec une longue colonnade, des hermès et des statues, l'Acropole au-dessus."
+      },
+      {
+        "k": "Actes 17:22-23",
+        "h": "À un dieu inconnu",
+        "p": "Paul n'a pas commencé par les accuser. Il est parti de ce qu'ils avaient déjà. En parcourant la ville, il avait trouvé un autel avec l'inscription ΑΓΝΩΣΤΩ ΘΕΩ, à un dieu inconnu.",
+        "q": "Ce que vous révérez sans le connaître, c'est ce que je vous annonce.",
+        "r": "Actes 17:23",
+        "alt": "Gravure : un autel de marbre portant une inscription grecque à un dieu inconnu, une colonnade derrière."
+      },
+      {
+        "k": "Actes 17:24-28",
+        "h": "D'un seul sang",
+        "p": "Il a parlé du Dieu qui a fait le monde et n'habite pas dans des temples faits de main d'homme, qui n'est pas loin de chacun de nous. Il a cité leurs propres poètes : en lui nous avons la vie, le mouvement et l'être ; nous sommes de sa race. Ce second vers est d'Aratos, un poète de Cilicie, le pays de Paul.",
+        "q": "Il a fait que tous les hommes, sortis d'un seul sang, habitassent sur toute la surface de la terre",
+        "r": "Actes 17:26",
+        "alt": "Gravure : un globe avec l'Europe, l'Afrique et l'Asie, Athènes marquée d'un cercle."
+      },
+      {
+        "k": "Actes 17:30-34",
+        "h": "Les uns se moquèrent, d'autres restèrent",
+        "p": "Paul a terminé par un appel à se tourner vers Dieu et a parlé de l'homme que Dieu a ressuscité des morts. Au mot de résurrection, l'auditoire s'est partagé. Les uns se moquèrent. Les autres dirent :",
+        "q": "Nous t'entendrons là-dessus une autre fois.",
+        "r": "Actes 17:32",
+        "a": "Quelques-uns crurent, parmi eux Denys, membre du conseil, et une femme nommée Damaris. Selon la tradition, Denys devint le premier évêque d'Athènes.",
+        "alt": "Gravure : la nuit sur la colline d'Arès, l'Acropole sombre devant la lune."
+      },
+      {
+        "k": "La légende",
+        "h": "La station",
+        "p": "Areopagus est aussi le nom d'une station orbitale que toute l'humanité construit. Tout ce qu'il faut monte de la Terre par cargo, et chacun peut envoyer une cargaison : du code, une contribution, une traduction, une observation de son propre lieu.",
+        "alt": "La station au-dessus des Alpes et de l'Italie, des cargos en route vers elle."
+      },
+      {
+        "k": "Marc 10:42-45",
+        "h": "Sous la coupole",
+        "p": "L'équipage de la station est fait de chrétiens. Ils se retrouvent sous la coupole pour s'accorder sur les affaires de la Terre, puis redescendent au travail. Ici, diriger veut dire servir.",
+        "q": "Il n'en est pas de même au milieu de vous. Mais quiconque veut être grand parmi vous, qu'il soit votre serviteur.",
+        "r": "Marc 10:43",
+        "alt": "La salle à coupole de la station aux fenêtres éclairées, un cargo qui arrive."
+      },
+      {
+        "k": "Matthieu 6:10",
+        "h": "Un jardin pour tous",
+        "p": "La station ne se construit pas pour elle-même. Le but est que la Terre devienne un jardin pour tous ceux qui l'habitent.",
+        "q": "Que ta volonté soit faite sur la terre comme au ciel",
+        "r": "Matthieu 6:10",
+        "alt": "La station, toute petite, au-dessus de la courbe de la Terre en plein jour."
+      }
+    ],
+    "wordsTitle": "Paroles de Jésus, règles de la station",
+    "words": [
+      {
+        "q": "Que votre lumière luise ainsi devant les hommes, afin qu'ils voient vos bonnes œuvres, et qu'ils glorifient votre Père qui est dans les cieux.",
+        "r": "Matthieu 5:16",
+        "rule": "Le journal de bord est ouvert : chacun voit ce que fait la station."
+      },
+      {
+        "q": "Car, lequel de vous, s'il veut bâtir une tour, ne s'assied d'abord pour calculer la dépense et voir s'il a de quoi la terminer…",
+        "r": "Luc 14:28",
+        "rule": "La station ne dépense pas plus que ce qu'elle a fait monter."
+      },
+      {
+        "q": "A ceci tous connaîtront que vous êtes mes disciples, si vous avez de l'amour les uns pour les autres.",
+        "r": "Jean 13:35",
+        "rule": "On reconnaît l'équipage à la manière dont ses membres se traitent."
+      }
+    ],
+    "credits": "Images faites dans Blender pour Areopagus ; les scènes anciennes sont gravées à partir des mêmes modèles. Terre : NASA Earth Observatory. Écriture : Louis Segond 1910, domaine public."
+  }
 }

@@ -82,5 +82,94 @@
   "engDomain": "twoje-imie.eu",
   "legal": "Nota prawna",
   "privacy": "Prywatność",
-  "foot": "Otwarty kod na licencji AGPL. Dane w Europie. Żadnych reklam, nigdy."
+  "foot": "Otwarty kod na licencji AGPL. Dane w Europie. Żadnych reklam, nigdy.",
+  "legend": {
+    "title": "Legenda stacji",
+    "meta": "Jak stacja orbitalna, którą buduje cała ludzkość, otrzymała imię wzgórza w Atenach, opowiedziane w ośmiu obrazach.",
+    "lead": "Areopagus nosi imię wzgórza w Atenach, na którym około roku 50 apostoł Paweł rozmawiał z filozofami w ich własnym języku. Oto ta historia i to, co stacja z niej bierze.",
+    "back": "Wróć do Areopagus",
+    "more": "Przeczytaj legendę",
+    "ch": [
+      {
+        "k": "Ateny, około roku 50",
+        "h": "Wzgórze Aresa",
+        "p": "Obok Akropolu wznosi się naga skała, wzgórze Aresa. Obradowała tam najstarsza rada Aten i od niego wzięła swoją nazwę: Areopag. W czasach rzymskich wciąż czuwała nad tym, czego uczono w mieście.",
+        "alt": "Rycina: Akropol ze świątyniami widziany ze wzgórza Aresa, w dole miasto."
+      },
+      {
+        "k": "Dzieje Apostolskie 17,16-21",
+        "h": "Miasto pełne bożków",
+        "p": "Paweł czekał w Atenach na swoich towarzyszy. Miasto było pełne bożków i to go niepokoiło. Codziennie rozmawiał w synagodze i na rynku z każdym, kogo spotkał. Spierali się z nim filozofowie epikurejscy i stoiccy. Niektórzy nazywali go gadułą, po grecku zbieraczem ziaren, kimś, kto wydziobuje okruchy cudzych myśli. Zaprowadzili go na Areopag i pytali:",
+        "q": "Możemyli wiedzieć, co to jest za nowa nauka, którą ty opowiadasz?",
+        "r": "Dzieje Apostolskie 17,19",
+        "alt": "Rycina: rynek Aten z długim portykiem, hermami i posągami, nad nim Akropol."
+      },
+      {
+        "k": "Dzieje Apostolskie 17,22-23",
+        "h": "Nieznanemu Bogu",
+        "p": "Paweł nie zaczął od oskarżeń. Zaczął od tego, co już mieli. Przechodząc przez miasto, znalazł ołtarz z napisem ΑΓΝΩΣΤΩ ΘΕΩ, nieznanemu Bogu.",
+        "q": "Którego tedy nie znając chwalicie, tego ja wam opowiadam.",
+        "r": "Dzieje Apostolskie 17,23",
+        "alt": "Rycina: marmurowy ołtarz z greckim napisem dla nieznanego boga, za nim portyk."
+      },
+      {
+        "k": "Dzieje Apostolskie 17,24-28",
+        "h": "Z jednej krwi",
+        "p": "Mówił o Bogu, który stworzył świat i nie mieszka w świątyniach zbudowanych rękami, który nie jest daleko od każdego z nas. Przytaczał ich własnych poetów: w nim żyjemy, poruszamy się i jesteśmy; jesteśmy z jego rodu. Ten drugi wers pochodzi od Aratosa, poety z Cylicji, ziemi Pawła.",
+        "q": "I uczynił z jednej krwi wszystek naród ludzki, aby mieszkał po wszystkiem obliczu ziemi",
+        "r": "Dzieje Apostolskie 17,26",
+        "alt": "Rycina: globus z Europą, Afryką i Azją, Ateny zaznaczone pierścieniem."
+      },
+      {
+        "k": "Dzieje Apostolskie 17,30-34",
+        "h": "Jedni się śmiali, inni zostali",
+        "p": "Paweł zakończył wezwaniem do nawrócenia się do Boga i mówił o człowieku, którego Bóg wskrzesił z martwych. Na słowo o zmartwychwstaniu słuchacze się podzielili. Jedni się naśmiewali. Drudzy mówili:",
+        "q": "Będziemy cię znowu o tem słuchać.",
+        "r": "Dzieje Apostolskie 17,32",
+        "a": "Niektórzy uwierzyli, wśród nich Dionizy, członek rady, i kobieta imieniem Damaris. Według tradycji Dionizy został pierwszym biskupem Aten.",
+        "alt": "Rycina: noc na wzgórzu Aresa, ciemny Akropol na tle księżyca."
+      },
+      {
+        "k": "Legenda",
+        "h": "Stacja",
+        "p": "Areopagus to także nazwa stacji orbitalnej, którą buduje cała ludzkość. Wszystko do budowy przylatuje z Ziemi na statkach towarowych, a ładunek może wysłać każdy: kod, wpłatę, tłumaczenie, obserwację ze swojego miejsca.",
+        "alt": "Stacja nad Alpami i Włochami, statki towarowe w drodze do niej."
+      },
+      {
+        "k": "Marka 10,42-45",
+        "h": "Pod kopułą",
+        "p": "Załogę stacji tworzą chrześcijanie. Spotykają się pod kopułą, żeby porozumieć się w sprawach Ziemi, a potem wracają na dół do pracy. Prowadzić znaczy tu służyć.",
+        "q": "Lecz nie tak będzie między wami; ale ktobykolwiek chciał być wielkim między wami, będzie sługą waszym.",
+        "r": "Marka 10,43",
+        "alt": "Sala pod kopułą stacji z oświetlonymi oknami, nadlatuje statek towarowy."
+      },
+      {
+        "k": "Mateusza 6,10",
+        "h": "Ogród dla wszystkich",
+        "p": "Stacja nie powstaje dla samej siebie. Celem jest, by Ziemia stała się ogrodem dla wszystkich, którzy na niej żyją.",
+        "q": "Bądź wola twoja jako w niebie, tak i na ziemi",
+        "r": "Mateusza 6,10",
+        "alt": "Mała stacja nad krzywizną Ziemi w świetle dnia."
+      }
+    ],
+    "wordsTitle": "Słowa Jezusa, zasady stacji",
+    "words": [
+      {
+        "q": "Tak niechaj świeci światłość wasza przed ludźmi, aby uczynki wasze dobre widzieli, a chwalili ojca waszego, który jest w niebiesiech.",
+        "r": "Mateusza 5,16",
+        "rule": "Dziennik pokładowy jest otwarty: wszyscy widzą, co robi stacja."
+      },
+      {
+        "q": "Bo któż z was jest, chcąc zbudować wieżę, aby pierwej usiadłszy, nie obrachował nakładu, mali to, czemby jej dokończył?",
+        "r": "Łukasza 14,28",
+        "rule": "Stacja nie wydaje więcej, niż przywiozła."
+      },
+      {
+        "q": "Stądci poznają wszyscy, żeście uczniami moimi, jeźli miłość mieć będziecie jedni przeciwko drugim.",
+        "r": "Jana 13,35",
+        "rule": "Załogę poznaje się po tym, jak jej członkowie traktują się nawzajem."
+      }
+    ],
+    "credits": "Obrazy wykonane w Blenderze dla Areopagus; dawne sceny wyryto z tych samych modeli. Ziemia: NASA Earth Observatory. Pismo: Biblia Gdańska, domena publiczna."
+  }
 }

@@ -76,5 +76,94 @@
   "engDomain": "your-name.eu",
   "legal": "Legal notice",
   "privacy": "Privacy",
-  "foot": "Open code under AGPL. Data in Europe. No ads, ever."
+  "foot": "Open code under AGPL. Data in Europe. No ads, ever.",
+  "legend": {
+    "title": "The legend of the station",
+    "meta": "How an orbital station that all of humanity builds got its name from a hill in Athens, told in eight pictures.",
+    "lead": "Areopagus is named after a hill in Athens where, around AD 50, the apostle Paul spoke with the philosophers in their own language. Here is that story and what the station takes from it.",
+    "back": "Back to Areopagus",
+    "more": "Read the legend",
+    "ch": [
+      {
+        "k": "Athens, around AD 50",
+        "h": "The hill of Ares",
+        "p": "Next to the Acropolis rises a bare rock, the hill of Ares. The oldest council of Athens met there and took its name from it: the Areopagus. In Roman times it still watched over what was taught in the city.",
+        "alt": "Engraving: the Acropolis and its temples seen from the hill of Ares, the city below."
+      },
+      {
+        "k": "Acts 17:16-21",
+        "h": "A city full of idols",
+        "p": "Paul was waiting in Athens for his companions. The city was full of idols, and it troubled him. Every day he talked in the synagogue and in the market square with whoever was there. Epicurean and Stoic philosophers argued with him. Some called him a babbler, in Greek a seed picker, someone who pecks up scraps of other people's ideas. They took him to the Areopagus and asked:",
+        "q": "May we know what this new teaching is, which you are speaking about?",
+        "r": "Acts 17:19",
+        "alt": "Engraving: the market square of Athens with a long colonnade, herms and statues, the Acropolis above."
+      },
+      {
+        "k": "Acts 17:22-23",
+        "h": "To an unknown god",
+        "p": "Paul did not begin by accusing them. He began with what they already had. Walking through the city he had found an altar with the inscription ΑΓΝΩΣΤΩ ΘΕΩ, to an unknown god.",
+        "q": "What therefore you worship in ignorance, I announce to you.",
+        "r": "Acts 17:23",
+        "alt": "Engraving: a marble altar with a Greek inscription to an unknown god, a colonnade behind it."
+      },
+      {
+        "k": "Acts 17:24-28",
+        "h": "From one blood",
+        "p": "He spoke of the God who made the world and does not live in temples made by hands, who is not far from each one of us. He quoted their own poets: in him we live and move and have our being; we are his offspring. That second line comes from Aratus, a poet from Cilicia, Paul's home country.",
+        "q": "He made from one blood every nation of men to dwell on all the surface of the earth",
+        "r": "Acts 17:26",
+        "alt": "Engraving: a globe with Europe, Africa and Asia, Athens marked with a ring."
+      },
+      {
+        "k": "Acts 17:30-34",
+        "h": "Some mocked, some stayed",
+        "p": "Paul ended with a call to turn to God and spoke of the man whom God raised from the dead. At the word resurrection the listeners split. Some mocked. Others said:",
+        "q": "We want to hear you again concerning this.",
+        "r": "Acts 17:32",
+        "a": "Some believed, among them Dionysius, a member of the council, and a woman named Damaris. Tradition says Dionysius became the first bishop of Athens.",
+        "alt": "Engraving: night on the hill of Ares, the Acropolis dark against the moon."
+      },
+      {
+        "k": "The legend",
+        "h": "The station",
+        "p": "Areopagus is also the name of an orbital station that all of humanity builds. Everything for the building comes up from the Earth on cargo ships, and anyone can send cargo: code, a contribution, a translation, an observation of their own place.",
+        "alt": "The station above the Alps and Italy, cargo ships on their way to it."
+      },
+      {
+        "k": "Mark 10:42-45",
+        "h": "Under the dome",
+        "p": "The crew of the station are Christians. They meet under the dome to agree on the affairs of the Earth, then go back down to work. Here to lead means to serve.",
+        "q": "But it shall not be so among you, but whoever wants to become great among you shall be your servant.",
+        "r": "Mark 10:43",
+        "alt": "The domed hall of the station with lit windows, a cargo ship arriving."
+      },
+      {
+        "k": "Matthew 6:10",
+        "h": "A garden for all",
+        "p": "The station is not built for its own sake. The aim is that the Earth becomes a garden for all who live on it.",
+        "q": "Let your will be done on earth as it is in heaven",
+        "r": "Matthew 6:10",
+        "alt": "The station, small, above the curve of the Earth in daylight."
+      }
+    ],
+    "wordsTitle": "Words of Jesus, rules of the station",
+    "words": [
+      {
+        "q": "Even so, let your light shine before men, that they may see your good works and glorify your Father who is in heaven.",
+        "r": "Matthew 5:16",
+        "rule": "The logbook is open: everyone can see what the station does."
+      },
+      {
+        "q": "For which of you, desiring to build a tower, doesn't first sit down and count the cost, to see if he has enough to complete it?",
+        "r": "Luke 14:28",
+        "rule": "The station does not spend more than it brings up."
+      },
+      {
+        "q": "By this everyone will know that you are my disciples, if you have love for one another.",
+        "r": "John 13:35",
+        "rule": "The crew is known by how its members treat one another."
+      }
+    ],
+    "credits": "Pictures made in Blender for Areopagus; the old scenes are engraved from the same models. Earth: NASA Earth Observatory. Scripture: World English Bible, public domain."
+  }
 }

@@ -88,5 +88,94 @@
   "engDomain": "jouw-naam.eu",
   "legal": "Juridische informatie",
   "privacy": "Privacy",
-  "foot": "Open code onder AGPL. Gegevens in Europa. Nooit reclame."
+  "foot": "Open code onder AGPL. Gegevens in Europa. Nooit reclame.",
+  "legend": {
+    "title": "De legende van het station",
+    "meta": "Hoe een ruimtestation dat de hele mensheid bouwt zijn naam kreeg van een heuvel in Athene, verteld in acht beelden.",
+    "lead": "Areopagus is genoemd naar een heuvel in Athene waar de apostel Paulus rond het jaar 50 met de filosofen in hun eigen taal sprak. Hier is dat verhaal en wat het station ervan meeneemt.",
+    "back": "Terug naar Areopagus",
+    "more": "Lees de legende",
+    "ch": [
+      {
+        "k": "Athene, rond het jaar 50",
+        "h": "De heuvel van Ares",
+        "p": "Naast de Akropolis rijst een kale rots op, de heuvel van Ares. Daar vergaderde de oudste raad van Athene, die er zijn naam aan ontleende: de Areopagus. In de Romeinse tijd waakte hij nog over wat er in de stad werd onderwezen.",
+        "alt": "Gravure: de Akropolis met haar tempels gezien vanaf de heuvel van Ares, beneden de stad."
+      },
+      {
+        "k": "Handelingen 17:16-21",
+        "h": "Een stad vol afgodsbeelden",
+        "p": "Paulus wachtte in Athene op zijn metgezellen. De stad was vol afgodsbeelden, en dat verontrustte hem. Elke dag sprak hij in de synagoge en op het marktplein met wie er maar was. Epicurische en stoïcijnse filosofen redetwistten met hem. Sommigen noemden hem een kletser, in het Grieks een zadenpikker, iemand die kruimels van andermans ideeën oppikt. Ze brachten hem naar de Areopagus en vroegen:",
+        "q": "Kunnen wij niet weten, welke deze nieuwe leer zij, daar gij van spreekt?",
+        "r": "Handelingen 17:19",
+        "alt": "Gravure: het marktplein van Athene met een lange zuilengang, hermen en beelden, de Akropolis erboven."
+      },
+      {
+        "k": "Handelingen 17:22-23",
+        "h": "Aan een onbekende god",
+        "p": "Paulus begon niet met beschuldigen. Hij begon bij wat ze al hadden. Bij zijn tocht door de stad had hij een altaar gevonden met het opschrift ΑΓΝΩΣΤΩ ΘΕΩ, aan een onbekende god.",
+        "q": "Dezen dan, Dien gij niet kennende dient, verkondig ik ulieden.",
+        "r": "Handelingen 17:23",
+        "alt": "Gravure: een marmeren altaar met een Grieks opschrift aan een onbekende god, erachter een zuilengang."
+      },
+      {
+        "k": "Handelingen 17:24-28",
+        "h": "Uit één bloed",
+        "p": "Hij sprak over de God die de wereld gemaakt heeft en niet woont in tempels met handen gemaakt, die niet ver is van ieder van ons. Hij citeerde hun eigen dichters: in Hem leven wij, en bewegen ons, en zijn wij; wij zijn ook Zijn geslacht. Die tweede regel is van Aratus, een dichter uit Cilicië, het land van Paulus.",
+        "q": "En heeft uit een bloede het ganse geslacht der mensen gemaakt, om op den gehelen aardbodem te wonen",
+        "r": "Handelingen 17:26",
+        "alt": "Gravure: een globe met Europa, Afrika en Azië, Athene gemarkeerd met een ring."
+      },
+      {
+        "k": "Handelingen 17:30-34",
+        "h": "Sommigen spotten, anderen bleven",
+        "p": "Paulus sloot af met een oproep om zich tot God te keren en sprak over de man die God uit de doden heeft opgewekt. Bij het woord opstanding verdeelden de luisteraars zich. Sommigen spotten. Anderen zeiden:",
+        "q": "Wij zullen u wederom hiervan horen.",
+        "r": "Handelingen 17:32",
+        "a": "Sommigen geloofden, onder hen Dionysius, lid van de raad, en een vrouw die Damaris heette. Volgens de overlevering werd Dionysius de eerste bisschop van Athene.",
+        "alt": "Gravure: nacht op de heuvel van Ares, de Akropolis donker tegen de maan."
+      },
+      {
+        "k": "De legende",
+        "h": "Het station",
+        "p": "Areopagus is ook de naam van een ruimtestation dat de hele mensheid bouwt. Alles voor de bouw komt met vrachtschepen van de aarde omhoog, en iedereen kan vracht sturen: code, een bijdrage, een vertaling, een waarneming van de eigen plek.",
+        "alt": "Het station boven de Alpen en Italië, vrachtschepen op weg ernaartoe."
+      },
+      {
+        "k": "Markus 10:42-45",
+        "h": "Onder de koepel",
+        "p": "De bemanning van het station bestaat uit christenen. Ze komen onder de koepel samen om het eens te worden over de zaken van de aarde en gaan daarna weer naar beneden aan het werk. Leiden betekent hier dienen.",
+        "q": "Doch alzo zal het onder u niet zijn; maar zo wie onder u groot zal willen worden, die zal uw dienaar zijn.",
+        "r": "Markus 10:43",
+        "alt": "De koepelzaal van het station met verlichte ramen, een vrachtschip dat aankomt."
+      },
+      {
+        "k": "Mattheüs 6:10",
+        "h": "Een tuin voor iedereen",
+        "p": "Het station wordt niet om zichzelf gebouwd. Het doel is dat de aarde een tuin wordt voor iedereen die er woont.",
+        "q": "Uw wil geschiede, gelijk in den hemel alzo ook op de aarde",
+        "r": "Mattheüs 6:10",
+        "alt": "Het station, klein, boven de kromming van de aarde bij dag."
+      }
+    ],
+    "wordsTitle": "Woorden van Jezus, regels van het station",
+    "words": [
+      {
+        "q": "Laat uw licht alzo schijnen voor de mensen, dat zij uw goede werken mogen zien, en uw Vader, Die in de hemelen is, verheerlijken.",
+        "r": "Mattheüs 5:16",
+        "rule": "Het logboek is open: iedereen ziet wat het station doet."
+      },
+      {
+        "q": "Want wie van u, willende een toren bouwen, zit niet eerst neder, en overrekent de kosten, of hij ook heeft, hetgeen tot volmaking nodig is?",
+        "r": "Lukas 14:28",
+        "rule": "Het station geeft niet meer uit dan het naar boven heeft gebracht."
+      },
+      {
+        "q": "Hieraan zullen zij allen bekennen, dat gij Mijn discipelen zijt, zo gij liefde hebt onder elkander.",
+        "r": "Johannes 13:35",
+        "rule": "De bemanning herken je aan hoe haar leden met elkaar omgaan."
+      }
+    ],
+    "credits": "Beelden gemaakt in Blender voor Areopagus; de oude scènes zijn gegraveerd uit dezelfde modellen. Aarde: NASA Earth Observatory. Schrift: Statenvertaling, publiek domein."
+  }
 }

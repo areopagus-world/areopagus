@@ -19,6 +19,7 @@ const RESERVED = new Set([
   "help",
   "home",
   "legal",
+  "legend",
   "login",
   "logout",
   "map",

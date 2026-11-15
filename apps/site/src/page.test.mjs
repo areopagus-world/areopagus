@@ -89,3 +89,18 @@ describe("station legend", () => {
     expect(locales.en.aboardText).toMatch(/after a legal review/);
   });
 });
+
+describe("link to the legend", () => {
+  it("leads from the station section to the legend in the same language", () => {
+    expect(page(false)).toContain('href="/legend/"');
+    const ru = renderPage({
+      lang: "ru",
+      t: locales.ru,
+      langs,
+      defaultLang: DEFAULT_LANG,
+      roadmap,
+      css: "",
+    });
+    expect(ru).toContain(`href="/ru/legend/">${locales.ru.legend.more}</a>`);
+  });
+});

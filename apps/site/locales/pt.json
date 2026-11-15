@@ -11,7 +11,7 @@
   "count": "{a} de {b} acesos",
   "stationTitle": "A estação",
   "stationText": "O Areopagus é também uma lenda: uma estação orbital construída por toda a humanidade. Tem o nome da colina de Atenas onde o apóstolo Paulo falou com os filósofos na língua deles (Atos 17). Tudo o que é preciso para a construir sobe da Terra em naves de carga, e qualquer pessoa pode enviar carga. A tripulação da estação são cristãos que servem a obra comum: reúnem-se a bordo para chegar a acordo sobre os assuntos da Terra e voltam ao trabalho lá em baixo, para que a Terra seja um jardim para todos os que nela vivem.",
-  "stationVerse": "Seja feita a tua vontade, assim na terra como no céu",
+  "stationVerse": "Seja feita a tua vontade, tanto na terra, assim como no céu",
   "stationVerseRef": "Mateus 6:10",
   "earthTitle": "A Terra",
   "earthText": "Aberta a todos. Cada pessoa tem um espaço para as coisas da terra: uma página, um porto de origem, competências, um diário de bordo, perguntas, comunidades. Todos veem o que a estação faz e para onde vai.",
@@ -82,5 +82,94 @@
   "engDomain": "o-seu-nome.eu",
   "legal": "Aviso legal",
   "privacy": "Privacidade",
-  "foot": "Código aberto sob AGPL. Dados na Europa. Publicidade, nunca."
+  "foot": "Código aberto sob AGPL. Dados na Europa. Publicidade, nunca.",
+  "legend": {
+    "title": "A lenda da estação",
+    "meta": "Como uma estação orbital construída por toda a humanidade recebeu o nome de uma colina de Atenas, contado em oito imagens.",
+    "lead": "O Areopagus tem o nome de uma colina de Atenas onde, por volta do ano 50, o apóstolo Paulo falou com os filósofos na língua deles. Esta é essa história e o que a estação tira dela.",
+    "back": "Voltar ao Areopagus",
+    "more": "Ler a lenda",
+    "ch": [
+      {
+        "k": "Atenas, por volta do ano 50",
+        "h": "A colina de Ares",
+        "p": "Ao lado da Acrópole ergue-se uma rocha nua, a colina de Ares. Ali reunia-se o mais antigo conselho de Atenas, que dela tirou o nome: o Areópago. No tempo de Roma ainda vigiava o que se ensinava na cidade.",
+        "alt": "Gravura: a Acrópole e os seus templos vistos da colina de Ares, a cidade em baixo."
+      },
+      {
+        "k": "Atos 17:16-21",
+        "h": "Uma cidade cheia de ídolos",
+        "p": "Paulo esperava em Atenas pelos companheiros. A cidade estava cheia de ídolos, e isso perturbava-o. Todos os dias falava na sinagoga e na praça com quem lá estivesse. Filósofos epicuristas e estoicos discutiam com ele. Alguns chamavam-lhe palrador, em grego um apanhador de sementes, alguém que recolhe migalhas das ideias dos outros. Levaram-no ao Areópago e perguntaram:",
+        "q": "Podemos nós saber que doutrina nova é esta que tu falas?",
+        "r": "Atos 17:19",
+        "alt": "Gravura: a praça de Atenas com um longo pórtico, hermas e estátuas, a Acrópole por cima."
+      },
+      {
+        "k": "Atos 17:22-23",
+        "h": "Ao Deus desconhecido",
+        "p": "Paulo não começou por os acusar. Começou pelo que eles já tinham. Ao percorrer a cidade tinha encontrado um altar com a inscrição ΑΓΝΩΣΤΩ ΘΕΩ, ao Deus desconhecido.",
+        "q": "Este a quem vós prestais devoção sem conhecer, este é o que eu vos anuncio.",
+        "r": "Atos 17:23",
+        "alt": "Gravura: um altar de mármore com uma inscrição grega a um deus desconhecido, um pórtico atrás."
+      },
+      {
+        "k": "Atos 17:24-28",
+        "h": "De um sangue",
+        "p": "Falou do Deus que fez o mundo e não habita em templos feitos por mãos, que não está longe de cada um de nós. Citou os seus próprios poetas: nele vivemos, e nos movemos, e somos; somos descendência dele. Esse segundo verso é de Arato, um poeta da Cilícia, a terra de Paulo.",
+        "q": "E de um sangue ele fez toda nação humana, para habitarem sobre a face da terra",
+        "r": "Atos 17:26",
+        "alt": "Gravura: um globo com a Europa, a África e a Ásia, Atenas marcada com um anel."
+      },
+      {
+        "k": "Atos 17:30-34",
+        "h": "Uns zombaram, outros ficaram",
+        "p": "Paulo terminou com um apelo a voltar-se para Deus e falou do homem que Deus ressuscitou dos mortos. À palavra ressurreição os ouvintes dividiram-se. Alguns zombavam. Outros diziam:",
+        "q": "Nós ouviremos sobre isto de ti na próxima vez.",
+        "r": "Atos 17:32",
+        "a": "Alguns creram, entre eles Dionísio, membro do conselho, e uma mulher chamada Dâmaris. Segundo a tradição, Dionísio foi o primeiro bispo de Atenas.",
+        "alt": "Gravura: noite na colina de Ares, a Acrópole escura diante da lua."
+      },
+      {
+        "k": "A lenda",
+        "h": "A estação",
+        "p": "Areopagus é também o nome de uma estação orbital construída por toda a humanidade. Tudo o que é preciso sobe da Terra em naves de carga, e qualquer pessoa pode enviar carga: código, uma contribuição, uma tradução, uma observação do seu próprio lugar.",
+        "alt": "A estação sobre os Alpes e a Itália, naves de carga a caminho dela."
+      },
+      {
+        "k": "Marcos 10:42-45",
+        "h": "Sob a cúpula",
+        "p": "A tripulação da estação são cristãos. Reúnem-se sob a cúpula para chegar a acordo sobre os assuntos da Terra e depois voltam lá abaixo para trabalhar. Aqui liderar quer dizer servir.",
+        "q": "Mas entre vós não será assim; antes qualquer que entre vós quiser ser grande, será vosso servidor.",
+        "r": "Marcos 10:43",
+        "alt": "A sala com cúpula da estação, de janelas acesas, e uma nave de carga a chegar."
+      },
+      {
+        "k": "Mateus 6:10",
+        "h": "Um jardim para todos",
+        "p": "A estação não se constrói por si mesma. O objetivo é que a Terra seja um jardim para todos os que nela vivem.",
+        "q": "Seja feita a tua vontade, tanto na terra, assim como no céu",
+        "r": "Mateus 6:10",
+        "alt": "A estação, pequena, sobre a curva da Terra de dia."
+      }
+    ],
+    "wordsTitle": "Palavras de Jesus, regras da estação",
+    "words": [
+      {
+        "q": "Assim brilhe vossa luz diante das pessoas, para que vejam vossas boas obras, e glorifiquem ao vosso Pai, que está nos céus.",
+        "r": "Mateus 5:16",
+        "rule": "O diário de bordo está aberto: todos veem o que a estação faz."
+      },
+      {
+        "q": "Porque qual de vós, querendo edificar uma torre, não se senta primeiro para fazer as contas dos gastos, para ver se tem o suficiente para a completar?",
+        "r": "Lucas 14:28",
+        "rule": "A estação não gasta mais do que fez subir."
+      },
+      {
+        "q": "Nisto todos conhecerão que sois meus discípulos: se vós tiverdes amor uns aos outros.",
+        "r": "João 13:35",
+        "rule": "A tripulação conhece-se pela forma como os seus membros se tratam."
+      }
+    ],
+    "credits": "Imagens feitas no Blender para o Areopagus; as cenas antigas são gravadas a partir dos mesmos modelos. Terra: NASA Earth Observatory. Escritura: Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, 2018, licença CC BY 4.0 Brasil; pontuação final de algumas citações ajustada."
+  }
 }

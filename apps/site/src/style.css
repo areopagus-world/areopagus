@@ -573,3 +573,163 @@ footer a {
     scroll-behavior: auto !important;
   }
 }
+
+/* The legend page: chapters on whole screens, a card of text over each picture. */
+.legend .intro {
+  padding: clamp(40px, 8vh, 96px) 0 clamp(48px, 9vh, 110px);
+}
+.legend .intro h1 {
+  margin: 0 0 18px;
+  font: 800 clamp(40px, 6vw, 112px) / 0.95 var(--display);
+  letter-spacing: -0.035em;
+}
+.legend .intro .lead {
+  max-width: 40em;
+  margin: 0;
+  font-size: clamp(18px, 1.4vw, 23px);
+  color: var(--mute);
+}
+.legend .ch {
+  position: relative;
+  padding: 0;
+  border-top: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: #191512;
+}
+.legend .ch picture,
+.legend .ch img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50%) 50%;
+}
+.legend .card {
+  position: relative;
+  width: min(34rem, calc(100% - 40px));
+  margin: 0 0 clamp(20px, 6vh, 72px) clamp(20px, 5vw, 120px);
+  padding: clamp(22px, 2.6vw, 36px);
+  border-radius: 2px;
+}
+.legend .old .card {
+  background: rgba(244, 238, 223, 0.94);
+  color: #2a1f17;
+  box-shadow: 0 1px 0 rgba(42, 31, 23, 0.25);
+}
+.legend .now .card {
+  background: rgba(10, 9, 8, 0.72);
+  color: #f3efe6;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.legend .card .k {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin: 0 0 10px;
+  font: 500 13px/1.3 var(--mono);
+  letter-spacing: 0.02em;
+  opacity: 0.8;
+}
+.legend .card .k span {
+  font: 800 15px/1 var(--display);
+  color: var(--ember);
+}
+.legend .card h2 {
+  margin: 0 0 14px;
+  font: 800 clamp(26px, 2.6vw, 44px) / 1.02 var(--display);
+}
+.legend .card p {
+  margin: 0 0 12px;
+  font-size: clamp(16px, 1.05vw, 18px);
+}
+.legend .card p:last-child {
+  margin-bottom: 0;
+}
+.legend .card .verse {
+  margin: 18px 0 14px;
+}
+.legend .card .verse p {
+  margin-bottom: 6px;
+}
+.legend .card .verse cite {
+  color: inherit;
+  opacity: 0.75;
+}
+/* Wide screens: the engraving keeps its subject on the right, the text sits on the left. */
+@media (min-width: 1100px) {
+  .legend .ch {
+    align-items: center;
+  }
+  .legend .card {
+    margin-bottom: 0;
+  }
+}
+/* Phones: the picture on top, the card below it, so neither hides the other. */
+@media (max-width: 760px) {
+  .legend .ch {
+    display: block;
+    min-height: 0;
+  }
+  .legend .ch picture,
+  .legend .ch img {
+    position: relative;
+    display: block;
+    height: 62vh;
+    height: 62svh;
+  }
+  .legend .card {
+    width: auto;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+.legend .words {
+  padding-top: clamp(56px, 8vw, 120px);
+  padding-bottom: clamp(40px, 6vw, 90px);
+}
+.legend .words ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 28px;
+}
+@media (min-width: 1100px) {
+  .legend .words ol {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+}
+.legend .words li {
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.legend .words .verse {
+  margin: 0 0 14px;
+}
+.legend .words .verse p {
+  font-size: clamp(16px, 1.1vw, 19px);
+}
+.legend .words .rule {
+  margin: 0;
+  font-weight: 600;
+}
+.legend footer .credits {
+  max-width: 60em;
+  color: var(--mute);
+  font-size: 14px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:has(body.legend) {
+    scroll-snap-type: y proximity;
+  }
+  .legend .ch {
+    scroll-snap-align: start;
+  }
+}
