@@ -35,3 +35,6 @@ say it your way and keep the meaning.
 | Русский    | ru   | Claude     | 2026-11-14    | founder       |
 
 A language counts as checked only when a native speaker has read it on the live page.
+
+The station section (keys `stationTitle` to `stationNote`) was added on 2026-11-15 in all nine languages. It has not had
+an editor pass or a native review yet.
