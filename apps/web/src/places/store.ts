@@ -23,9 +23,13 @@ export async function searchPlaces(query: string): Promise<Place[]> {
     .replace(/[%_\\]/g, "");
   if (q.length < 2) return [];
   const { rows } = await getPool().query<Place>(
-    `select id::text, name, country from places
-     where lower(ascii) like $1 or lower(name) like $1
-     order by population desc, name
+    // Places where people already are come first: "Beau" should find Beaulieu-sur-Mer, where
+    // someone lives, before Beauvais, which is bigger.
+    `select p.id::text, p.name, p.country from places p
+     where lower(p.ascii) like $1 or lower(p.name) like $1
+     order by (exists (select 1 from spaces s where s.place_id = p.id and s.hidden_at is null)
+               or exists (select 1 from communities c where c.place_id = p.id and c.hidden_at is null)) desc,
+              p.population desc, p.name
      limit 8`,
     [`${q}%`],
   );

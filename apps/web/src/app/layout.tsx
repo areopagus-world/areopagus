@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { SiteNav } from "./site-nav";
 
 export const metadata: Metadata = {
   title: "Areopagus",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           fontFamily: "'Golos Text', system-ui, sans-serif",
         }}
       >
+        <SiteNav />
         {children}
       </body>
     </html>

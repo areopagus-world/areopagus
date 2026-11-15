@@ -94,9 +94,6 @@ export default async function Search({
           ) : null}
         </>
       ) : null}
-      <p style={{ ...mute, marginTop: 44 }}>
-        <a href="/map">Map</a> · <a href="/communities">Communities</a>
-      </p>
     </Screen>
   );
 }
