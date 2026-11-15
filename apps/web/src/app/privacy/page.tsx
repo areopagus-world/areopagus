@@ -36,6 +36,10 @@ export default function Privacy() {
             de connexion, et les journaux techniques de l’hébergeur.
           </li>
           <li>
+            Vos questions et réponses : publiques, avec le nom de votre espace. Quand quelqu’un vous
+            pose une question ou répond à la vôtre, un e-mail vous prévient.
+          </li>
+          <li>
             Si vous signalez un contenu : votre message, une empreinte chiffrée de votre adresse IP
             et, si vous la donnez, votre adresse e-mail pour la réponse.
           </li>
@@ -112,6 +116,10 @@ export default function Privacy() {
             <li>
               For security: a hashed form of your IP address when a sign-in link is requested, and
               the technical logs of the hosting company.
+            </li>
+            <li>
+              Your questions and answers: public, with the name of your space. When someone asks you
+              a question or answers yours, an e-mail tells you.
             </li>
             <li>
               If you report content: your message, a hashed form of your IP address and, if you give

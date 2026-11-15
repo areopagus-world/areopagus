@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { communitiesAt } from "@/communities/store";
+import { recentQuestions } from "@/questions/store";
 import { findPlace, spacesAt } from "@/places/store";
 import { CommunityList } from "../../community-list";
+import { QuestionList } from "../../question-list";
 import { Screen } from "../../ui";
 
 export const dynamic = "force-dynamic";
@@ -20,7 +22,11 @@ export async function generateMetadata({
 export default async function PlacePage({ params }: { params: Promise<{ id: string }> }) {
   const place = await findPlace((await params).id);
   if (!place) notFound();
-  const [spaces, communities] = await Promise.all([spacesAt(place.id), communitiesAt(place.id)]);
+  const [spaces, communities, questions] = await Promise.all([
+    spacesAt(place.id),
+    communitiesAt(place.id),
+    recentQuestions({ placeId: place.id }),
+  ]);
   return (
     <Screen title={`${place.name}, ${place.country}`}>
       {spaces.length === 0 ? (
@@ -45,12 +51,20 @@ export default async function PlacePage({ params }: { params: Promise<{ id: stri
           <CommunityList communities={communities} />
         </>
       ) : null}
+      {questions.length > 0 ? (
+        <>
+          <h2 style={{ fontSize: 22, margin: "40px 0 6px" }}>Questions</h2>
+          <QuestionList questions={questions} />
+        </>
+      ) : null}
       <p style={{ marginTop: 28 }}>
         <a href="/map" style={{ color: "#ff4a1c" }}>
           Back to the map
         </a>
         {" · "}
         <a href={`/search?place_id=${place.id}`}>Search here</a>
+        {" · "}
+        <a href={`/questions/new?place_id=${place.id}`}>Ask the people here</a>
       </p>
     </Screen>
   );
