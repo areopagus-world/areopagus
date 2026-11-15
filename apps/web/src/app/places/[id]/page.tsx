@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { communitiesAt } from "@/communities/store";
+import { authEnabled } from "@/identity/config";
+import { currentUser } from "@/identity/session";
 import { getT } from "@/i18n/server";
 import { recentQuestions } from "@/questions/store";
 import { findPlace, spacesAt } from "@/places/store";
+import { checkLevel, type Level } from "@/snapshots/rules";
+import { ownSnapshots, placeSnapshots } from "@/snapshots/store";
+import { findSpaceByUser } from "@/spaces/store";
 import { CommunityList } from "../../community-list";
 import { QuestionList } from "../../question-list";
 import { Screen } from "../../ui";
+import { Snapshots, type SnapshotAccess } from "./snapshots";
 
 export const dynamic = "force-dynamic";
 
@@ -20,16 +26,36 @@ export async function generateMetadata({
   return place ? { title: `${place.name} · ${t.brand}` } : {};
 }
 
-/** A settlement and the spaces of people who live there. */
-export default async function PlacePage({ params }: { params: Promise<{ id: string }> }) {
+/** A settlement, the spaces of people who live there, and how they see it. */
+export default async function PlacePage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ saved?: string; problem?: string }>;
+}) {
   const place = await findPlace((await params).id);
   if (!place) notFound();
-  const [spaces, communities, questions, { t }] = await Promise.all([
+  const user = authEnabled() ? await currentUser() : undefined;
+  const [spaces, communities, questions, views, own, mySpace, query, { t }] = await Promise.all([
     spacesAt(place.id),
     communitiesAt(place.id),
     recentQuestions({ placeId: place.id }),
+    placeSnapshots(place.id),
+    user
+      ? ownSnapshots(user.id, place.id)
+      : Promise.resolve(new Map<Level, { value: number; day: string }>()),
+    user ? findSpaceByUser(user.id) : Promise.resolve(undefined),
+    searchParams,
     getT(),
   ]);
+  const access: SnapshotAccess = !authEnabled()
+    ? "off"
+    : !user
+      ? "sign-in"
+      : !mySpace || mySpace.hiddenNote != null
+        ? "need-space"
+        : "record";
   return (
     <Screen title={`${place.name}, ${place.country}`}>
       {spaces.length === 0 ? (
@@ -60,6 +86,15 @@ export default async function PlacePage({ params }: { params: Promise<{ id: stri
           <QuestionList questions={questions} />
         </>
       ) : null}
+      <Snapshots
+        placeId={place.id}
+        views={views}
+        own={own}
+        access={access}
+        saved={checkLevel(query.saved)}
+        problem={query.problem}
+        t={t}
+      />
       <p style={{ marginTop: 28 }}>
         <a href="/map" style={{ color: "#ff4a1c" }}>
           {t.place.back}
