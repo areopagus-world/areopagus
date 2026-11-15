@@ -2,7 +2,7 @@
   "stages": [
     ["done", "done", "done", "done", "next"],
     ["now", "now", "now", "now"],
-    ["later", "later", "later"],
+    ["now", "later", "later"],
     ["later", "later", "later"],
     ["later", "later", "later"]
   ]

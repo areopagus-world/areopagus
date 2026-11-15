@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { currentUser } from "@/identity/session";
 import { DETAILS_MAX, DETAILS_MIN, REASONS } from "@/moderation/rules";
-import { targetFrom } from "@/moderation/target";
+import { targetFrom, targetKey } from "@/moderation/target";
 import { button, field, Screen } from "../ui";
 
 export const dynamic = "force-dynamic";
@@ -37,11 +37,7 @@ export default async function ReportPage({
         <p style={{ color: "#ff4a1c" }}>{PROBLEMS[problem]}</p>
       ) : null}
       <form method="post" action="/api/reports">
-        <input
-          type="hidden"
-          name={target.kind}
-          value={target.kind === "event" ? target.id : target.path.slice(1)}
-        />
+        <input type="hidden" name={target.kind} value={targetKey(target)} />
         <label>
           What is wrong
           <select style={field} name="reason" defaultValue="" required>

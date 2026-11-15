@@ -1,7 +1,7 @@
 import { getPool } from "@/db/pool";
 import { MAX_REPORTS_PER_DAY, type ReportInput } from "./rules";
 
-export type TargetKind = "space" | "community" | "event";
+export type TargetKind = "space" | "community" | "event" | "question" | "answer";
 
 export interface Target {
   kind: TargetKind;
@@ -16,6 +16,8 @@ const TABLE: Record<TargetKind, string> = {
   space: "spaces",
   community: "communities",
   event: "events",
+  question: "questions",
+  answer: "answers",
 };
 
 /** Finds what is being reported, as long as it is publicly visible. */
@@ -33,6 +35,32 @@ export async function findTarget(kind: TargetKind, key: string): Promise<Target 
     const event = rows[0];
     return event
       ? { kind, id: event.id, label: event.title, path: `/${event.owner}#e-${event.id}` }
+      : undefined;
+  }
+  if (kind === "question") {
+    const { rows } = await pool.query<{ id: string; title: string }>(
+      "select id, title from questions where id = $1 and hidden_at is null",
+      [key],
+    );
+    const question = rows[0];
+    return question
+      ? { kind, id: question.id, label: question.title, path: `/questions/${question.id}` }
+      : undefined;
+  }
+  if (kind === "answer") {
+    const { rows } = await pool.query<{ id: string; body: string; question_id: string }>(
+      `select a.id, a.body, a.question_id from answers a join questions q on q.id = a.question_id
+       where a.id = $1 and a.hidden_at is null and q.hidden_at is null`,
+      [key],
+    );
+    const answer = rows[0];
+    return answer
+      ? {
+          kind,
+          id: answer.id,
+          label: answer.body.length > 60 ? `${answer.body.slice(0, 60)}...` : answer.body,
+          path: `/questions/${answer.question_id}#a-${answer.id}`,
+        }
       : undefined;
   }
   const { rows } = await pool.query<{ id: string; name: string; handle: string }>(

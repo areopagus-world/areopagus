@@ -191,8 +191,9 @@ export default async function Me({
       ) : null}
       {space ? (
         <p style={{ margin: "44px 0 0" }}>
-          <a href="/communities">Communities</a> · <a href="/communities/new">Start a community</a>{" "}
-          · <a href="/map">Map</a> · <a href="/search">Search</a>
+          <a href="/questions">Questions</a> · <a href="/communities">Communities</a> ·{" "}
+          <a href="/communities/new">Start a community</a> · <a href="/map">Map</a> ·{" "}
+          <a href="/search">Search</a>
         </p>
       ) : null}
       <PasskeyAdd count={passkeys} />

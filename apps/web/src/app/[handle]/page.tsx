@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { publicTimeline } from "@/chronology/store";
 import { communitiesOfSpace, findCommunity } from "@/communities/store";
+import { recentQuestions } from "@/questions/store";
 import { checkHandle } from "@/spaces/rules";
 import { findSpaceByHandle } from "@/spaces/store";
 import { CommunityList } from "../community-list";
+import { QuestionList } from "../question-list";
 import { reportEvent, sectionTitle, Timeline } from "../timeline";
 import { CommunityPage } from "./community";
 
@@ -50,9 +52,10 @@ export default async function SpacePage({
       <CommunityPage community={community} />
     );
   }
-  const [events, communities] = await Promise.all([
+  const [events, communities, questions] = await Promise.all([
     publicTimeline(space.handle),
     communitiesOfSpace(space.handle),
+    recentQuestions({ toHandle: space.handle }),
   ]);
   return (
     <main style={{ maxWidth: 760, margin: "0 auto", padding: "12vh 20px 16vh" }}>
@@ -163,6 +166,13 @@ export default async function SpacePage({
           <Timeline events={events} action={reportEvent} />
         </section>
       ) : null}
+      <section>
+        <h2 style={sectionTitle}>Questions</h2>
+        {questions.length > 0 ? <QuestionList questions={questions} /> : null}
+        <p style={{ margin: "22px 0 0" }}>
+          <a href={`/questions/new?to=${space.handle}`}>Ask {space.name} a question</a>
+        </p>
+      </section>
       <p style={{ margin: "64px 0 0", fontSize: 14 }}>
         <a href={`/report?space=${space.handle}`} style={{ color: "#6b645b" }}>
           Report this page
