@@ -20,6 +20,7 @@ export async function POST(request: Request) {
     title: form.get("title"),
     body: form.get("body"),
     onlyMe: form.get("only_me"),
+    level: form.get("level"),
   });
   if ("problem" in checked) return back(`problem=${checked.problem}`);
   const result = await addEvent(user.id, checked, eventId(form.get("continues")));

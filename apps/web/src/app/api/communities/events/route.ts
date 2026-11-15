@@ -13,6 +13,7 @@ export async function POST(request: Request) {
     title: form.get("title"),
     body: form.get("body"),
     onlyMe: null,
+    level: form.get("level"),
   });
   if ("problem" in checked) return ready.back(`problem=${checked.problem}`);
   const result = await addCommunityEvent(ready.user.id, ready.community, checked);

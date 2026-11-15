@@ -1,3 +1,4 @@
+import { checkLevel, type Level } from "../snapshots/rules";
 import { cleanText } from "../spaces/rules";
 
 export const MAX_EVENTS = 500;
@@ -13,6 +14,8 @@ export interface EventInput {
   title: string;
   body: string;
   visibility: "public" | "private";
+  /** The level of need the deed serves, when its author names one. */
+  level: Level | null;
 }
 
 /**
@@ -28,7 +31,7 @@ export function parseDay(input: unknown, now: Date = new Date()): string | undef
 }
 
 export function checkEvent(
-  fields: { day: unknown; title: unknown; body: unknown; onlyMe: unknown },
+  fields: { day: unknown; title: unknown; body: unknown; onlyMe: unknown; level?: unknown },
   now: Date = new Date(),
 ): EventInput | { problem: EventProblem } {
   const happenedOn = parseDay(fields.day, now);
@@ -40,6 +43,7 @@ export function checkEvent(
     title,
     body: cleanText(fields.body, BODY_MAX, true),
     visibility: fields.onlyMe ? "private" : "public",
+    level: checkLevel(fields.level) ?? null,
   };
 }
 

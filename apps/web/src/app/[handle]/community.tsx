@@ -4,6 +4,7 @@ import { authEnabled } from "@/identity/config";
 import { currentUser } from "@/identity/session";
 import { getT } from "@/i18n/server";
 import { reportEvent, sectionTitle, Timeline } from "../timeline";
+import { LevelSelect } from "../level-select";
 import { button, field } from "../ui";
 
 const quiet = { ...button, background: "transparent", color: "#f3efe6" } as const;
@@ -164,6 +165,7 @@ export async function CommunityPage({
             {t.common.details}
             <textarea style={{ ...field, minHeight: 110 }} name="body" maxLength={BODY_MAX} />
           </label>
+          <LevelSelect t={t} />
           <button style={quiet} type="submit">
             {t.community.addEvent}
           </button>

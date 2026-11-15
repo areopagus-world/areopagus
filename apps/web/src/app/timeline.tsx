@@ -47,6 +47,9 @@ export async function Timeline({
           <p style={{ margin: 0, fontSize: 14, color: "#a39b8f", letterSpacing: "0.04em" }}>
             <time dateTime={event.happenedOn}>{formatDay(event.happenedOn, locale)}</time>
             {event.visibility === "private" ? ` · ${t.timeline.onlyYou}` : ""}
+            {event.level && t.snapshots.levels[event.level - 1]
+              ? ` · ${t.timeline.level(event.level, t.snapshots.levels[event.level - 1]?.name ?? "")}`
+              : ""}
             {event.author ? (
               <>
                 {" · "}

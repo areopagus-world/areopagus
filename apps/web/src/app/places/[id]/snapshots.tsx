@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import type { LevelDeeds } from "@/chronology/store";
 import type { Messages } from "@/i18n/messages";
 import {
   BALANCE_BAND,
@@ -96,11 +97,29 @@ function Group({
   );
 }
 
-/** The levels of a place: what its people and its visitors see, and a slider for each. */
+/** The public deeds of the place at one level over the past year, with the newest few. */
+function Deeds({ data, t }: { data: LevelDeeds | undefined; t: Messages }) {
+  if (!data || data.count === 0) return <p style={mute}>{t.snapshots.deedsNone}</p>;
+  return (
+    <div style={{ margin: "10px 0" }}>
+      <p style={{ ...mute, color: "#f3efe6" }}>{t.snapshots.deeds(data.count)}</p>
+      <ul style={{ ...mute, paddingLeft: 18 }}>
+        {data.latest.map((deed) => (
+          <li key={deed.id} style={{ overflowWrap: "anywhere" }}>
+            <a href={`/${deed.handle}#e-${deed.id}`}>{deed.title}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** The levels of a place: what its people and its visitors see, a slider, and the deeds. */
 export function Snapshots({
   placeId,
   views,
   own,
+  deeds,
   access,
   saved,
   problem,
@@ -109,6 +128,7 @@ export function Snapshots({
   placeId: string;
   views: LevelView[];
   own: Map<Level, { value: number; day: string }>;
+  deeds: Map<Level, LevelDeeds>;
   access: SnapshotAccess;
   saved: Level | undefined;
   problem: string | undefined;
@@ -182,6 +202,12 @@ export function Snapshots({
                   {t.snapshots.save}
                 </button>
               </form>
+            ) : null}
+            <Deeds data={deeds.get(view.level)} t={t} />
+            {access === "record" ? (
+              <p style={mute}>
+                <a href={`/me?level=${view.level}#chronology`}>{t.snapshots.addDeed}</a>
+              </p>
             ) : null}
           </div>
         );

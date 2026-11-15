@@ -173,7 +173,7 @@ export async function communitiesAt(placeId: string): Promise<CommunityCard[]> {
 export async function communityTimeline(communityId: string): Promise<TimelineEvent[]> {
   const { rows } = await getPool().query<TimelineEvent>(
     `select e.id, to_char(e.happened_on, 'YYYY-MM-DD') as "happenedOn", e.title, e.body, e.visibility,
-            null as continues, e.author_id as "authorId",
+            e.level, null as continues, e.author_id as "authorId",
             case when s.handle is null then null
                  else json_build_object('handle', s.handle, 'name', s.name) end as author
      from events e left join spaces s on s.user_id = e.author_id and s.hidden_at is null
@@ -200,9 +200,17 @@ export async function addCommunityEvent(
   if (!state?.member) return "not-member";
   if (state.n >= MAX_EVENTS) return "full";
   await getPool().query(
-    `insert into events (community_id, author_id, happened_on, title, body, place_id, visibility)
-     values ($1, $2, $3, $4, $5, $6, 'public')`,
-    [community.id, userId, event.happenedOn, event.title, event.body, community.placeId],
+    `insert into events (community_id, author_id, happened_on, title, body, place_id, visibility, level)
+     values ($1, $2, $3, $4, $5, $6, 'public', $7)`,
+    [
+      community.id,
+      userId,
+      event.happenedOn,
+      event.title,
+      event.body,
+      community.placeId,
+      event.level,
+    ],
   );
   return "added";
 }

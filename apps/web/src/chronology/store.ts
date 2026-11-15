@@ -1,4 +1,5 @@
 import { getPool } from "@/db/pool";
+import type { Level } from "@/snapshots/rules";
 import { MAX_EVENTS, type EventInput } from "./rules";
 
 export interface TimelineEvent {
@@ -7,6 +8,8 @@ export interface TimelineEvent {
   title: string;
   body: string;
   visibility: "public" | "private";
+  /** The level of need the deed serves, or null. */
+  level: Level | null;
   /** The earlier event this one continues, when it is visible to the reader. */
   continues: { id: string; title: string } | null;
   /** Set on community events: who wrote it. */
@@ -18,7 +21,7 @@ export interface TimelineEvent {
 }
 
 const SELECT = `
-  select e.id, to_char(e.happened_on, 'YYYY-MM-DD') as "happenedOn", e.title, e.body, e.visibility,
+  select e.id, to_char(e.happened_on, 'YYYY-MM-DD') as "happenedOn", e.title, e.body, e.visibility, e.level,
          e.hidden_note as "hiddenNote", (e.hidden_at is not null) as hidden,
          case when p.id is null then null else json_build_object('id', p.id, 'title', p.title) end as continues
   from events e
@@ -69,9 +72,18 @@ export async function addEvent(
       return own ? "full" : "no-space";
     }
     const created = await client.query<{ id: string }>(
-      `insert into events (space_id, author_id, happened_on, title, body, place_id, visibility)
-       values ($1, $2, $3, $4, $5, $6, $7) returning id`,
-      [own.id, userId, event.happenedOn, event.title, event.body, own.place_id, event.visibility],
+      `insert into events (space_id, author_id, happened_on, title, body, place_id, visibility, level)
+       values ($1, $2, $3, $4, $5, $6, $7, $8) returning id`,
+      [
+        own.id,
+        userId,
+        event.happenedOn,
+        event.title,
+        event.body,
+        own.place_id,
+        event.visibility,
+        event.level,
+      ],
     );
     if (continuesId) {
       await client.query(
@@ -96,4 +108,49 @@ export async function removeEvent(userId: string, id: string): Promise<void> {
     "delete from events e using spaces s where s.id = e.space_id and s.user_id = $1 and e.id = $2",
     [userId, id],
   );
+}
+
+/** A deed of a place at one level, as the place page links to it. */
+export interface PlaceDeed {
+  id: string;
+  title: string;
+  /** The address of the space or community whose chronology holds it. */
+  handle: string;
+}
+
+export interface LevelDeeds {
+  count: number;
+  latest: PlaceDeed[];
+}
+
+/** How far back the place page counts deeds. */
+export const DEEDS_DAYS = 365;
+const DEEDS_SHOWN = 3;
+
+/**
+ * Public deeds of a place that name a level, counted per level over the past year, with the
+ * newest few. Deeds of hidden spaces and communities, hidden deeds and planned ones are left out.
+ */
+export async function placeDeeds(placeId: string): Promise<Map<Level, LevelDeeds>> {
+  const { rows } = await getPool().query<{ level: Level; count: number; latest: PlaceDeed[] }>(
+    `with deeds as (
+       select e.id, e.level, e.title, e.happened_on, e.created_at,
+              coalesce(s.handle, c.handle)::text as handle
+       from events e
+       left join spaces s on s.id = e.space_id and s.hidden_at is null
+       left join communities c on c.id = e.community_id and c.hidden_at is null
+       where e.place_id = $1 and e.level is not null
+         and e.visibility = 'public' and e.hidden_at is null
+         and e.happened_on <= current_date and e.happened_on > current_date - $2::int
+     )
+     select d.level, count(*)::int as count,
+            (select json_agg(json_build_object('id', x.id, 'title', x.title, 'handle', x.handle))
+             from (select id, title, handle from deeds
+                   where level = d.level and handle is not null
+                   order by happened_on desc, created_at desc limit $3) x) as latest
+     from deeds d where d.handle is not null
+     group by d.level`,
+    [placeId, DEEDS_DAYS, DEEDS_SHOWN],
+  );
+  return new Map(rows.map((row) => [row.level, { count: row.count, latest: row.latest ?? [] }]));
 }

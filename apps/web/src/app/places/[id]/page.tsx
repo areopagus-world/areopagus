@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { placeDeeds } from "@/chronology/store";
 import { communitiesAt } from "@/communities/store";
 import { authEnabled } from "@/identity/config";
 import { currentUser } from "@/identity/session";
@@ -37,18 +38,20 @@ export default async function PlacePage({
   const place = await findPlace((await params).id);
   if (!place) notFound();
   const user = authEnabled() ? await currentUser() : undefined;
-  const [spaces, communities, questions, views, own, mySpace, query, { t }] = await Promise.all([
-    spacesAt(place.id),
-    communitiesAt(place.id),
-    recentQuestions({ placeId: place.id }),
-    placeSnapshots(place.id),
-    user
-      ? ownSnapshots(user.id, place.id)
-      : Promise.resolve(new Map<Level, { value: number; day: string }>()),
-    user ? findSpaceByUser(user.id) : Promise.resolve(undefined),
-    searchParams,
-    getT(),
-  ]);
+  const [spaces, communities, questions, views, own, deeds, mySpace, query, { t }] =
+    await Promise.all([
+      spacesAt(place.id),
+      communitiesAt(place.id),
+      recentQuestions({ placeId: place.id }),
+      placeSnapshots(place.id),
+      user
+        ? ownSnapshots(user.id, place.id)
+        : Promise.resolve(new Map<Level, { value: number; day: string }>()),
+      placeDeeds(place.id),
+      user ? findSpaceByUser(user.id) : Promise.resolve(undefined),
+      searchParams,
+      getT(),
+    ]);
   const access: SnapshotAccess = !authEnabled()
     ? "off"
     : !user
@@ -90,6 +93,7 @@ export default async function PlacePage({
         placeId={place.id}
         views={views}
         own={own}
+        deeds={deeds}
         access={access}
         saved={checkLevel(query.saved)}
         problem={query.problem}

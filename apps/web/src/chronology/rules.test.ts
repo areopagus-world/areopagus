@@ -43,12 +43,23 @@ describe("checkEvent", () => {
       title: "First light on the map",
       body: "a\n\nb",
       visibility: "public",
+      level: null,
     });
     expect(
       checkEvent({ day: "2026-11-14", title: "x", body: "", onlyMe: "on" }, now),
     ).toMatchObject({
       visibility: "private",
     });
+  });
+
+  it("reads the level of the deed, and leaves it empty when none is named", () => {
+    const base = { day: "2026-11-14", title: "x", body: "", onlyMe: null };
+    expect(checkEvent({ ...base, level: "6" }, now)).toMatchObject({ level: 6 });
+    for (const none of ["", "0", "9", "6.5", "-1", null, undefined]) {
+      expect(checkEvent({ ...base, level: none }, now), String(none)).toMatchObject({
+        level: null,
+      });
+    }
   });
 
   it("names the problem", () => {

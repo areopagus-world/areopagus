@@ -6,8 +6,10 @@ import { countPasskeys } from "@/identity/passkeys";
 import { currentUser } from "@/identity/session";
 import { recipient, rememberLocale } from "@/identity/settings";
 import { getT } from "@/i18n/server";
+import { checkLevel } from "@/snapshots/rules";
 import { HANDLE_FIELD_PATTERN, MAX_SKILLS } from "@/spaces/rules";
 import { findSpaceByUser } from "@/spaces/store";
+import { LevelSelect } from "../level-select";
 import { PasskeyAdd } from "../passkey-buttons";
 import { sectionTitle, Timeline } from "../timeline";
 import { button, field, Screen } from "../ui";
@@ -30,12 +32,18 @@ const plain = {
 export default async function Me({
   searchParams,
 }: {
-  searchParams: Promise<{ problem?: string; saved?: string; added?: string; settings?: string }>;
+  searchParams: Promise<{
+    problem?: string;
+    saved?: string;
+    added?: string;
+    settings?: string;
+    level?: string;
+  }>;
 }) {
   if (!authEnabled()) notFound();
   const user = await currentUser();
   if (!user) redirect("/login");
-  const [space, { problem, saved, added, settings }, passkeys, events, me, { locale, t }] =
+  const [space, { problem, saved, added, settings, level }, passkeys, events, me, { locale, t }] =
     await Promise.all([
       findSpaceByUser(user.id),
       searchParams,
@@ -149,6 +157,7 @@ export default async function Me({
               {t.common.details}
               <textarea style={{ ...field, minHeight: 110 }} name="body" maxLength={BODY_MAX} />
             </label>
+            <LevelSelect t={t} selected={checkLevel(level)} />
             {events.length > 0 ? (
               <label>
                 {t.me.continues}
