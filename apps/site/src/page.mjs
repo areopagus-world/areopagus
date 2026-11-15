@@ -29,7 +29,7 @@ function renderPath(t, roadmap) {
 }
 
 // The station loop and its still. The version is in the file name so the files can be cached for good.
-export const HERO = "station-v1";
+export const HERO = "station-v2";
 export const heroBase = (app) => (app ? "/site/hero" : "/hero");
 
 export function renderPage({ lang, t, langs, names = {}, defaultLang, roadmap, css, app = false }) {
@@ -74,11 +74,20 @@ ${css}
     <div class="space">
       <picture class="sky" aria-hidden="true">
         <source media="(max-width: 760px)" srcset="${media}/${HERO}-1280.webp" type="image/webp" />
-        <img src="${media}/${HERO}-1920.webp" alt="" width="1920" height="1080" fetchpriority="high" decoding="async" />
+        <img
+          src="${media}/${HERO}-1920.webp"
+          srcset="${media}/${HERO}-1920.webp 1920w, ${media}/${HERO}-2560.webp 2560w"
+          sizes="100vw"
+          alt=""
+          width="1920"
+          height="1080"
+          fetchpriority="high"
+          decoding="async"
+        />
       </picture>
       <video class="sky" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
-        <source data-src="${media}/${HERO}.webm" type='video/webm; codecs="av01.0.08M.08"' />
-        <source data-src="${media}/${HERO}.mp4" type="video/mp4" />
+        <source data-src="${media}/${HERO}-1920.webm" data-hd="${media}/${HERO}-2560.webm" type='video/webm; codecs="av01.0.08M.08"' />
+        <source data-src="${media}/${HERO}-1920.mp4" data-hd="${media}/${HERO}-2560.mp4" type="video/mp4" />
       </video>
       <div class="shade" aria-hidden="true"></div>
       <div class="wrap">
@@ -202,7 +211,11 @@ ${css}
           net.saveData ||
           /2g$/.test(net.effectiveType || "");
         if (still) return;
-        for (const source of video.querySelectorAll("source[data-src]")) source.src = source.dataset.src;
+        // Screens that show more than about 2000 real pixels across get the 2560 loop.
+        const hd = innerWidth * (devicePixelRatio || 1) > 2000;
+        for (const source of video.querySelectorAll("source[data-src]")) {
+          source.src = hd ? source.dataset.hd : source.dataset.src;
+        }
         video.muted = true;
         video.load();
         video.addEventListener("playing", () => video.classList.add("on"), { once: true });
