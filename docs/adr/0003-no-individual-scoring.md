@@ -5,11 +5,11 @@
 
 ## Context
 
-An earlier draft gave every profile a level computed from behaviour using Spiral Dynamics, first visible, then hidden. A hidden score contradicts the core rule of truth. Any score ranks people, which contradicts the rule of dignity. Legally, an automated profile of a person's values in a network built on Christian values is close to data about beliefs (GDPR art. 9) and, if it affected anything, to automated decision-making (art. 22).
+An earlier draft gave every profile a level computed from behaviour using a model of value levels, first visible, then hidden. A hidden score contradicts the core rule of truth. Any score ranks people, which contradicts the rule of dignity. Legally, an automated profile of a person's values in a network built on Christian values is close to data about beliefs (GDPR art. 9) and, if it affected anything, to automated decision-making (art. 22).
 
 ## Decision
 
-A person has no level, score or rating: not open, not hidden, not opt-in. Spiral Dynamics is applied only to communities and places, openly, as a profile of what has been built. A space shows what its owner took part in.
+A person has no level, score or rating: not open, not hidden, not opt-in. The level model is applied only to communities and places, openly, as a profile of what has been built. A space shows what its owner took part in.
 
 ## Consequences
 
