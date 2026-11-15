@@ -29,6 +29,23 @@ function renderPath(t, roadmap) {
 }
 
 // The station loop and its still. The version is in the file name so the files can be cached for good.
+// Quotation marks as each language writes them.
+const QUOTES = {
+  en: ["\u201c", "\u201d"],
+  fr: ["\u00ab\u00a0", "\u00a0\u00bb"],
+  de: ["\u201e", "\u201c"],
+  es: ["\u00ab", "\u00bb"],
+  it: ["\u00ab", "\u00bb"],
+  pt: ["\u00ab", "\u00bb"],
+  nl: ["\u201c", "\u201d"],
+  pl: ["\u201e", "\u201d"],
+  ru: ["\u00ab", "\u00bb"],
+};
+export const quote = (lang, text) => {
+  const [open, close] = QUOTES[lang] ?? QUOTES.en;
+  return `${open}${esc(text)}${close}`;
+};
+
 export const HERO = "station-v2";
 export const heroBase = (app) => (app ? "/site/hero" : "/hero");
 
@@ -123,6 +140,10 @@ ${css}
         <div class="head">
           <h2>${esc(t.stationTitle)}</h2>
           <p class="sub">${esc(t.stationText)}</p>
+          <blockquote class="verse">
+            <p>${quote(lang, t.stationVerse)}</p>
+            <cite>${esc(t.stationVerseRef)}</cite>
+          </blockquote>
         </div>
         <div class="body">
           <div class="realms">

@@ -2,7 +2,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { DEFAULT_LANG, loadLocales, SITE } from "../../../scripts/site-locales.mjs";
-import { HERO, heroBase, renderPage } from "./page.mjs";
+import { HERO, heroBase, quote, renderPage } from "./page.mjs";
 
 const { langs, locales } = loadLocales();
 const roadmap = JSON.parse(readFileSync(new URL("src/roadmap.json", SITE), "utf8"));
@@ -76,6 +76,13 @@ describe("station legend", () => {
         expect(html).toContain(locales[lang][key]);
       }
     }
+  });
+
+  it("quotes the Lord's Prayer in each language's own quotation marks", () => {
+    expect(page(false)).toContain("\u201cLet your will be done on earth as it is in heaven\u201d");
+    expect(quote("ru", "Да будет воля Твоя")).toBe("\u00abДа будет воля Твоя\u00bb");
+    expect(quote("de", "Dein Wille")).toBe("\u201eDein Wille\u201c");
+    for (const lang of langs) expect(locales[lang].stationVerseRef).toMatch(/6[:,]10$/);
   });
 
   it("says the way aboard comes after a legal review", () => {

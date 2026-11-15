@@ -299,7 +299,8 @@ section {
     position: sticky;
     top: 32px;
   }
-  section .head .sub {
+  section .head .sub,
+  section .head .verse {
     margin-bottom: 0;
   }
 }
@@ -315,6 +316,20 @@ h2 {
 }
 
 /* station */
+.verse {
+  margin: 32px 0 44px;
+  padding: 2px 0 2px 20px;
+  border-left: 2px solid var(--ember);
+}
+.verse p {
+  margin: 0 0 6px;
+  font: italic 400 clamp(19px, 1.5vw, 24px) / 1.4 var(--text);
+}
+.verse cite {
+  font: 400 13px/1.4 var(--mono);
+  font-style: normal;
+  color: var(--mute);
+}
 .realms {
   display: grid;
   gap: 16px;
