@@ -32,7 +32,7 @@ function renderPath(t, roadmap) {
 export const HERO = "station-v1";
 export const heroBase = (app) => (app ? "/site/hero" : "/hero");
 
-export function renderPage({ lang, t, langs, defaultLang, roadmap, css, app = false }) {
+export function renderPage({ lang, t, langs, names = {}, defaultLang, roadmap, css, app = false }) {
   const media = heroBase(app);
   const { done, total } = countLit(roadmap);
   const count = t.count.replace("{a}", done).replace("{b}", total);
@@ -42,10 +42,11 @@ export function renderPage({ lang, t, langs, defaultLang, roadmap, css, app = fa
         `<link rel="alternate" hreflang="${code}" href="${ORIGIN}${pathFor(code, defaultLang)}" />`,
     )
     .join("\n    ");
+  // Languages fold into one list: the current one shows, the rest open on demand, without JavaScript.
   const nav = langs
     .map((code) => {
       const current = code === lang ? ' aria-current="page"' : "";
-      return `<a href="${pathFor(code, defaultLang)}" hreflang="${code}" lang="${code}"${current}>${code.toUpperCase()}</a>`;
+      return `<a href="${pathFor(code, defaultLang)}" hreflang="${code}" lang="${code}"${current}><span>${esc(names[code] ?? code)}</span><small>${code.toUpperCase()}</small></a>`;
     })
     .join("");
   const ways = t.ways
@@ -83,7 +84,10 @@ ${css}
       <div class="wrap">
       <header class="top">
         <a class="mark" href="${pathFor(lang, defaultLang)}"><i></i>AREOPAGUS</a>
-        <nav class="langs" aria-label="Language">${nav}</nav>
+        <details class="langs">
+          <summary aria-label="Language: ${esc(names[lang] ?? lang)}">${lang.toUpperCase()}</summary>
+          <nav aria-label="Language">${nav}</nav>
+        </details>
       </header>
 
       <div class="hero">
@@ -107,24 +111,34 @@ ${css}
 
     <div class="wrap">
       <section id="path">
-        <h2>${esc(t.pathTitle)}</h2>
-        <p class="sub">${esc(t.pathText)}</p>
-        <div class="path" id="nodes">${renderPath(t, roadmap)}</div>
+        <div class="head">
+          <h2>${esc(t.pathTitle)}</h2>
+          <p class="sub">${esc(t.pathText)}</p>
+        </div>
+        <div class="body">
+          <div class="path" id="nodes">${renderPath(t, roadmap)}</div>
+        </div>
       </section>
 
       <section id="join">
-        <h2>${esc(t.joinTitle)}</h2>
-        <p class="sub">${esc(t.joinText)}</p>
-        <ol class="ways">${ways}</ol>
-        <div class="row">
-          <a class="btn fill" href="https://github.com/areopagus-world/areopagus/issues">${esc(t.ctaIdea)}</a>
+        <div class="head">
+          <h2>${esc(t.joinTitle)}</h2>
+          <p class="sub">${esc(t.joinText)}</p>
+        </div>
+        <div class="body">
+          <ol class="ways">${ways}</ol>
+          <div class="row">
+            <a class="btn fill" href="https://github.com/areopagus-world/areopagus/issues">${esc(t.ctaIdea)}</a>
+          </div>
         </div>
       </section>
 
       <section id="support">
-        <h2>${esc(t.supTitle)}</h2>
-        <p class="sub">${esc(t.supText)}</p>
-        <div class="paid">
+        <div class="head">
+          <h2>${esc(t.supTitle)}</h2>
+          <p class="sub">${esc(t.supText)}</p>
+        </div>
+        <div class="body paid">
           <div class="until">
             <span>${esc(t.untilLabel)}</span>
             <strong>${esc(t.untilValue)}</strong>
@@ -139,9 +153,11 @@ ${css}
       </section>
 
       <section id="engine">
-        <h2>${esc(t.engTitle)}</h2>
-        <div class="engine">
-          <p class="sub" style="margin: 0">${esc(t.engText)}</p>
+        <div class="head">
+          <h2>${esc(t.engTitle)}</h2>
+          <p class="sub">${esc(t.engText)}</p>
+        </div>
+        <div class="body engine">
           <div class="domain"><u>${esc(t.engDomain)}</u></div>
         </div>
       </section>
@@ -158,6 +174,21 @@ ${css}
       }
       light();
       addEventListener("resize", light);
+
+      // The language list closes on a click elsewhere or on Escape.
+      (() => {
+        const menu = document.querySelector("details.langs");
+        if (!menu) return;
+        addEventListener("click", (event) => {
+          if (menu.open && !menu.contains(event.target)) menu.open = false;
+        });
+        addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && menu.open) {
+            menu.open = false;
+            menu.querySelector("summary").focus();
+          }
+        });
+      })();
 
       // The station moves only where it costs nothing: wide screens, no reduced motion, no data saving.
       // Everyone else, and every browser without JavaScript, keeps the still picture.

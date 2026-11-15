@@ -32,10 +32,11 @@ body {
 a {
   color: inherit;
 }
+/* The page spans the screen; only very wide screens get margins. */
 .wrap {
-  max-width: 1080px;
+  max-width: 2560px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 clamp(20px, 5vw, 120px);
 }
 header.top {
   display: flex;
@@ -58,23 +59,71 @@ header.top {
   background: var(--ember);
   box-shadow: 0 0 14px var(--ember);
 }
-nav.langs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+/* Language list: one button, the rest on demand. Works without JavaScript. */
+details.langs {
+  position: relative;
 }
-nav.langs a {
-  text-decoration: none;
+details.langs summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
   font: 600 13px/1 var(--text);
-  padding: 8px 10px;
-  border: 0;
-  background: none;
-  color: var(--mute);
+  letter-spacing: 0.06em;
+  list-style: none;
   cursor: pointer;
 }
-nav.langs a[aria-current="page"] {
-  color: var(--ink);
-  box-shadow: inset 0 -2px 0 var(--ember);
+details.langs summary::-webkit-details-marker {
+  display: none;
+}
+details.langs summary::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.15s;
+}
+details.langs[open] summary::after {
+  margin-top: 3px;
+  transform: rotate(-135deg);
+}
+details.langs summary:hover,
+details.langs[open] summary {
+  border-color: var(--ink);
+}
+details.langs nav {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 10;
+  display: grid;
+  min-width: 200px;
+  padding: 6px 0;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+details.langs nav a {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 16px;
+  text-decoration: none;
+  font: 500 15px/1.2 var(--text);
+}
+details.langs nav a small {
+  font: 500 11px/1.4 var(--mono);
+  color: var(--mute);
+}
+details.langs nav a:hover {
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+details.langs nav a[aria-current="page"] {
+  box-shadow: inset 3px 0 0 var(--ember);
 }
 .hero {
   position: relative;
@@ -83,14 +132,15 @@ nav.langs a[aria-current="page"] {
 }
 /* The first screen is space whatever the colour scheme: the station, the Earth below it. */
 .space {
-  --paper: #0e0c0a;
+  --paper: #14110f;
   --ink: #f3efe6;
   --mute: #b8afa2;
   --line: #3a342e;
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: min(100vh, 1000px);
+  min-height: 100vh;
+  min-height: 100svh;
   background: #0e0c0a;
   color: var(--ink);
 }
@@ -135,10 +185,11 @@ nav.langs a[aria-current="page"] {
   padding: 11vh 0 18vh;
 }
 .space h1 {
-  font-size: clamp(44px, 7.6vw, 104px);
+  font-size: clamp(44px, 6.6vw, 140px);
 }
 .space .lead {
-  max-width: 540px;
+  max-width: 30em;
+  font-size: clamp(18px, 1.45vw, 24px);
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.6);
 }
 .space .hero::before {
@@ -233,12 +284,28 @@ h1 em {
   color: var(--mute);
 }
 section {
-  padding: 72px 0;
+  padding: clamp(56px, 7vw, 120px) 0;
   border-top: 1px solid var(--line);
+}
+/* Wide screens: the title and its note on the left, the matter on the right. */
+@media (min-width: 1100px) {
+  section {
+    display: grid;
+    grid-template-columns: minmax(320px, 5fr) 7fr;
+    column-gap: clamp(40px, 6vw, 140px);
+    align-items: start;
+  }
+  section .head {
+    position: sticky;
+    top: 32px;
+  }
+  section .head .sub {
+    margin-bottom: 0;
+  }
 }
 h2 {
   margin: 0 0 14px;
-  font: 800 clamp(30px, 5vw, 56px) / 1 var(--display);
+  font: 800 clamp(30px, 4.2vw, 64px) / 1 var(--display);
   letter-spacing: -0.03em;
 }
 .sub {

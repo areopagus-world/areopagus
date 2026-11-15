@@ -27,6 +27,8 @@ function french(value) {
   return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, french(child)]));
 }
 
+// Each language is listed under its own name.
+const names = Object.fromEntries(langs.map((code) => [code, locales[code].name]));
 const roadmap = JSON.parse(readFileSync(new URL("src/roadmap.json", SITE), "utf8"));
 const css = readFileSync(new URL("src/style.css", SITE), "utf8")
   .trimEnd()
@@ -51,7 +53,16 @@ for (const lang of langs) {
   writeFileSync(
     new URL("index.html", dir),
     // Served by the network app, the page can link into it.
-    renderPage({ lang, t, langs, defaultLang: DEFAULT_LANG, roadmap, css, app: Boolean(outDir) }),
+    renderPage({
+      lang,
+      t,
+      langs,
+      names,
+      defaultLang: DEFAULT_LANG,
+      roadmap,
+      css,
+      app: Boolean(outDir),
+    }),
   );
 }
 console.log(`built ${langs.length} languages: ${langs.join(", ")}`);
