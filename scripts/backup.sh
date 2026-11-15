@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-# Dumps the database, checks the dump, encrypts it and uploads it to object storage at a second provider.
+# Exports the database, checks the export, encrypts it and uploads it to object storage at a second provider.
 #
-# Needs: pg_dump and pg_restore at least as new as the server, age, aws.
+# The export is made by apps/web/scripts/export-data.mjs, not pg_dump: the shared PostgreSQL plan
+# does not let an ordinary role read pg_database, which pg_dump needs. The schema lives in migrations/.
+#
+# Needs: node with the app's dependencies installed, age, aws.
 # Environment:
 #   BACKUP_DATABASE_URL    connection string of the database
 #   BACKUP_AGE_RECIPIENT   age public key; only the matching private key, kept offline, can read a backup
@@ -12,25 +15,25 @@
 #   BACKUP_DRY_RUN=1       stop before the upload (used to test the script)
 set -euo pipefail
 
+# A pasted setting often brings a line break along; none of these may contain spaces.
+trim() { printf '%s' "${1:-}" | tr -d '[:space:]'; }
+BACKUP_DATABASE_URL="$(trim "${BACKUP_DATABASE_URL:-}")"
+BACKUP_AGE_RECIPIENT="$(trim "${BACKUP_AGE_RECIPIENT:-}")"
+BACKUP_S3_BUCKET="$(trim "${BACKUP_S3_BUCKET:-}")"
+BACKUP_S3_ENDPOINT="$(trim "${BACKUP_S3_ENDPOINT:-}")"
+export BACKUP_DATABASE_URL
+
 : "${BACKUP_DATABASE_URL:?}" "${BACKUP_AGE_RECIPIENT:?}"
+app="$(cd "$(dirname "$0")/../apps/web" && pwd)"
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 stamp="$(date -u +%Y-%m-%dT%H%MZ)"
-dump="$work/areopagus-$stamp.dump"
+dump="$work/areopagus-$stamp.jsonl.gz"
 
-# Everything is dumped, the settlements too: spaces and events point at them, and a restore
-# without those rows cannot rebuild the links.
-pg_dump --format=custom --no-owner --no-privileges --file="$dump" "$BACKUP_DATABASE_URL"
-
-# A dump that cannot be listed, or that lacks the tables the network lives on, is not a backup.
-listing="$(pg_restore --list "$dump")"
-for table in users spaces events communities reports places schema_migrations; do
-  if ! grep -Eq "TABLE DATA public $table( |$)" <<<"$listing"; then
-    echo "backup refused: no data section for table $table" >&2
-    exit 1
-  fi
-done
-echo "dump ok: $(stat -c %s "$dump") bytes, $(grep -c 'TABLE DATA' <<<"$listing") tables with data"
+node "$app/scripts/export-data.mjs" --out "$dump"
+# Read the file back before trusting it: complete, in order, with the tables the network lives on.
+node "$app/scripts/import-data.mjs" --check "$dump"
+echo "export: $(stat -c %s "$dump") bytes"
 
 age --recipient "$BACKUP_AGE_RECIPIENT" --output "$dump.age" "$dump"
 rm "$dump"
