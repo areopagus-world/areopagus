@@ -19,7 +19,16 @@ const page = (app) =>
 
 describe("station hero", () => {
   it("ships every file the page points to", () => {
-    for (const file of [`${HERO}-1280.webp`, `${HERO}-1920.webp`, `${HERO}.webm`, `${HERO}.mp4`]) {
+    const files = [
+      "1280.webp",
+      "1920.webp",
+      "2560.webp",
+      "1920.webm",
+      "2560.webm",
+      "1920.mp4",
+      "2560.mp4",
+    ];
+    for (const file of files.map((name) => `${HERO}-${name}`)) {
       expect(existsSync(new URL(`hero/${file}`, SITE)), file).toBe(true);
     }
   });
@@ -35,7 +44,8 @@ describe("station hero", () => {
     const html = page(true);
     expect(html).toContain('preload="none"');
     expect(html).not.toMatch(/<source src="[^"]+\.(mp4|webm)"/);
-    expect(html).toMatch(/data-src="[^"]+\.mp4"/);
+    expect(html).toMatch(/data-src="[^"]+-1920\.mp4"/);
+    expect(html).toMatch(/data-hd="[^"]+-2560\.mp4"/);
     expect(html).toContain("prefers-reduced-motion: reduce");
   });
 
