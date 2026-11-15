@@ -171,15 +171,6 @@ export async function toggleThanks(userId: string, answerId: string): Promise<st
   return rows[0]?.question_id;
 }
 
-/** Who to tell: the e-mail of the person a question was addressed to, or of the asker. */
-export async function emailOfUser(userId: string): Promise<string | undefined> {
-  const { rows } = await getPool().query<{ email: string }>(
-    "select email::text from users where id = $1",
-    [userId],
-  );
-  return rows[0]?.email;
-}
-
 export async function userOfSpace(handle: string): Promise<string | undefined> {
   const { rows } = await getPool().query<{ user_id: string }>(
     "select user_id from spaces where handle = $1",

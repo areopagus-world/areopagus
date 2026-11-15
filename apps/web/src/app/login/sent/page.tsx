@@ -1,12 +1,15 @@
+import { LOGIN_TOKEN_MINUTES } from "@/identity/tokens";
+import { getT } from "@/i18n/server";
 import { Screen } from "../../ui";
 
-export default function Sent() {
+export const dynamic = "force-dynamic";
+
+export default async function Sent() {
+  const { t } = await getT();
   return (
-    <Screen title="Check your e-mail">
-      <p>If the address can sign in, a link is on its way. It works once and for 15 minutes.</p>
-      <p style={{ color: "#a39b8f" }}>
-        Nothing arrived after a few minutes? Look in the spam folder, then ask again.
-      </p>
+    <Screen title={t.login.sentTitle}>
+      <p>{t.login.sentText(LOGIN_TOKEN_MINUTES)}</p>
+      <p style={{ color: "#a39b8f" }}>{t.login.sentHelp}</p>
     </Screen>
   );
 }

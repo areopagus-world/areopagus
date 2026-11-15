@@ -1,18 +1,20 @@
 import type { ReactNode } from "react";
-import { formatDay } from "@/chronology/rules";
+import { formatDay } from "@/i18n/locales";
+import { getT } from "@/i18n/server";
 import type { TimelineEvent } from "@/chronology/store";
 
 /**
  * A chronology as a line: newest on top, a light for every event, and a thread back to the event
  * it continues. `action` lets the owner's page add a control to each event.
  */
-export function Timeline({
+export async function Timeline({
   events,
   action,
 }: {
   events: TimelineEvent[];
   action?: (event: TimelineEvent) => ReactNode;
 }) {
+  const { locale, t } = await getT();
   return (
     <ol
       style={{
@@ -43,8 +45,8 @@ export function Timeline({
             }}
           />
           <p style={{ margin: 0, fontSize: 14, color: "#a39b8f", letterSpacing: "0.04em" }}>
-            <time dateTime={event.happenedOn}>{formatDay(event.happenedOn)}</time>
-            {event.visibility === "private" ? " · only you" : ""}
+            <time dateTime={event.happenedOn}>{formatDay(event.happenedOn, locale)}</time>
+            {event.visibility === "private" ? ` · ${t.timeline.onlyYou}` : ""}
             {event.author ? (
               <>
                 {" · "}
@@ -59,12 +61,13 @@ export function Timeline({
           </h3>
           {event.continues ? (
             <p style={{ margin: "6px 0 0", fontSize: 15, color: "#a39b8f" }}>
-              continues <a href={`#e-${event.continues.id}`}>{event.continues.title}</a>
+              {t.timeline.continues}{" "}
+              <a href={`#e-${event.continues.id}`}>{event.continues.title}</a>
             </p>
           ) : null}
           {event.hidden ? (
             <p style={{ margin: "6px 0 0", fontSize: 15, color: "#ff4a1c" }}>
-              Hidden by a moderator{event.hiddenNote ? `: ${event.hiddenNote}` : "."}
+              {t.common.hidden(event.hiddenNote ?? "")}
             </p>
           ) : null}
           {event.body ? (
@@ -88,11 +91,11 @@ export function Timeline({
 }
 
 /** The small "Report" link under a public event. */
-export function reportEvent(event: TimelineEvent) {
+export function reportEvent(event: TimelineEvent, label: string) {
   return (
     <p style={{ margin: "8px 0 0", fontSize: 14 }}>
       <a href={`/report?event=${event.id}`} style={{ color: "#6b645b" }}>
-        Report
+        {label}
       </a>
     </p>
   );

@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { authEnabled } from "@/identity/config";
+import { LOGIN_TOKEN_MINUTES } from "@/identity/tokens";
+import { getT } from "@/i18n/server";
 import { button, Screen } from "../../ui";
 
 export const dynamic = "force-dynamic";
@@ -14,25 +16,25 @@ export default async function Verify({
   searchParams: Promise<{ token?: string; failed?: string }>;
 }) {
   if (!authEnabled()) notFound();
-  const { token, failed } = await searchParams;
+  const [{ token, failed }, { t }] = await Promise.all([searchParams, getT()]);
   if (failed || !token) {
     return (
-      <Screen title="This link no longer works">
-        <p>It was already used, or it is older than 15 minutes.</p>
+      <Screen title={t.login.deadTitle}>
+        <p>{t.login.deadText(LOGIN_TOKEN_MINUTES)}</p>
         <p>
           <a href="/login" style={{ color: "inherit" }}>
-            Ask for a new link
+            {t.login.askNew}
           </a>
         </p>
       </Screen>
     );
   }
   return (
-    <Screen title="Almost there">
+    <Screen title={t.login.almost}>
       <form method="post" action="/api/auth/verify">
         <input type="hidden" name="token" value={token} />
         <button style={button} type="submit">
-          Sign in to Areopagus
+          {t.login.confirm}
         </button>
       </form>
     </Screen>

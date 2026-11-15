@@ -1,19 +1,23 @@
 import type { Metadata } from "next";
 import { listCommunities } from "@/communities/store";
 import { authEnabled } from "@/identity/config";
+import { getT } from "@/i18n/server";
 import { CommunityList } from "../community-list";
 import { button, Screen } from "../ui";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Communities · Areopagus" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getT();
+  return { title: `${t.communities.title} · ${t.brand}` };
+}
 
 /** Every community of the network, biggest first. */
 export default async function Communities() {
-  const communities = await listCommunities();
+  const [communities, { t }] = await Promise.all([listCommunities(), getT()]);
   return (
-    <Screen title="Communities">
+    <Screen title={t.communities.title}>
       {communities.length === 0 ? (
-        <p>No communities yet. The first one can be yours.</p>
+        <p>{t.communities.empty}</p>
       ) : (
         <CommunityList communities={communities} />
       )}
@@ -23,7 +27,7 @@ export default async function Communities() {
             href="/communities/new"
             style={{ ...button, display: "inline-block", textDecoration: "none" }}
           >
-            Start a community
+            {t.communities.start}
           </a>
         </p>
       ) : null}

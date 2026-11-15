@@ -49,24 +49,3 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 export function eventId(input: unknown): string | undefined {
   return typeof input === "string" && UUID.test(input) ? input : undefined;
 }
-
-const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-/** "2026-11-14" as "14 November 2026". */
-export function formatDay(day: string): string {
-  const [year, month, date] = day.split("-").map(Number);
-  return `${date} ${MONTHS[(month ?? 1) - 1]} ${year}`;
-}

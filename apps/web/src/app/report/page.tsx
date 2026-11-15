@@ -1,58 +1,62 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { currentUser } from "@/identity/session";
+import { getT } from "@/i18n/server";
 import { DETAILS_MAX, DETAILS_MIN, REASONS } from "@/moderation/rules";
 import { targetFrom, targetKey } from "@/moderation/target";
 import { button, field, Screen } from "../ui";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Report · Areopagus", robots: { index: false } };
 
-const PROBLEMS: Record<string, string> = {
-  reason: "Choose what is wrong.",
-  details: `Describe the problem in at least ${DETAILS_MIN} characters, so a person can check it.`,
-  contact: "That does not look like an e-mail address. Leave the field empty if you prefer.",
-  limit: "You have sent several reports today. Try again tomorrow.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getT();
+  return { title: `${t.report.title} · ${t.brand}`, robots: { index: false } };
+}
+
 const hint = { color: "#a39b8f", fontSize: 15, margin: "-8px 0 16px" } as const;
 
-/** Anyone can report a space, a community or an event. A person reads every report. */
+/** Anyone can report a space, a community, an event, a question or an answer. A person reads every report. */
 export default async function ReportPage({
   searchParams,
 }: {
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
-  const params = await searchParams;
+  const [params, { t }] = await Promise.all([searchParams, getT()]);
   const target = await targetFrom((name) => params[name]);
   if (!target) notFound();
   const user = await currentUser();
+  const problems: Record<string, string> = {
+    reason: t.report.problemReason,
+    details: t.report.problemDetails(DETAILS_MIN),
+    contact: t.report.problemContact,
+    limit: t.report.problemLimit,
+  };
   const problem = params.problem;
   return (
-    <Screen title="Report">
+    <Screen title={t.report.title}>
       <p>
-        You are reporting <a href={target.path}>{target.label}</a>. A person reads every report and
-        decides; the decision and its reason are recorded.
+        {t.report.youReport} <a href={target.path}>{target.label}</a>. {t.report.howItWorks}
       </p>
-      {problem && PROBLEMS[problem] ? (
-        <p style={{ color: "#ff4a1c" }}>{PROBLEMS[problem]}</p>
+      {problem && problems[problem] ? (
+        <p style={{ color: "#ff4a1c" }}>{problems[problem]}</p>
       ) : null}
       <form method="post" action="/api/reports">
         <input type="hidden" name={target.kind} value={targetKey(target)} />
         <label>
-          What is wrong
+          {t.report.whatWrong}
           <select style={field} name="reason" defaultValue="" required>
             <option value="" disabled>
-              Choose
+              {t.report.choose}
             </option>
-            {Object.entries(REASONS).map(([value, label]) => (
+            {(Object.keys(REASONS) as (keyof typeof REASONS)[]).map((value) => (
               <option key={value} value={value}>
-                {label}
+                {t.report.reasons[value]}
               </option>
             ))}
           </select>
         </label>
         <label>
-          What exactly
+          {t.report.whatExactly}
           <textarea
             style={{ ...field, minHeight: 150 }}
             name="details"
@@ -61,13 +65,11 @@ export default async function ReportPage({
             required
           />
         </label>
-        <p style={hint}>
-          For illegal content, say which law or right you believe it breaks, if you know.
-        </p>
+        <p style={hint}>{t.report.detailsHint}</p>
         {user ? null : (
           <>
             <label>
-              Your e-mail, if you want an answer
+              {t.report.yourEmail}
               <input
                 style={field}
                 type="email"
@@ -76,11 +78,11 @@ export default async function ReportPage({
                 autoComplete="email"
               />
             </label>
-            <p style={hint}>Used only to answer this report.</p>
+            <p style={hint}>{t.report.emailHint}</p>
           </>
         )}
         <button style={button} type="submit">
-          Send the report
+          {t.report.send}
         </button>
       </form>
     </Screen>

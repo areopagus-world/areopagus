@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { field } from "../ui";
+import { field } from "../styles";
 
 interface Option {
   id: string;

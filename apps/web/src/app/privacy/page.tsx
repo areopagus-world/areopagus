@@ -37,7 +37,8 @@ export default function Privacy() {
           </li>
           <li>
             Vos questions et réponses : publiques, avec le nom de votre espace. Quand quelqu’un vous
-            pose une question ou répond à la vôtre, un e-mail vous prévient.
+            pose une question ou répond à la vôtre, un e-mail vous prévient. Vous pouvez couper ces
+            e-mails sur votre page.
           </li>
           <li>
             Si vous signalez un contenu : votre message, une empreinte chiffrée de votre adresse IP
@@ -119,7 +120,8 @@ export default function Privacy() {
             </li>
             <li>
               Your questions and answers: public, with the name of your space. When someone asks you
-              a question or answers yours, an e-mail tells you.
+              a question or answers yours, an e-mail tells you. You can turn these e-mails off on
+              your page.
             </li>
             <li>
               If you report content: your message, a hashed form of your IP address and, if you give

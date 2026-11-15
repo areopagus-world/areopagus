@@ -43,11 +43,10 @@ export async function POST(request: Request) {
   if ("toHandle" in target) {
     const addressee = await userOfSpace(target.toHandle);
     if (addressee) {
-      await notify(addressee, "A question for you on Areopagus", [
-        checked.title,
-        "",
-        `${origin}/questions/${result.id}`,
-      ]);
+      await notify(addressee, origin, (t) => ({
+        subject: t.mail.questionSubject,
+        lines: [checked.title, "", `${origin}/questions/${result.id}`],
+      }));
     }
   }
   return NextResponse.redirect(new URL(`/questions/${result.id}`, origin), 303);

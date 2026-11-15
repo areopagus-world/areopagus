@@ -27,11 +27,10 @@ export async function POST(request: Request) {
 
   const question = await findQuestion(id);
   if (question && question.authorId !== user.id) {
-    await notify(question.authorId, "An answer to your question on Areopagus", [
-      question.title,
-      "",
-      `${origin}/questions/${id}#answers`,
-    ]);
+    await notify(question.authorId, origin, (t) => ({
+      subject: t.mail.answerSubject,
+      lines: [question.title, "", `${origin}/questions/${id}#answers`],
+    }));
   }
   return back();
 }

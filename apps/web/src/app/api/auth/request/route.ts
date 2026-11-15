@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { authEnabled, clientIp, publicOrigin, sameOrigin } from "@/identity/config";
 import { sendLoginLink } from "@/identity/mail";
+import { getLocale } from "@/i18n/server";
 import { createLoginToken } from "@/identity/store";
 import { isAllowed, normalizeEmail } from "@/identity/tokens";
 
@@ -16,7 +17,8 @@ export async function POST(request: Request) {
   if (email && isAllowed(email, process.env.AUTH_ALLOWED_EMAILS)) {
     try {
       const secret = await createLoginToken(email, clientIp(request));
-      if (secret) await sendLoginLink(email, `${origin}/auth/verify?token=${secret}`);
+      if (secret)
+        await sendLoginLink(email, `${origin}/auth/verify?token=${secret}`, await getLocale());
     } catch (error) {
       console.error("sign-in link could not be sent", error);
     }
