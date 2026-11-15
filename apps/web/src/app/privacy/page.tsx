@@ -35,6 +35,10 @@ export default function Privacy() {
             Pour la sécurité : une empreinte chiffrée de votre adresse IP lors d’une demande de lien
             de connexion, et les journaux techniques de l’hébergeur.
           </li>
+          <li>
+            Si vous signalez un contenu : votre message, une empreinte chiffrée de votre adresse IP
+            et, si vous la donnez, votre adresse e-mail pour la réponse.
+          </li>
         </ul>
         <p>
           N’écrivez dans votre espace rien que vous ne voulez pas rendre public, en particulier sur
@@ -108,6 +112,10 @@ export default function Privacy() {
             <li>
               For security: a hashed form of your IP address when a sign-in link is requested, and
               the technical logs of the hosting company.
+            </li>
+            <li>
+              If you report content: your message, a hashed form of your IP address and, if you give
+              it, your e-mail address for the answer.
             </li>
           </ul>
           <p>

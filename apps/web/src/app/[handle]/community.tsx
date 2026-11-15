@@ -2,7 +2,7 @@ import { BODY_MAX, TITLE_MAX } from "@/chronology/rules";
 import { communityTimeline, membersOf, roleIn, type Community } from "@/communities/store";
 import { authEnabled } from "@/identity/config";
 import { currentUser } from "@/identity/session";
-import { sectionTitle, Timeline } from "../timeline";
+import { reportEvent, sectionTitle, Timeline } from "../timeline";
 import { button, field } from "../ui";
 
 const PROBLEMS: Record<string, string> = {
@@ -182,9 +182,16 @@ export async function CommunityPage({
                 Remove
               </button>
             </form>
-          ) : null
+          ) : (
+            reportEvent(event)
+          )
         }
       />
+      <p style={{ margin: "64px 0 0", fontSize: 14 }}>
+        <a href={`/report?community=${community.handle}`} style={{ color: "#6b645b" }}>
+          Report this page
+        </a>
+      </p>
     </main>
   );
 }

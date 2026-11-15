@@ -62,6 +62,11 @@ export function Timeline({
               continues <a href={`#e-${event.continues.id}`}>{event.continues.title}</a>
             </p>
           ) : null}
+          {event.hidden ? (
+            <p style={{ margin: "6px 0 0", fontSize: 15, color: "#ff4a1c" }}>
+              Hidden by a moderator{event.hiddenNote ? `: ${event.hiddenNote}` : "."}
+            </p>
+          ) : null}
           {event.body ? (
             <p
               style={{
@@ -79,6 +84,17 @@ export function Timeline({
         </li>
       ))}
     </ol>
+  );
+}
+
+/** The small "Report" link under a public event. */
+export function reportEvent(event: TimelineEvent) {
+  return (
+    <p style={{ margin: "8px 0 0", fontSize: 14 }}>
+      <a href={`/report?event=${event.id}`} style={{ color: "#6b645b" }}>
+        Report
+      </a>
+    </p>
   );
 }
 

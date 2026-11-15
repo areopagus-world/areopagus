@@ -8,14 +8,18 @@ export interface Space {
   skills: string[];
   /** Settlement the space is tied to, if the place was picked from the list. */
   placeId: string | null;
+  /** Set when a moderator has hidden the space: the reason, shown to its owner. */
+  hiddenNote?: string | null;
 }
 
-const COLUMNS = 'handle, name, about, place, skills, place_id::text as "placeId"';
+const COLUMNS =
+  'handle, name, about, place, skills, place_id::text as "placeId", case when hidden_at is null then null else coalesce(hidden_note, \'\') end as "hiddenNote"';
 
 export async function findSpaceByHandle(handle: string): Promise<Space | undefined> {
-  const { rows } = await getPool().query<Space>(`select ${COLUMNS} from spaces where handle = $1`, [
-    handle,
-  ]);
+  const { rows } = await getPool().query<Space>(
+    `select ${COLUMNS} from spaces where handle = $1 and hidden_at is null`,
+    [handle],
+  );
   return rows[0];
 }
 
