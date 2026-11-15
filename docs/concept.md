@@ -6,6 +6,16 @@ Areopagus is a European network of living people. This document says what it is 
 
 In an age of AI, people need a place to grow and to earn from their own work that does not depend on the algorithms of one corporation. Areopagus replaces services that were good before they had shareholders to satisfy, and it is built so that it cannot go the same way.
 
+## The station
+
+Areopagus has a legend, and the pictures and the words of the network follow it. Areopagus is an orbital station that Christians build together. It is named after the Areopagus in Athens, where the apostle Paul spoke with the philosophers in their own language (Acts 17:16-34). Everything for the building comes up from the Earth on cargo ships. The crew gathers on the station to agree, then goes back to work on Earth. The aim is that the Earth becomes a garden for all who live on it. One ring of the station is always under construction.
+
+- The Earth: an account is open to everyone. Each person has an earthly space for earthly things: a page, a home port, skills, a journal, questions, communities, a shop. Everyone can see what the station does and where it is heading.
+- The station: a cabin for those who believe in God the Father, Jesus Christ and the Holy Spirit. How one comes aboard is being prepared and will be published after a legal review. The station takes a person at their word and does not judge anyone's faith.
+- The words of the legend: a community is a crew, the timeline is the logbook, questions are the radio, votes and the court are the assembly on the Areopagus, the roadmap is the slipway, moderation is the watch, the map of lights is the Earth seen from a porthole.
+
+The station in the pictures is drawn close to how such a station would really be built: two rings of 250 m radius turning against each other at 1.9 turns a minute for one g, a non-rotating axis for docking, power and radiators, an orbit of 800 km below the radiation belt. Classical architecture appears where it does a job: a coffered dome over the docking hub, a colonnade that carries the berthing ring, frames that read as pilasters. Earth imagery: NASA Earth Observatory.
+
 ## The pieces
 
 ### Space
@@ -96,7 +106,7 @@ Every month the association publishes what came in, what went out and what one a
 The image of the network is Europe at night, where every space is a lit window.
 
 - The map is the main screen. The more living spaces in a place, the brighter it is.
-- Stone and light: dark warm stone, light paper, one warm accent. No crosses, domes or stained glass in the interface.
+- Stone and light: dark warm stone, light paper, one warm accent. The interface itself stays plain: no crosses, domes or stained glass in buttons and frames. The station in the pictures keeps its classical elements where they serve a function.
 - A space is a room its owner furnishes; the frame and navigation are the same everywhere.
 - One main action per screen. Secondary things are one tap away.
 - No red counters, streaks or infinite scroll.
@@ -107,5 +117,5 @@ The image of the network is Europe at night, where every space is a lit window.
 - Not a church, a denomination or a theological authority.
 - Not an advertising business.
 - Not a payment processor.
-- Not a blockchain project. There is no token.
+- Not a blockchain project. There is no token. The journal is hash-chained and built so that a later move would be quick, but a token would need its own decision, a change to the statutes and legal advice (MiCA).
 - Not a feed. A chronological feed may come later; an engagement algorithm will not.
