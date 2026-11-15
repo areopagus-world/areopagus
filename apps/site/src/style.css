@@ -314,6 +314,54 @@ h2 {
   margin: 0 0 44px;
 }
 
+/* station */
+.realms {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) {
+  .realms {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.realm {
+  padding: 26px 24px 28px;
+  border: 1px solid var(--line);
+}
+.realm h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 10px;
+  font: 600 22px/1.2 var(--text);
+}
+/* A small Earth and a small ring, drawn in CSS, as in the picture above. */
+.realm h3::before {
+  content: "";
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+.earth h3::before {
+  background: #3b7bd4;
+  box-shadow: inset -4px -3px 0 rgba(0, 0, 0, 0.35);
+}
+.aboard h3::before {
+  border: 3px solid var(--ember);
+}
+.realm p {
+  margin: 0;
+  color: var(--mute);
+}
+.note {
+  max-width: 62ch;
+  margin: 28px 0 0;
+  font: 400 13px/1.6 var(--mono);
+  color: var(--mute);
+}
+
 /* path */
 .path {
   position: relative;

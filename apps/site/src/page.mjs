@@ -119,6 +119,26 @@ ${css}
     </div>
 
     <div class="wrap">
+      <section id="station">
+        <div class="head">
+          <h2>${esc(t.stationTitle)}</h2>
+          <p class="sub">${esc(t.stationText)}</p>
+        </div>
+        <div class="body">
+          <div class="realms">
+            <div class="realm earth">
+              <h3>${esc(t.earthTitle)}</h3>
+              <p>${esc(t.earthText)}</p>
+            </div>
+            <div class="realm aboard">
+              <h3>${esc(t.aboardTitle)}</h3>
+              <p>${esc(t.aboardText)}</p>
+            </div>
+          </div>
+          <p class="note">${esc(t.stationNote)}</p>
+        </div>
+      </section>
+
       <section id="path">
         <div class="head">
           <h2>${esc(t.pathTitle)}</h2>

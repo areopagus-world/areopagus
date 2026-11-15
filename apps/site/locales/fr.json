@@ -9,6 +9,13 @@
   "ctaJoin": "Comment participer",
   "ctaMap": "Voir la carte",
   "count": "{a} sur {b} allumés",
+  "stationTitle": "La station",
+  "stationText": "Areopagus est aussi une légende : une station orbitale que des chrétiens construisent ensemble. Elle tient son nom de la colline d'Athènes où l'apôtre Paul a parlé aux philosophes dans leur propre langue (Actes 17). Tout ce qu'il faut pour la bâtir monte de la Terre par cargo. L'équipage se retrouve sur la station pour s'accorder, puis retourne au travail sur Terre, pour que la Terre devienne un jardin pour tous ceux qui l'habitent.",
+  "earthTitle": "La Terre",
+  "earthText": "Ouverte à tous. Chacun y a un espace pour les choses de la terre : une page, un port d'attache, des savoir-faire, un journal de bord, des questions, des communautés. Tout le monde voit ce que fait la station et où elle va.",
+  "aboardTitle": "À bord",
+  "aboardText": "La station est la maison de l'équipage, des chrétiens qui la construisent ensemble. Le chemin pour monter à bord se prépare et sera publié après un avis juridique. La station croit chacun sur parole et ne juge la foi de personne.",
+  "stationNote": "L'image est proche de ce que serait vraiment une telle station : deux anneaux de 250 m de rayon tournent en sens inverse à 1,9 tour par minute, ce qui donne le poids que l'on a sur Terre, à 800 km au-dessus d'elle. Un anneau est toujours en construction.",
   "pathTitle": "Le chemin",
   "pathText": "Ce qui est fait est allumé. Ce qui est en cours palpite. Ce qui est prévu n'est qu'un contour. Pas de dates ici, seulement un ordre honnête.",
   "state": {

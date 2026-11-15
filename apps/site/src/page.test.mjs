@@ -53,3 +53,32 @@ describe("station hero", () => {
     expect(page(true)).toContain("NASA Earth Observatory");
   });
 });
+
+describe("station legend", () => {
+  it("comes right after the first screen, before the path", () => {
+    const html = page(false);
+    const station = html.indexOf('<section id="station">');
+    expect(station).toBeGreaterThan(html.indexOf('class="credit"'));
+    expect(station).toBeLessThan(html.indexOf('<section id="path">'));
+  });
+
+  it("is written in every language", () => {
+    for (const lang of langs) {
+      const html = renderPage({
+        lang,
+        t: locales[lang],
+        langs,
+        defaultLang: DEFAULT_LANG,
+        roadmap,
+        css: "",
+      });
+      for (const key of ["stationTitle", "earthTitle", "aboardTitle"]) {
+        expect(html).toContain(locales[lang][key]);
+      }
+    }
+  });
+
+  it("says the way aboard comes after a legal review", () => {
+    expect(locales.en.aboardText).toMatch(/after a legal review/);
+  });
+});
