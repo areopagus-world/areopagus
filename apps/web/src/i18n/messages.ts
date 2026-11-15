@@ -31,6 +31,9 @@ const en = {
     problemName: "Enter the name people should see.",
     problemDay: "Choose a real day, not before 1900 and not more than a year ahead.",
     problemEventTitle: "Say in a few words what happened.",
+    level: "Level of the deed",
+    levelNone: "No level",
+    levelHint: "Which need the deed serves. A level belongs to a deed, never to a person.",
     hidden: (note: string) => (note ? `Hidden by a moderator: ${note}` : "Hidden by a moderator."),
     members: (n: number) => `${n} ${n === 1 ? "member" : "members"}`,
     answers: (n: number) => `${n} ${n === 1 ? "answer" : "answers"}`,
@@ -113,6 +116,7 @@ const en = {
   timeline: {
     onlyYou: "only you",
     continues: "continues",
+    level: (n: number, name: string) => `level ${n}, ${name}`,
   },
   space: {
     chronology: "Chronology",
@@ -163,8 +167,8 @@ const en = {
     askHere: "Ask the people here",
   },
   snapshots: {
-    title: "Snapshots of the place",
-    lead: "How the people of this place and its visitors see it, level by level: from shortage through balance to excess. A snapshot is about the place, not about people.",
+    title: "This place, level by level",
+    lead: "How the people of this place and its visitors see it, level by level: from shortage through balance to excess. A snapshot is about the place, not about people. Under each level are the deeds people marked with it here over the past year.",
     privacy: (min: number) =>
       `No one's snapshot is shown on its own. A summary opens once ${min} people have made one.`,
     residents: "People of the place",
@@ -184,6 +188,9 @@ const en = {
     problemLimit: (max: number) => `You can make up to ${max} snapshots a day.`,
     problemNoSpace: "Create your space first: only people with a space make snapshots.",
     problemNoTarget: "That place was not found.",
+    deeds: (count: number) => `Deeds here in the past year: ${count}`,
+    deedsNone: "No deeds at this level here in the past year.",
+    addDeed: "Record a deed at this level",
     levels: [
       {
         name: "Footing",
@@ -379,6 +386,10 @@ const fr: Messages = {
     problemName: "Indiquez le nom que les autres verront.",
     problemDay: "Choisissez une vraie date, pas avant 1900 ni plus d’un an à l’avance.",
     problemEventTitle: "Dites en quelques mots ce qui s’est passé.",
+    level: "Niveau de l’action",
+    levelNone: "Sans niveau",
+    levelHint:
+      "À quel besoin répond l’action. Un niveau appartient à une action, jamais à une personne.",
     hidden: (note) => (note ? `Masqué par un modérateur : ${note}` : "Masqué par un modérateur."),
     members: (n) => `${n} ${n === 1 ? "membre" : "membres"}`,
     answers: (n) => `${n} ${n <= 1 ? "réponse" : "réponses"}`,
@@ -460,6 +471,7 @@ const fr: Messages = {
   timeline: {
     onlyYou: "vous seul",
     continues: "fait suite à",
+    level: (n: number, name: string) => `niveau ${n}, ${name}`,
   },
   space: {
     chronology: "Chronologie",
@@ -513,8 +525,8 @@ const fr: Messages = {
     askHere: "Demander aux gens d’ici",
   },
   snapshots: {
-    title: "Instantanés du lieu",
-    lead: "Comment les gens d’ici et ceux du dehors voient ce lieu, niveau par niveau : du manque à l’excès, en passant par l’équilibre. Un instantané parle du lieu, pas des personnes.",
+    title: "Le lieu, niveau par niveau",
+    lead: "Comment les gens d’ici et ceux du dehors voient ce lieu, niveau par niveau : du manque à l’excès, en passant par l’équilibre. Un instantané parle du lieu, pas des personnes. Sous chaque niveau, les actions que les gens lui ont rattachées ici au cours de l’année.",
     privacy: (min) =>
       `Aucun instantané n’est montré seul. Un résumé apparaît quand ${min} personnes en ont fait un.`,
     residents: "Les gens du lieu",
@@ -538,6 +550,9 @@ const fr: Messages = {
     problemNoSpace:
       "Créez d’abord votre espace : seules les personnes qui en ont un font des instantanés.",
     problemNoTarget: "Ce lieu est introuvable.",
+    deeds: (count: number) => `Actions ici sur l’année écoulée : ${count}`,
+    deedsNone: "Aucune action de ce niveau ici sur l’année écoulée.",
+    addDeed: "Noter une action de ce niveau",
     levels: [
       {
         name: "Socle",
@@ -733,6 +748,9 @@ const ru: Messages = {
     problemName: "Укажите имя, которое увидят другие.",
     problemDay: "Выберите настоящую дату: не раньше 1900 года и не дальше чем на год вперёд.",
     problemEventTitle: "Напишите в нескольких словах, что произошло.",
+    level: "Уровень дела",
+    levelNone: "Без уровня",
+    levelHint: "Какую нужду закрывает дело. Уровень бывает у дела, а не у человека.",
     hidden: (note) => (note ? `Скрыто модератором: ${note}` : "Скрыто модератором."),
     members: (n) => `${n} ${ruPlural(n, "участник", "участника", "участников")}`,
     answers: (n) => `${n} ${ruPlural(n, "ответ", "ответа", "ответов")}`,
@@ -811,6 +829,7 @@ const ru: Messages = {
   timeline: {
     onlyYou: "видите только вы",
     continues: "продолжение события",
+    level: (n: number, name: string) => `уровень ${n}, ${name}`,
   },
   space: {
     chronology: "Хронология",
@@ -860,8 +879,8 @@ const ru: Messages = {
     askHere: "Спросить местных",
   },
   snapshots: {
-    title: "Снимки места",
-    lead: "Как это место видят его жители и как его видят со стороны, по каждому уровню: от недостатка через баланс к избытку. Снимок говорит о месте, а не о людях.",
+    title: "Место по уровням",
+    lead: "Как это место видят его жители и как его видят со стороны, по каждому уровню: от недостатка через баланс к избытку. Снимок говорит о месте, а не о людях. Под каждым уровнем дела, которые люди отметили этим уровнем здесь за год.",
     privacy: (min) =>
       `Ничей снимок не показывается отдельно. Сводка открывается, когда снимки сделают ${min} ${ruPlural(min, "человек", "человека", "человек")}.`,
     residents: "Жители",
@@ -882,6 +901,9 @@ const ru: Messages = {
       `В день можно сделать до ${max} ${ruPlural(max, "снимка", "снимков", "снимков")}.`,
     problemNoSpace: "Сначала создайте спэйс: снимки делают люди со спэйсом.",
     problemNoTarget: "Место не найдено.",
+    deeds: (count: number) => `Дел здесь за год: ${count}`,
+    deedsNone: "Дел этого уровня здесь за год пока нет.",
+    addDeed: "Записать дело этого уровня",
     levels: [
       {
         name: "Опора",

@@ -12,5 +12,6 @@ A decision that shapes the product or the architecture is written down here once
 | 0006 | [No custom code in spaces](0006-no-custom-code-in-spaces.md)                             | Proposed | 2026-11-14 |
 | 0007 | [First slice: one Next.js app on Clever Cloud](0007-first-slice-next-on-clever-cloud.md) | Accepted | 2026-11-14 |
 | 0008 | [Snapshots describe places and are shown only as a summary](0008-place-snapshots.md)     | Accepted | 2026-11-15 |
+| 0009 | [A level belongs to a deed, never to a person](0009-levels-on-deeds.md)                  | Accepted | 2026-11-15 |
 
 To add one, copy [0000-template.md](0000-template.md), take the next number and open a pull request. Questions still open are in [open-decisions.md](../open-decisions.md).
