@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import { MAP_HEIGHT, MAP_WIDTH, onMap, project } from "@/places/europe";
+import { getT } from "@/i18n/server";
 import { lights } from "@/places/store";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Map · Areopagus" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getT();
+  return { title: `${t.map.title} · ${t.brand}` };
+}
 
 /** Europe with a light for every settlement where someone has a space. */
 export default async function MapPage() {
-  const all = (await lights()).filter((light) => onMap(light.lon, light.lat));
+  const [found, { t }] = await Promise.all([lights(), getT()]);
+  const all = found.filter((light) => onMap(light.lon, light.lat));
   const people = all.reduce((sum, light) => sum + light.spaces, 0);
   return (
     <main style={{ maxWidth: 1100, margin: "0 auto", padding: "8vh 20px 12vh" }}>
@@ -20,7 +25,7 @@ export default async function MapPage() {
           margin: 0,
         }}
       >
-        Areopagus beta
+        {t.beta}
       </p>
       <h1
         style={{
@@ -32,17 +37,15 @@ export default async function MapPage() {
           margin: "14px 0 10px",
         }}
       >
-        The map
+        {t.map.title}
       </h1>
       <p style={{ fontSize: 18, color: "#a39b8f", margin: "0 0 26px" }}>
-        {all.length === 0
-          ? "No lights yet. The first one appears when someone ties a space to a place."
-          : `${all.length} ${all.length === 1 ? "place is" : "places are"} lit by ${people} ${people === 1 ? "space" : "spaces"}.`}
+        {all.length === 0 ? t.map.empty : t.map.lit(all.length, people)}
       </p>
       <svg
         viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
         role="img"
-        aria-label="Map of Europe with a light for every place that has a space"
+        aria-label={t.map.aria}
         style={{
           width: "100%",
           height: "auto",
@@ -90,12 +93,7 @@ export default async function MapPage() {
           ))}
         </ul>
       ) : null}
-      <p style={{ fontSize: 13, color: "#6b645b", marginTop: 30 }}>
-        <a href="/search">Search</a> · <a href="/questions">Questions</a> ·{" "}
-        <a href="/communities">Communities</a>
-        <br />
-        Places: GeoNames, CC BY 4.0. Outline: Natural Earth, public domain.
-      </p>
+      <p style={{ fontSize: 13, color: "#6b645b", marginTop: 30 }}>{t.map.credits}</p>
     </main>
   );
 }

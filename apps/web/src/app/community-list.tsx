@@ -1,7 +1,9 @@
 import type { CommunityCard } from "@/communities/store";
+import { getT } from "@/i18n/server";
 
 /** Communities as rows: name, place, number of members. */
-export function CommunityList({ communities }: { communities: CommunityCard[] }) {
+export async function CommunityList({ communities }: { communities: CommunityCard[] }) {
+  const { t } = await getT();
   return (
     <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
       {communities.map((community) => (
@@ -14,7 +16,7 @@ export function CommunityList({ communities }: { communities: CommunityCard[] })
           </a>
           <span style={{ color: "#a39b8f", fontSize: 15, marginLeft: 12 }}>
             {community.place ? `${community.place} · ` : ""}
-            {community.members} {community.members === 1 ? "member" : "members"}
+            {t.common.members(community.members)}
           </span>
         </li>
       ))}

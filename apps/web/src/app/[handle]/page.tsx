@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { publicTimeline } from "@/chronology/store";
 import { communitiesOfSpace, findCommunity } from "@/communities/store";
+import { getT } from "@/i18n/server";
 import { recentQuestions } from "@/questions/store";
 import { checkHandle } from "@/spaces/rules";
 import { findSpaceByHandle } from "@/spaces/store";
@@ -26,8 +27,9 @@ export async function generateMetadata({
   const found = handle
     ? ((await findSpaceByHandle(handle)) ?? (await findCommunity(handle)))
     : undefined;
+  const { t } = await getT();
   return found
-    ? { title: `${found.name} · Areopagus`, description: found.about.slice(0, 160) }
+    ? { title: `${found.name} · ${t.brand}`, description: found.about.slice(0, 160) }
     : {};
 }
 
@@ -52,10 +54,11 @@ export default async function SpacePage({
       <CommunityPage community={community} />
     );
   }
-  const [events, communities, questions] = await Promise.all([
+  const [events, communities, questions, { t }] = await Promise.all([
     publicTimeline(space.handle),
     communitiesOfSpace(space.handle),
     recentQuestions({ toHandle: space.handle }),
+    getT(),
   ]);
   return (
     <main style={{ maxWidth: 760, margin: "0 auto", padding: "12vh 20px 16vh" }}>
@@ -156,26 +159,26 @@ export default async function SpacePage({
       ) : null}
       {communities.length > 0 ? (
         <section>
-          <h2 style={sectionTitle}>Communities</h2>
+          <h2 style={sectionTitle}>{t.space.communities}</h2>
           <CommunityList communities={communities} />
         </section>
       ) : null}
       {events.length > 0 ? (
         <section>
-          <h2 style={sectionTitle}>Chronology</h2>
-          <Timeline events={events} action={reportEvent} />
+          <h2 style={sectionTitle}>{t.space.chronology}</h2>
+          <Timeline events={events} action={(event) => reportEvent(event, t.common.report)} />
         </section>
       ) : null}
       <section>
-        <h2 style={sectionTitle}>Questions</h2>
+        <h2 style={sectionTitle}>{t.space.questions}</h2>
         {questions.length > 0 ? <QuestionList questions={questions} /> : null}
         <p style={{ margin: "22px 0 0" }}>
-          <a href={`/questions/new?to=${space.handle}`}>Ask {space.name} a question</a>
+          <a href={`/questions/new?to=${space.handle}`}>{t.space.ask(space.name)}</a>
         </p>
       </section>
       <p style={{ margin: "64px 0 0", fontSize: 14 }}>
         <a href={`/report?space=${space.handle}`} style={{ color: "#6b645b" }}>
-          Report this page
+          {t.common.reportPage}
         </a>
       </p>
     </main>

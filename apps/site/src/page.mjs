@@ -85,7 +85,7 @@ ${css}
           <a class="btn" href="#join">${esc(t.ctaJoin)}</a>${
             app
               ? `
-          <a class="btn" href="/map">${esc(t.ctaMap)}</a>`
+          <a class="btn" href="${["en", "fr", "ru"].includes(lang) ? `/api/lang/${lang}?next=/map` : "/map"}">${esc(t.ctaMap)}</a>`
               : ""
           }
           <span class="count">${esc(count)}</span>

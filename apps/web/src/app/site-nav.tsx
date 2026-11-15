@@ -1,10 +1,14 @@
+import { LOCALES } from "@/i18n/locales";
+import { getT } from "@/i18n/server";
+
 const link = { color: "#a39b8f", textDecoration: "none" } as const;
 
-/** The thin bar on top of every page of the app: home, then the places a person goes to. */
-export function SiteNav() {
+/** The thin bar on top of every page of the app: home, the places a person goes to, the language. */
+export async function SiteNav() {
+  const { locale, t } = await getT();
   return (
     <nav
-      aria-label="Areopagus"
+      aria-label={t.brand}
       style={{
         maxWidth: 1100,
         margin: "0 auto",
@@ -28,23 +32,39 @@ export function SiteNav() {
           marginRight: "auto",
         }}
       >
-        Areopagus
+        {t.brand}
       </a>
       <a href="/map" style={link}>
-        Map
+        {t.nav.map}
       </a>
       <a href="/search" style={link}>
-        Search
+        {t.nav.search}
       </a>
       <a href="/questions" style={link}>
-        Questions
+        {t.nav.questions}
       </a>
       <a href="/communities" style={link}>
-        Communities
+        {t.nav.communities}
       </a>
       <a href="/me" style={{ ...link, color: "#f3efe6" }}>
-        Me
+        {t.nav.me}
       </a>
+      <span
+        aria-label={t.nav.language}
+        style={{ display: "inline-flex", gap: 8, fontSize: 13, letterSpacing: "0.06em" }}
+      >
+        {LOCALES.map((code) =>
+          code === locale ? (
+            <span key={code} style={{ color: "#ff4a1c" }} aria-current="true">
+              {code.toUpperCase()}
+            </span>
+          ) : (
+            <a key={code} href={`/api/lang/${code}`} lang={code} style={link} rel="nofollow">
+              {code.toUpperCase()}
+            </a>
+          ),
+        )}
+      </span>
     </nav>
   );
 }

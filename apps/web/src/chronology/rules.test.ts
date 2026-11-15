@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { checkEvent, eventId, formatDay, parseDay } from "./rules";
+import { checkEvent, eventId, parseDay } from "./rules";
 
 const now = new Date("2026-11-14T12:00:00Z");
 
@@ -61,17 +61,12 @@ describe("checkEvent", () => {
   });
 });
 
-describe("eventId and formatDay", () => {
+describe("eventId", () => {
   it("accepts only a uuid", () => {
     expect(eventId("0b0e4f1e-7c1a-4f6e-9d53-2a4b6c8d0e1f")).toBe(
       "0b0e4f1e-7c1a-4f6e-9d53-2a4b6c8d0e1f",
     );
     expect(eventId("")).toBeUndefined();
     expect(eventId("1; drop table events")).toBeUndefined();
-  });
-
-  it("writes a day in words", () => {
-    expect(formatDay("2026-11-14")).toBe("14 November 2026");
-    expect(formatDay("1987-03-02")).toBe("2 March 1987");
   });
 });

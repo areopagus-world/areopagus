@@ -1,4 +1,6 @@
 import nodemailer from "nodemailer";
+import type { Locale } from "@/i18n/locales";
+import { messagesFor } from "@/i18n/messages";
 import { LOGIN_TOKEN_MINUTES } from "./tokens";
 
 /** Sends a plain-text message. Returns false when SMTP is not configured. */
@@ -21,32 +23,15 @@ export async function sendMail(
 }
 
 /**
- * Sends the sign-in link. Without SMTP settings (local development) the link is printed to the log instead.
+ * Sends the sign-in link, in the language the person asked in. Without SMTP settings (local
+ * development) the link is printed to the log instead.
  */
-export async function sendLoginLink(email: string, link: string): Promise<void> {
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, MAIL_FROM } = process.env;
-  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !MAIL_FROM) {
+export async function sendLoginLink(email: string, link: string, locale: Locale): Promise<void> {
+  const t = messagesFor(locale).mail;
+  const text = [t.loginOpen, "", link, "", t.loginOnce(LOGIN_TOKEN_MINUTES), t.loginIgnore].join(
+    "\n",
+  );
+  if (!(await sendMail(email, t.loginSubject, text))) {
     console.log(`[mail not configured] sign-in link for ${email}: ${link}`);
-    return;
   }
-  const port = Number(SMTP_PORT ?? 587);
-  const transport = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port,
-    secure: port === 465,
-    auth: { user: SMTP_USER, pass: SMTP_PASS },
-  });
-  await transport.sendMail({
-    from: MAIL_FROM,
-    to: email,
-    subject: "Your sign-in link for Areopagus",
-    text: [
-      "Open this link to sign in to Areopagus:",
-      "",
-      link,
-      "",
-      `It works once and for ${LOGIN_TOKEN_MINUTES} minutes.`,
-      "If you did not ask for it, ignore this message: nothing happens without the link.",
-    ].join("\n"),
-  });
 }

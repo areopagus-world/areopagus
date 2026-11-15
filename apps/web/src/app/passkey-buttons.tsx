@@ -6,7 +6,8 @@ import {
   startRegistration,
 } from "@simplewebauthn/browser";
 import { useEffect, useState } from "react";
-import { button } from "./ui";
+import type { Messages } from "@/i18n/messages";
+import { button } from "./styles";
 
 const quiet = { ...button, background: "transparent", color: "#f3efe6" } as const;
 const note = { color: "#a39b8f", fontSize: 15, margin: "10px 0 0" } as const;
@@ -38,6 +39,9 @@ async function reasonOf(error: unknown): Promise<string> {
   return "unknown";
 }
 
+/** The passkey texts, passed from the server in the reader's language. */
+type Text = Messages["passkey"];
+
 /** True once the page runs in a browser that can use passkeys. The buttons stay hidden until then. */
 function useSupported(): boolean {
   const [supported, setSupported] = useState(false);
@@ -45,7 +49,7 @@ function useSupported(): boolean {
   return supported;
 }
 
-export function PasskeySignIn() {
+export function PasskeySignIn({ text }: { text: Text }) {
   const supported = useSupported();
   const [state, setState] = useState<"idle" | "busy" | "failed">("idle");
   const [reason, setReason] = useState("");
@@ -67,20 +71,20 @@ export function PasskeySignIn() {
   return (
     <div style={{ marginTop: 34 }}>
       <button style={quiet} type="button" onClick={signIn} disabled={state === "busy"}>
-        Sign in with a passkey
+        {text.signIn}
       </button>
       {state === "failed" ? (
-        <p style={note}>That did not work ({reason}). Try again, or use the link by e-mail.</p>
-      ) : (
         <p style={note}>
-          For those who already added one: fingerprint, face or device PIN, no e-mail needed.
+          {text.signInFailed} ({reason})
         </p>
+      ) : (
+        <p style={note}>{text.signInNote}</p>
       )}
     </div>
   );
 }
 
-export function PasskeyAdd({ count }: { count: number }) {
+export function PasskeyAdd({ count, text }: { count: number; text: Text }) {
   const supported = useSupported();
   const [state, setState] = useState<"idle" | "busy" | "added" | "failed">("idle");
   const [total, setTotal] = useState(count);
@@ -104,16 +108,16 @@ export function PasskeyAdd({ count }: { count: number }) {
   return (
     <div style={{ margin: "34px 0 0" }}>
       <button style={quiet} type="button" onClick={add} disabled={state === "busy"}>
-        {total > 0 ? "Add another passkey" : "Add a passkey"}
+        {total > 0 ? text.addAnother : text.add}
       </button>
       <p style={note}>
         {state === "added"
-          ? "Passkey added. Next time you can sign in without the e-mail link."
+          ? text.added
           : state === "failed"
-            ? `The passkey was not added (${reason}). Try again.`
+            ? `${text.addFailed} (${reason})`
             : total > 0
-              ? `Passkeys on this account: ${total}. The e-mail link keeps working too.`
-              : "Sign in next time with a fingerprint, face or device PIN instead of waiting for an e-mail."}
+              ? text.count.replace("{n}", String(total))
+              : text.addNote}
       </p>
     </div>
   );

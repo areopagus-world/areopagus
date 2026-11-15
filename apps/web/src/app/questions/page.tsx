@@ -1,31 +1,33 @@
 import type { Metadata } from "next";
 import { authEnabled } from "@/identity/config";
+import { getT } from "@/i18n/server";
 import { recentQuestions } from "@/questions/store";
 import { QuestionList } from "../question-list";
 import { button, Screen } from "../ui";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Questions · Areopagus" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getT();
+  return { title: `${t.questions.title} · ${t.brand}` };
+}
 
 /** The newest questions of the network. */
 export default async function Questions() {
-  const questions = await recentQuestions();
+  const [questions, { t }] = await Promise.all([recentQuestions(), getT()]);
   return (
-    <Screen title="Questions">
-      <p style={{ color: "#a39b8f", fontSize: 15, margin: "0 0 20px" }}>
-        Ask a person, the people of a place, or everyone. Questions and answers are public.
-      </p>
+    <Screen title={t.questions.title}>
+      <p style={{ color: "#a39b8f", fontSize: 15, margin: "0 0 20px" }}>{t.questions.intro}</p>
       {authEnabled() ? (
         <p style={{ margin: "0 0 30px" }}>
           <a
             href="/questions/new"
             style={{ ...button, display: "inline-block", textDecoration: "none" }}
           >
-            Ask a question
+            {t.questions.ask}
           </a>
         </p>
       ) : null}
-      {questions.length === 0 ? <p>No questions yet.</p> : <QuestionList questions={questions} />}
+      {questions.length === 0 ? <p>{t.questions.empty}</p> : <QuestionList questions={questions} />}
     </Screen>
   );
 }

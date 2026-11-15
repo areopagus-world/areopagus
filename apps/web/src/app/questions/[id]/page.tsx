@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { eventId as uuid } from "@/chronology/rules";
 import { authEnabled } from "@/identity/config";
 import { currentUser } from "@/identity/session";
+import { formatDay } from "@/i18n/locales";
+import { getT } from "@/i18n/server";
 import { BODY_MAX, MAX_ANSWERS_PER_DAY } from "@/questions/rules";
 import { answersOf, findQuestion } from "@/questions/store";
 import { button, field } from "../../ui";
@@ -21,11 +23,6 @@ const plain = {
   textDecoration: "underline",
   cursor: "pointer",
 } as const;
-const PROBLEMS: Record<string, string> = {
-  answer: "Write the answer before sending it.",
-  "no-space": "Create your space first: answers are shown with its name.",
-  limit: `You can answer up to ${MAX_ANSWERS_PER_DAY} times a day.`,
-};
 
 async function load(raw: string) {
   const id = uuid(raw);
@@ -38,8 +35,9 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const question = await load((await params).id);
+  const { t } = await getT();
   return question && question.hiddenNote == null
-    ? { title: `${question.title} · Areopagus`, description: question.body.slice(0, 160) }
+    ? { title: `${question.title} · ${t.brand}`, description: question.body.slice(0, 160) }
     : {};
 }
 
@@ -56,32 +54,39 @@ export default async function QuestionPage({
   const user = authEnabled() ? await currentUser() : undefined;
   const asker = user?.id === question.authorId;
   if (question.hiddenNote != null && !asker) notFound();
-  const [answers, { problem }] = await Promise.all([
+  const [answers, { problem }, { locale, t }] = await Promise.all([
     answersOf(question.id, user?.id),
     searchParams,
+    getT(),
   ]);
+  const problems: Record<string, string> = {
+    answer: t.questions.problemAnswer,
+    "no-space": t.questions.problemAnswerNoSpace,
+    limit: t.questions.problemAnswerLimit(MAX_ANSWERS_PER_DAY),
+  };
   const meta = [
+    <span key="f">{t.questions.from} </span>,
     question.author ? (
       <a key="a" href={`/${question.author.handle}`}>
         {question.author.name}
       </a>
     ) : (
-      "Someone"
+      <span key="a">{t.questions.someone}</span>
     ),
     question.to ? (
       <span key="t">
-        {" asked "}
+        {` · ${t.questions.toLabel} `}
         <a href={`/${question.to.handle}`}>{question.to.name}</a>
       </span>
     ) : question.place ? (
       <span key="p">
-        {" asked the people of "}
+        {` · ${t.questions.toPlace} `}
         <a href={`/places/${question.place.id}`}>{question.place.name}</a>
       </span>
     ) : (
-      <span key="e"> asked everyone</span>
+      <span key="e"> · {t.questions.toEveryone}</span>
     ),
-    <span key="d"> · {question.createdAt}</span>,
+    <span key="d"> · {formatDay(question.createdAt, locale)}</span>,
     question.skill ? (
       <span key="s">
         {" · "}
@@ -106,10 +111,7 @@ export default async function QuestionPage({
         {question.title}
       </h1>
       {question.hiddenNote != null ? (
-        <p style={{ color: "#ff4a1c" }}>
-          A moderator has hidden this question
-          {question.hiddenNote ? `: ${question.hiddenNote}` : "."}
-        </p>
+        <p style={{ color: "#ff4a1c" }}>{t.questions.hiddenQuestion(question.hiddenNote)}</p>
       ) : null}
       {question.body ? (
         <p style={{ fontSize: 19, lineHeight: 1.55, whiteSpace: "pre-wrap", maxWidth: 640 }}>
@@ -118,9 +120,7 @@ export default async function QuestionPage({
       ) : null}
 
       <h2 id="answers" style={{ fontSize: 22, margin: "48px 0 10px" }}>
-        {answers.length === 0
-          ? "No answers yet"
-          : `${answers.length} ${answers.length === 1 ? "answer" : "answers"}`}
+        {answers.length === 0 ? t.questions.noAnswers : t.common.answers(answers.length)}
       </h2>
       <ol style={{ listStyle: "none", padding: 0, margin: 0 }}>
         {answers.map((answer) => (
@@ -137,17 +137,16 @@ export default async function QuestionPage({
               {answer.author ? (
                 <a href={`/${answer.author.handle}`}>{answer.author.name}</a>
               ) : (
-                "Someone"
+                t.questions.someone
               )}{" "}
-              · {answer.createdAt}
+              · {formatDay(answer.createdAt, locale)}
               {answer.thanked ? (
-                <span style={{ color: "#ff4a1c" }}> · thanked by the asker</span>
+                <span style={{ color: "#ff4a1c" }}> · {t.questions.thanked}</span>
               ) : null}
             </p>
             {answer.hiddenNote != null ? (
               <p style={{ color: "#ff4a1c", margin: "6px 0 0" }}>
-                Hidden by a moderator{answer.hiddenNote ? `: ${answer.hiddenNote}` : "."} Only you
-                see it.
+                {t.questions.hiddenAnswer(answer.hiddenNote)}
               </p>
             ) : null}
             <p
@@ -159,13 +158,13 @@ export default async function QuestionPage({
               <form method="post" action="/api/questions/thank" style={small}>
                 <input type="hidden" name="answer" value={answer.id} />
                 <button style={plain} type="submit">
-                  {answer.thanked ? "Take back the thanks" : "Thank for this answer"}
+                  {answer.thanked ? t.questions.takeBack : t.questions.thank}
                 </button>
               </form>
             ) : answer.authorId !== user?.id ? (
               <p style={small}>
                 <a href={`/report?answer=${answer.id}`} style={{ color: "#6b645b" }}>
-                  Report
+                  {t.common.report}
                 </a>
               </p>
             ) : null}
@@ -173,14 +172,14 @@ export default async function QuestionPage({
         ))}
       </ol>
 
-      {problem && PROBLEMS[problem] ? (
-        <p style={{ color: "#ff4a1c" }}>{PROBLEMS[problem]}</p>
+      {problem && problems[problem] ? (
+        <p style={{ color: "#ff4a1c" }}>{problems[problem]}</p>
       ) : null}
       {user && question.hiddenNote == null ? (
         <form method="post" action="/api/questions/answer" style={{ marginTop: 30 }}>
           <input type="hidden" name="question" value={question.id} />
           <label>
-            Your answer
+            {t.questions.yourAnswer}
             <textarea
               style={{ ...field, minHeight: 130 }}
               name="body"
@@ -189,23 +188,23 @@ export default async function QuestionPage({
             />
           </label>
           <button style={button} type="submit">
-            Answer
+            {t.questions.answer}
           </button>
         </form>
       ) : null}
       {!user && authEnabled() ? (
         <p style={{ marginTop: 30 }}>
-          <a href="/login">Sign in</a> to answer.
+          <a href="/login">{t.questions.signInToAnswer}</a>
         </p>
       ) : null}
 
       <p style={{ ...mute, margin: "64px 0 0", fontSize: 14 }}>
-        <a href="/questions">All questions</a>
+        <a href="/questions">{t.questions.all}</a>
         {asker ? null : (
           <>
             {" · "}
             <a href={`/report?question=${question.id}`} style={{ color: "#6b645b" }}>
-              Report this question
+              {t.questions.report}
             </a>
           </>
         )}

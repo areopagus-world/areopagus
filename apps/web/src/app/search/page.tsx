@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getT } from "@/i18n/server";
 import { findPlace, placeLabel } from "@/places/store";
 import { cleanQuery } from "@/search/rules";
 import { searchCommunities, searchPeople } from "@/search/store";
@@ -7,7 +8,10 @@ import { PlaceField } from "../me/place-field";
 import { button, field, Screen } from "../ui";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Search · Areopagus" };
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getT();
+  return { title: `${t.search.title} · ${t.brand}` };
+}
 
 const h2 = { fontSize: 22, margin: "44px 0 6px" } as const;
 const mute = { color: "#a39b8f", fontSize: 15 } as const;
@@ -22,45 +26,42 @@ export default async function Search({
   const query = cleanQuery(params.q);
   const place = params.place_id ? await findPlace(params.place_id) : undefined;
   const asked = Boolean(query || place);
-  const [people, communities] = await Promise.all([
+  const [people, communities, { t }] = await Promise.all([
     searchPeople(query, place?.id),
     searchCommunities(query, place?.id),
+    getT(),
   ]);
   return (
-    <Screen title="Search">
+    <Screen title={t.search.title}>
       <form method="get" action="/search">
         <label>
-          What
+          {t.search.what}
           <input
             style={field}
             name="q"
             defaultValue={query ?? ""}
             maxLength={60}
-            placeholder="a skill, a name, a word"
+            placeholder={t.search.whatPlaceholder}
             autoCapitalize="none"
           />
         </label>
         <label>
-          Where
+          {t.search.where}
           <PlaceField initialLabel={place ? placeLabel(place) : ""} initialId={place?.id ?? ""} />
         </label>
-        <p style={{ ...mute, margin: "-8px 0 16px" }}>
-          Leave empty to search everywhere, or pick a town from the list.
-        </p>
+        <p style={{ ...mute, margin: "-8px 0 16px" }}>{t.search.whereHint}</p>
         <button style={button} type="submit">
-          Search
+          {t.search.submit}
         </button>
       </form>
 
       {asked ? (
         <>
           <h2 style={h2}>
-            People <span style={mute}>{people.length}</span>
+            {t.search.people} <span style={mute}>{people.length}</span>
           </h2>
           {people.length === 0 ? (
-            <p style={mute}>
-              No one found. The network is young: you may be the first with this skill here.
-            </p>
+            <p style={mute}>{t.search.noOne}</p>
           ) : (
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {people.map((person) => (
@@ -87,7 +88,7 @@ export default async function Search({
           {communities.length > 0 ? (
             <>
               <h2 style={h2}>
-                Communities <span style={mute}>{communities.length}</span>
+                {t.search.communities} <span style={mute}>{communities.length}</span>
               </h2>
               <CommunityList communities={communities} />
             </>

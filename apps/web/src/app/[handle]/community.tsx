@@ -2,16 +2,10 @@ import { BODY_MAX, TITLE_MAX } from "@/chronology/rules";
 import { communityTimeline, membersOf, roleIn, type Community } from "@/communities/store";
 import { authEnabled } from "@/identity/config";
 import { currentUser } from "@/identity/session";
+import { getT } from "@/i18n/server";
 import { reportEvent, sectionTitle, Timeline } from "../timeline";
 import { button, field } from "../ui";
 
-const PROBLEMS: Record<string, string> = {
-  space: "Create your space first, then join.",
-  "event-date": "Choose a real day, not before 1900 and not more than a year ahead.",
-  "event-title": "Say in a few words what happened.",
-  "not-member": "Join the community to add to its chronology.",
-  full: "The chronology is full.",
-};
 const quiet = { ...button, background: "transparent", color: "#f3efe6" } as const;
 const plain = {
   background: "none",
@@ -33,11 +27,19 @@ export async function CommunityPage({
   problem?: string;
 }) {
   const user = authEnabled() ? await currentUser() : undefined;
-  const [members, events, role] = await Promise.all([
+  const [members, events, role, { t }] = await Promise.all([
     membersOf(community.id),
     communityTimeline(community.id),
     user ? roleIn(user.id, community.id) : undefined,
+    getT(),
   ]);
+  const problems: Record<string, string> = {
+    space: t.community.problemSpace,
+    "event-date": t.common.problemDay,
+    "event-title": t.common.problemEventTitle,
+    "not-member": t.community.problemNotMember,
+    full: t.community.problemFull,
+  };
   const today = new Date().toISOString().slice(0, 10);
   const hidden = <input type="hidden" name="community" value={community.handle} />;
   return (
@@ -50,7 +52,7 @@ export async function CommunityPage({
           margin: 0,
         }}
       >
-        areopagus.world/{community.handle} · community
+        areopagus.world/{community.handle} · {t.community.kind}
       </p>
       <h1
         style={{
@@ -87,26 +89,26 @@ export async function CommunityPage({
           {community.about}
         </p>
       ) : null}
-      {problem && PROBLEMS[problem] ? (
-        <p style={{ color: "#ff4a1c" }}>{PROBLEMS[problem]}</p>
+      {problem && problems[problem] ? (
+        <p style={{ color: "#ff4a1c" }}>{problems[problem]}</p>
       ) : null}
 
       {user && !role ? (
         <form method="post" action="/api/communities/join">
           {hidden}
           <button style={button} type="submit">
-            Join
+            {t.community.join}
           </button>
         </form>
       ) : null}
       {!user && authEnabled() ? (
         <p>
-          <a href="/login">Sign in</a> to join.
+          <a href="/login">{t.community.signInToJoin}</a>
         </p>
       ) : null}
 
       <h2 style={sectionTitle}>
-        Members <span style={{ color: "#a39b8f" }}>{members.length}</span>
+        {t.community.members} <span style={{ color: "#a39b8f" }}>{members.length}</span>
       </h2>
       <ul
         style={{
@@ -130,7 +132,7 @@ export async function CommunityPage({
                 fontWeight: 600,
                 textDecoration: "none",
               }}
-              title={member.role === "founder" ? "Founder" : undefined}
+              title={member.role === "founder" ? t.community.founder : undefined}
             >
               {member.name}
             </a>
@@ -141,29 +143,29 @@ export async function CommunityPage({
         <form method="post" action="/api/communities/leave" style={{ marginTop: 18 }}>
           {hidden}
           <button style={plain} type="submit">
-            Leave the community
+            {t.community.leave}
           </button>
         </form>
       ) : null}
 
-      {events.length > 0 || role ? <h2 style={sectionTitle}>Chronology</h2> : null}
+      {events.length > 0 || role ? <h2 style={sectionTitle}>{t.community.chronology}</h2> : null}
       {role ? (
         <form method="post" action="/api/communities/events" style={{ margin: "0 0 44px" }}>
           {hidden}
           <label>
-            Day
+            {t.common.day}
             <input style={field} type="date" name="day" defaultValue={today} required />
           </label>
           <label>
-            What happened
+            {t.common.whatHappened}
             <input style={field} name="title" maxLength={TITLE_MAX} required />
           </label>
           <label>
-            Details
+            {t.common.details}
             <textarea style={{ ...field, minHeight: 110 }} name="body" maxLength={BODY_MAX} />
           </label>
           <button style={quiet} type="submit">
-            Add to the community&rsquo;s chronology
+            {t.community.addEvent}
           </button>
         </form>
       ) : null}
@@ -179,17 +181,17 @@ export async function CommunityPage({
               {hidden}
               <input type="hidden" name="id" value={event.id} />
               <button style={plain} type="submit">
-                Remove
+                {t.common.remove}
               </button>
             </form>
           ) : (
-            reportEvent(event)
+            reportEvent(event, t.common.report)
           )
         }
       />
       <p style={{ margin: "64px 0 0", fontSize: 14 }}>
         <a href={`/report?community=${community.handle}`} style={{ color: "#6b645b" }}>
-          Report this page
+          {t.common.reportPage}
         </a>
       </p>
     </main>
