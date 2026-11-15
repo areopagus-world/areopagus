@@ -8,6 +8,15 @@ const config: NextConfig = {
   reactStrictMode: true,
   // The public page links to /fr/ and so on; keep those addresses as they are.
   skipTrailingSlashRedirect: true,
+  // The station files carry their version in the name, so browsers may keep them for a year.
+  async headers() {
+    return [
+      {
+        source: "/site/hero/:file*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+    ];
+  },
   async rewrites() {
     return {
       // The public page is built as static files into public/site and answers at the root.

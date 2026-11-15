@@ -28,7 +28,12 @@ function renderPath(t, roadmap) {
   return out;
 }
 
+// The station loop and its still. The version is in the file name so the files can be cached for good.
+export const HERO = "station-v1";
+export const heroBase = (app) => (app ? "/site/hero" : "/hero");
+
 export function renderPage({ lang, t, langs, defaultLang, roadmap, css, app = false }) {
+  const media = heroBase(app);
   const { done, total } = countLit(roadmap);
   const count = t.count.replace("{a}", done).replace("{b}", total);
   const alternates = langs
@@ -65,18 +70,23 @@ ${css}
     </style>
   </head>
   <body>
-    <div class="wrap">
+    <div class="space">
+      <picture class="sky" aria-hidden="true">
+        <source media="(max-width: 760px)" srcset="${media}/${HERO}-1280.webp" type="image/webp" />
+        <img src="${media}/${HERO}-1920.webp" alt="" width="1920" height="1080" fetchpriority="high" decoding="async" />
+      </picture>
+      <video class="sky" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+        <source data-src="${media}/${HERO}.webm" type='video/webm; codecs="av01.0.08M.08"' />
+        <source data-src="${media}/${HERO}.mp4" type="video/mp4" />
+      </video>
+      <div class="shade" aria-hidden="true"></div>
+      <div class="wrap">
       <header class="top">
         <a class="mark" href="${pathFor(lang, defaultLang)}"><i></i>AREOPAGUS</a>
         <nav class="langs" aria-label="Language">${nav}</nav>
       </header>
 
       <div class="hero">
-        <div class="lights" aria-hidden="true">
-          <span style="right: 8%; top: 22%"></span>
-          <span style="right: 24%; top: 58%; animation-delay: 1.3s"></span>
-          <span style="right: 13%; top: 76%; animation-delay: 2.4s"></span>
-        </div>
         <div class="kicker">${esc(t.kicker)}</div>
         <h1>${esc(t.titleA)} <em>${esc(t.titleB)}</em></h1>
         <p class="lead">${esc(t.lead)}</p>
@@ -91,7 +101,11 @@ ${css}
           <span class="count">${esc(count)}</span>
         </div>
       </div>
+      </div>
+      <p class="credit">Earth: NASA Earth Observatory (Blue Marble, Black Marble)</p>
+    </div>
 
+    <div class="wrap">
       <section id="path">
         <h2>${esc(t.pathTitle)}</h2>
         <p class="sub">${esc(t.pathText)}</p>
@@ -144,6 +158,28 @@ ${css}
       }
       light();
       addEventListener("resize", light);
+
+      // The station moves only where it costs nothing: wide screens, no reduced motion, no data saving.
+      // Everyone else, and every browser without JavaScript, keeps the still picture.
+      (() => {
+        const video = document.querySelector("video.sky");
+        const net = navigator.connection || {};
+        const still =
+          !video ||
+          matchMedia("(prefers-reduced-motion: reduce)").matches ||
+          !matchMedia("(min-width: 761px)").matches ||
+          net.saveData ||
+          /2g$/.test(net.effectiveType || "");
+        if (still) return;
+        for (const source of video.querySelectorAll("source[data-src]")) source.src = source.dataset.src;
+        video.muted = true;
+        video.load();
+        video.addEventListener("playing", () => video.classList.add("on"), { once: true });
+        new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) video.play().catch(() => {});
+          else video.pause();
+        }).observe(video);
+      })();
     </script>
   </body>
 </html>

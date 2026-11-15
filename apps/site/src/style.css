@@ -81,6 +81,92 @@ nav.langs a[aria-current="page"] {
   padding: 9vh 0 10vh;
   overflow: hidden;
 }
+/* The first screen is space whatever the colour scheme: the station, the Earth below it. */
+.space {
+  --paper: #0e0c0a;
+  --ink: #f3efe6;
+  --mute: #b8afa2;
+  --line: #3a342e;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: min(100vh, 1000px);
+  background: #0e0c0a;
+  color: var(--ink);
+}
+.space .sky,
+.space .sky img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 72% 50%;
+}
+.space video.sky {
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.space video.sky.on {
+  opacity: 1;
+}
+.space .shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(14, 12, 10, 0.9) 0%,
+      rgba(14, 12, 10, 0.72) 30%,
+      rgba(14, 12, 10, 0.3) 52%,
+      rgba(14, 12, 10, 0) 68%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(14, 12, 10, 0.5) 0%,
+      rgba(14, 12, 10, 0) 20%,
+      rgba(14, 12, 10, 0) 72%,
+      rgba(14, 12, 10, 0.9) 100%
+    );
+}
+.space .hero {
+  padding: 11vh 0 18vh;
+}
+.space h1 {
+  font-size: clamp(44px, 7.6vw, 104px);
+}
+.space .lead {
+  max-width: 540px;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.6);
+}
+.space .hero::before {
+  display: none;
+}
+.credit {
+  position: absolute;
+  right: 16px;
+  bottom: 10px;
+  margin: 0;
+  font: 400 11px/1.3 var(--text);
+  color: rgba(243, 239, 230, 0.55);
+}
+@media (max-width: 760px) {
+  .space .sky,
+  .space .sky img {
+    object-position: 80% 50%;
+  }
+  .space .shade {
+    background: linear-gradient(
+      180deg,
+      rgba(14, 12, 10, 0.82) 0%,
+      rgba(14, 12, 10, 0.55) 48%,
+      rgba(14, 12, 10, 0.2) 72%,
+      rgba(14, 12, 10, 0.9) 100%
+    );
+  }
+}
 .hero::before {
   content: "";
   position: absolute;
@@ -89,20 +175,6 @@ nav.langs a[aria-current="page"] {
   background-size: 22px 22px;
   mask-image: linear-gradient(to left, #000 0%, transparent 62%);
   -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 62%);
-}
-.lights span {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--ember);
-  box-shadow: 0 0 16px 2px var(--ember);
-  animation: breathe 4s ease-in-out infinite;
-}
-@keyframes breathe {
-  50% {
-    opacity: 0.35;
-  }
 }
 .kicker {
   position: relative;

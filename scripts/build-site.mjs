@@ -42,6 +42,8 @@ const dist = outDir
 rmSync(dist, { recursive: true, force: true });
 if (outDir) mkdirSync(dist, { recursive: true });
 else cpSync(new URL("public/", SITE), dist, { recursive: true });
+// The station still and loop go with the page in both cases.
+cpSync(new URL("hero/", SITE), new URL("hero/", dist), { recursive: true });
 for (const lang of langs) {
   const t = lang === "fr" ? french(locales[lang]) : locales[lang];
   const dir = new URL(`.${pathFor(lang, DEFAULT_LANG)}`, dist);
