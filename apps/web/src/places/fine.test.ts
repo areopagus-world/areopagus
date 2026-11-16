@@ -1,7 +1,11 @@
+import { createRequire } from "node:module";
 import { describe, expect, it } from "vitest";
 import { project } from "./europe";
-import { fineTile, isTile } from "./fine";
+import { fineTile, isTile, useLand, type Land } from "./fine";
 import { TILE, TILE_COLS, TILE_ROWS } from "./view";
+
+// Read at run time, not imported, so the type checker never parses the 3 MB file.
+useLand(createRequire(import.meta.url)("world-atlas/land-10m.json") as Land);
 
 const tileOf = (lon: number, lat: number) => {
   const [x, y] = project(lon, lat);

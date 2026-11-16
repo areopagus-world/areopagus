@@ -1,6 +1,5 @@
 import { feature } from "topojson-client";
 import type { GeometryCollection, Topology } from "topojson-specification";
-import world from "world-atlas/land-10m.json";
 import { clipOutline, clipRing, type Box, type Point } from "./clip";
 import { MAP_HEIGHT, MAP_WIDTH, project } from "./europe";
 import { unwrap } from "./outline";
@@ -13,13 +12,28 @@ interface Ring {
 
 const PRECISION = 10;
 
+export type Land = Topology<{ land: GeometryCollection }>;
+
+let source: Land | undefined;
 let rings: Ring[] | undefined;
 const tiles = new Map<string, string>();
 
-/** The detailed coast (Natural Earth 1:10m, public domain) in map units, built once per process. */
+/**
+ * The land to draw the tiles from: world-atlas/land-10m.json (Natural Earth 1:10m, public domain),
+ * handed in by the tile script or a test. It is never imported here: the type checker would read
+ * all 3 MB of it, and on the server that build ran out of memory (#40).
+ */
+export function useLand(land: Land): void {
+  source = land;
+  rings = undefined;
+  tiles.clear();
+}
+
+/** The detailed coast in map units, built once per process. */
 function fineRings(): Ring[] {
   if (rings) return rings;
-  const topology = world as unknown as Topology<{ land: GeometryCollection }>;
+  if (!source) throw new Error("No land to draw from: call useLand first");
+  const topology = source;
   const land = feature(topology, topology.objects.land);
   const found: Ring[] = [];
   const add = (ring: number[][]) => {
