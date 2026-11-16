@@ -52,3 +52,17 @@ describe("short paths", () => {
     expect(path([[1, 1]], false)).toBe("");
   });
 });
+
+describe("the tiles in public/map/tiles", () => {
+  it("are the ones the code draws: run pnpm map:tiles after changing the map", async () => {
+    const { readFileSync } = await import("node:fs");
+    const { join } = await import("node:path");
+    const dir = join(__dirname, "..", "..", "public", "map", "tiles");
+    for (let col = 0; col < TILE_COLS; col++) {
+      for (let row = 0; row < TILE_ROWS; row++) {
+        const file = readFileSync(join(dir, String(col), `${row}.svg`), "utf8");
+        expect(file, `${col}/${row}`).toBe(fineTile(col, row));
+      }
+    }
+  });
+});

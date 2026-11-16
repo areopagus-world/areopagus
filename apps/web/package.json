@@ -9,7 +9,8 @@
     "start": "next start --port ${PORT:-8080} --hostname 0.0.0.0",
     "migrate": "node scripts/migrate.mjs && node scripts/import-places.mjs --if-empty",
     "typecheck": "tsc --noEmit",
-    "places": "node scripts/import-places.mjs"
+    "places": "node scripts/import-places.mjs",
+    "map:tiles": "node scripts/build-map-tiles.mjs"
   },
   "dependencies": {
     "@simplewebauthn/browser": "^14.0.0",

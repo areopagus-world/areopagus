@@ -147,3 +147,6 @@ next-env.d.ts
 
 # Public page built into the network app
 apps/web/public/site
+
+# Temporary folder of the map tile generator
+apps/web/.map-build-*

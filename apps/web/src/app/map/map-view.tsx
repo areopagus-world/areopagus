@@ -283,7 +283,7 @@ export function MapView({
           {tilesInView(view).map(({ col, row }) => (
             <image
               key={`${col}/${row}`}
-              href={`/map/tiles/${col}/${row}`}
+              href={`/map/tiles/${col}/${row}.svg`}
               x={col * TILE - TILE_MARGIN}
               y={row * TILE - TILE_MARGIN}
               width={TILE + 2 * TILE_MARGIN}
