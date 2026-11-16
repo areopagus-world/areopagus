@@ -103,7 +103,8 @@ export function isTile(col: number, row: number): boolean {
 
 /**
  * One tile of the detailed map as SVG in map units: the sea, the land and the coast line, with a
- * small margin around the tile. Built on first request and kept in memory.
+ * small margin around the tile. The tiles are drawn ahead of time by scripts/build-map-tiles.mjs
+ * into public/map/tiles, so the server never loads the detailed coast.
  */
 export function fineTile(col: number, row: number): string {
   const key = `${col}/${row}`;

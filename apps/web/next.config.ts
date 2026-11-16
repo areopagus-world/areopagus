@@ -15,6 +15,11 @@ const config: NextConfig = {
         source: "/site/hero/:file*",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
+      // The coast of the map changes only with the map code; a day is short enough to pick it up.
+      {
+        source: "/map/tiles/:file*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400" }],
+      },
     ];
   },
   async rewrites() {

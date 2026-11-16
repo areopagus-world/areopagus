@@ -1,9 +1,6 @@
 import { MAP_HEIGHT, MAP_WIDTH } from "@/places/europe";
 import { europeOutline } from "@/places/outline";
 
-// Drawn once, when the site is built.
-export const dynamic = "force-static";
-
 /** The land of the map as one cacheable picture, so the page itself stays small. */
 export function GET() {
   const svg =
