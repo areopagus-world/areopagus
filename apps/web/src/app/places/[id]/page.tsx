@@ -100,7 +100,10 @@ export default async function PlacePage({
         t={t}
       />
       <p style={{ marginTop: 28 }}>
-        <a href="/map" style={{ color: "#ff4a1c" }}>
+        <a
+          href={`/map?lat=${place.lat.toFixed(4)}&lon=${place.lon.toFixed(4)}&z=16`}
+          style={{ color: "#ff4a1c" }}
+        >
           {t.place.back}
         </a>
         {" · "}
