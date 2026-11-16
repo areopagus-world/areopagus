@@ -30,7 +30,8 @@ try {
     writeFileSync(join(work, `${name}.js`), outputText);
   }
   const require = createRequire(join(work, "index.js"));
-  const { fineTile } = require("./fine.js");
+  const { fineTile, useLand } = require("./fine.js");
+  useLand(require("world-atlas/land-10m.json"));
   const { TILE_COLS, TILE_ROWS } = require("./view.js");
   const out = join(app, "public", "map", "tiles");
   rmSync(out, { recursive: true, force: true });
