@@ -36,10 +36,12 @@ export async function searchPlaces(query: string): Promise<Place[]> {
   return rows;
 }
 
-export async function findPlace(id: string): Promise<Place | undefined> {
+export async function findPlace(
+  id: string,
+): Promise<(Place & { lat: number; lon: number }) | undefined> {
   if (!/^\d{1,12}$/.test(id)) return undefined;
-  const { rows } = await getPool().query<Place>(
-    "select id::text, name, country from places where id = $1",
+  const { rows } = await getPool().query<Place & { lat: number; lon: number }>(
+    "select id::text, name, country, lat, lon from places where id = $1",
     [id],
   );
   return rows[0];

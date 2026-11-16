@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { MAP_HEIGHT, MAP_WIDTH, onMap, project } from "@/places/europe";
+import { onMap, project } from "@/places/europe";
 import { getT } from "@/i18n/server";
 import { lights } from "@/places/store";
+import { viewFromQuery } from "@/places/view";
+import { MapView } from "./map-view";
 
 export const dynamic = "force-dynamic";
 export async function generateMetadata(): Promise<Metadata> {
@@ -9,9 +11,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: `${t.map.title} · ${t.brand}` };
 }
 
-/** Europe with a light for every settlement where someone has a space. */
-export default async function MapPage() {
-  const [found, { t }] = await Promise.all([lights(), getT()]);
+/** Europe with a light for every settlement where someone has a space, to drag and zoom. */
+export default async function MapPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ lat?: string; lon?: string; z?: string }>;
+}) {
+  const [found, { t }, query] = await Promise.all([lights(), getT(), searchParams]);
   const all = found.filter((light) => onMap(light.lon, light.lat));
   const people = all.reduce((sum, light) => sum + light.spaces, 0);
   return (
@@ -42,37 +48,31 @@ export default async function MapPage() {
       <p style={{ fontSize: 18, color: "#a39b8f", margin: "0 0 26px" }}>
         {all.length === 0 ? t.map.empty : t.map.lit(all.length, people)}
       </p>
-      <svg
-        viewBox={`0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`}
-        role="img"
-        aria-label={t.map.aria}
-        style={{
-          width: "100%",
-          height: "auto",
-          display: "block",
-          overflow: "hidden",
-          background: "#0e0c0a",
-        }}
-      >
-        <defs>
-          <radialGradient id="glow">
-            <stop offset="0" stopColor="#ff4a1c" stopOpacity="0.9" />
-            <stop offset="1" stopColor="#ff4a1c" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <image href="/map/outline.svg" width={MAP_WIDTH} height={MAP_HEIGHT} />
-        {all.map((light) => {
+      <MapView
+        initial={viewFromQuery(query)}
+        lights={all.map((light) => {
           const [x, y] = project(light.lon, light.lat);
-          const halo = 10 + Math.min(18, Math.sqrt(light.spaces) * 4);
-          return (
-            <a key={light.id} href={`/places/${light.id}`}>
-              <title>{`${light.name}, ${light.country}`}</title>
-              <circle cx={x} cy={y} r={halo} fill="url(#glow)" />
-              <circle cx={x} cy={y} r="2.6" fill="#ffd9cc" />
-            </a>
-          );
+          return {
+            id: light.id,
+            name: light.name,
+            country: light.country,
+            x,
+            y,
+            spaces: light.spaces,
+          };
         })}
-      </svg>
+        labels={{
+          aria: t.map.aria,
+          zoomIn: t.map.zoomIn,
+          zoomOut: t.map.zoomOut,
+          reset: t.map.reset,
+          north: t.map.north,
+          south: t.map.south,
+          west: t.map.west,
+          east: t.map.east,
+          hint: t.map.hint,
+        }}
+      />
       {all.length > 0 ? (
         <ul
           style={{

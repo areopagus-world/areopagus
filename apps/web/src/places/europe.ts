@@ -100,6 +100,14 @@ export function project(lon: number, lat: number): [number, number] {
   return [Math.round(x * 10) / 10, Math.round(y * 10) / 10];
 }
 
+/** The longitude and latitude of a point of the map, the inverse of project. */
+export function unproject(x: number, y: number): [number, number] {
+  const lon = WEST + ((x / SCALE) * 180) / Math.PI;
+  const m = mercator(NORTH) - y / SCALE;
+  const lat = ((2 * Math.atan(Math.exp(m)) - Math.PI / 2) * 180) / Math.PI;
+  return [lon, lat];
+}
+
 export function onMap(lon: number, lat: number): boolean {
   return lon >= WEST && lon <= EAST && lat >= SOUTH && lat <= NORTH;
 }
