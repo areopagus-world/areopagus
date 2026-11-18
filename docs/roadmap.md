@@ -35,6 +35,7 @@ A person can create a space, list skills, join a community, find people on the m
 - [ ] `apps/web`: PWA with offline cache and send queue
 - [x] Nightly encrypted backups at a second provider (Scaleway), kept 30 days
 - [ ] Monthly restore drill on record, status page
+- [x] Open data of places fetched as published and kept with its hashes (first nine sources)
 
 ## Stage 2. Several places
 

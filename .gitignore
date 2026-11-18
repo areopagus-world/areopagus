@@ -150,3 +150,6 @@ apps/web/public/site
 
 # Temporary folder of the map tile generator
 apps/web/.map-build-*
+
+# Open data fetched by scripts/data/fetch.mjs
+.data

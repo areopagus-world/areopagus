@@ -1,0 +1,156 @@
+{
+  "note": "Open data that feeds the Earth balance. Each file is fetched as published and kept unchanged in object storage; see docs/runbooks/open-data.md.",
+  "sources": [
+    {
+      "id": "filosofi-carreaux-200m-2021",
+      "title": "Incomes, poverty and living standards in 2021 on the 200 m grid (Filosofi)",
+      "publisher": "Insee",
+      "licence": "Licence Ouverte 2.0",
+      "attribution": "Insee, Filosofi 2021, données carroyées",
+      "page": "https://www.insee.fr/fr/statistiques/8735162?sommaire=8735243",
+      "grain": "200 m cell",
+      "caution": "Insee advises against comparing one edition of the grid with another. Some cells hold imputed values, marked i_est_200.",
+      "files": [
+        {
+          "name": "Filosofi2021_carreaux_200m_csv.zip",
+          "url": "https://www.insee.fr/fr/statistiques/fichier/8735162/Filosofi2021_carreaux_200m_csv.zip"
+        }
+      ]
+    },
+    {
+      "id": "rp-iris-logement-2023",
+      "title": "Census 2023, housing by Iris",
+      "publisher": "Insee",
+      "licence": "Licence Ouverte 2.0",
+      "attribution": "Insee, recensement de la population 2023",
+      "page": "https://www.insee.fr/fr/statistiques/9061333",
+      "grain": "Iris",
+      "files": [
+        {
+          "name": "DS_RP_LOGEMENT_PRINC_IRIS_2023.parquet",
+          "url": "https://api.insee.fr/melodi/file/DS_RP_LOGEMENT_PRINC_IRIS_2023/PARQUET"
+        }
+      ]
+    },
+    {
+      "id": "rp-iris-logement-2022",
+      "title": "Census 2022, housing by Iris",
+      "publisher": "Insee",
+      "licence": "Licence Ouverte 2.0",
+      "attribution": "Insee, recensement de la population 2022",
+      "page": "https://www.insee.fr/fr/statistiques/8647012",
+      "grain": "Iris",
+      "files": [
+        {
+          "name": "base-ic-logement-2022_csv.zip",
+          "url": "https://www.insee.fr/fr/statistiques/fichier/8647012/base-ic-logement-2022_csv.zip"
+        }
+      ]
+    },
+    {
+      "id": "rp-iris-activite-2022",
+      "title": "Census 2022, activity of residents by Iris",
+      "publisher": "Insee",
+      "licence": "Licence Ouverte 2.0",
+      "attribution": "Insee, recensement de la population 2022",
+      "page": "https://www.insee.fr/fr/statistiques/8647006",
+      "grain": "Iris",
+      "files": [
+        {
+          "name": "base-ic-activite-residents-2022_csv.zip",
+          "url": "https://www.insee.fr/fr/statistiques/fichier/8647006/base-ic-activite-residents-2022_csv.zip"
+        }
+      ]
+    },
+    {
+      "id": "rp-iris-diplomes-2022",
+      "title": "Census 2022, diplomas and schooling by Iris",
+      "publisher": "Insee",
+      "licence": "Licence Ouverte 2.0",
+      "attribution": "Insee, recensement de la population 2022",
+      "page": "https://www.insee.fr/fr/statistiques/8647010",
+      "grain": "Iris",
+      "files": [
+        {
+          "name": "base-ic-diplomes-formation-2022_csv.zip",
+          "url": "https://www.insee.fr/fr/statistiques/fichier/8647010/base-ic-diplomes-formation-2022_csv.zip"
+        }
+      ]
+    },
+    {
+      "id": "rpls-iris-2022",
+      "title": "Social rental housing on 1 January 2022 by Iris (RPLS)",
+      "publisher": "Insee, SDES",
+      "licence": "Licence Ouverte 2.0",
+      "attribution": "SDES, répertoire du parc locatif social au 1er janvier 2022; Insee",
+      "page": "https://www.insee.fr/fr/statistiques/7713420",
+      "grain": "Iris",
+      "files": [
+        {
+          "name": "RPLS_01-01-2022_Iris_csv.zip",
+          "url": "https://www.insee.fr/fr/statistiques/fichier/7713420/RPLS_01-01-2022_Iris_csv.zip"
+        }
+      ]
+    },
+    {
+      "id": "ssmsi-delinquance-communes",
+      "title": "Crime recorded by police and gendarmerie, by commune, 2016 to 2025",
+      "publisher": "SSMSI, ministère de l'Intérieur",
+      "licence": "Licence Ouverte 2.0",
+      "attribution": "SSMSI, bases statistiques de la délinquance enregistrée par la police et la gendarmerie nationales",
+      "page": "https://www.data.gouv.fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales",
+      "grain": "commune",
+      "caution": "Recorded crime only. Nothing below the commune.",
+      "files": [
+        {
+          "name": "delinquance.parquet",
+          "url": "https://www.data.gouv.fr/api/1/datasets/r/604d71b8-337d-4869-9226-49e01bae87df"
+        }
+      ]
+    },
+    {
+      "id": "ips-ecoles",
+      "title": "Social position index of primary schools, from 2022",
+      "publisher": "DEPP, ministère de l'Éducation nationale",
+      "licence": "Licence Ouverte 2.0",
+      "attribution": "DEPP, indices de position sociale des écoles",
+      "page": "https://www.data.gouv.fr/datasets/64265b6135b0c18d57538672",
+      "grain": "school",
+      "caution": "The page says the dataset is no longer updated. Only schools with at least 25 pupils in the last year of primary over five years.",
+      "files": [
+        {
+          "name": "ips-ecoles.csv",
+          "url": "https://www.data.gouv.fr/api/1/datasets/r/896c2e97-6a64-4521-bcab-b5b0d3cf7065"
+        }
+      ]
+    },
+    {
+      "id": "carte-des-loyers-2025",
+      "title": "Advertised rents by commune, 2025 edition",
+      "publisher": "ANIL, ministère chargé du Logement",
+      "licence": "Licence Ouverte 2.0",
+      "attribution": "Estimations ANIL, à partir des données du Groupe SeLoger et de leboncoin",
+      "page": "https://www.data.gouv.fr/datasets/693aa2feed1bf4da603faa49/",
+      "grain": "commune",
+      "caution": "Editions cannot be compared with one another. Rents are modelled from advertisements and include charges.",
+      "files": [
+        {
+          "name": "loyers-1.csv",
+          "url": "https://www.data.gouv.fr/api/1/datasets/r/55b34088-0964-415f-9df7-d87dd98a09be"
+        },
+        {
+          "name": "loyers-2.csv",
+          "url": "https://www.data.gouv.fr/api/1/datasets/r/14a1fe11-b2d1-49b3-9f6b-83d12df9482c"
+        },
+        {
+          "name": "loyers-3.csv",
+          "url": "https://www.data.gouv.fr/api/1/datasets/r/5e3b28a4-cf56-43a3-ae79-43cceeb27f8c"
+        },
+        {
+          "name": "loyers-4.csv",
+          "url": "https://www.data.gouv.fr/api/1/datasets/r/129f764d-b613-44e4-952c-5ff50a8c9b73"
+        }
+      ]
+    }
+  ]
+}
