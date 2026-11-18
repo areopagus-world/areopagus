@@ -24,7 +24,7 @@ export default function Privacy() {
             Votre adresse e-mail, pour vous connecter. Elle n’est jamais affichée sur votre page.
           </li>
           <li>
-            Ce que vous écrivez dans votre espace : adresse de la page, nom, lieu, savoir-faire,
+            Ce que vous écrivez dans votre capsule : adresse de la page, nom, lieu, savoir-faire,
             présentation. Ces informations sont publiques dès que vous les enregistrez.
           </li>
           <li>
@@ -36,9 +36,9 @@ export default function Privacy() {
             de connexion, et les journaux techniques de l’hébergeur.
           </li>
           <li>
-            Vos questions et réponses : publiques, avec le nom de votre espace. Quand quelqu’un vous
-            pose une question ou répond à la vôtre, un e-mail vous prévient. Vous pouvez couper ces
-            e-mails sur votre page.
+            Vos questions et réponses : publiques, avec le nom de votre capsule. Quand quelqu’un
+            vous pose une question ou répond à la vôtre, un e-mail vous prévient. Vous pouvez couper
+            ces e-mails sur votre page.
           </li>
           <li>
             Vos instantanés d’un lieu : la position que vous donnez à chaque niveau d’un lieu. Ils
@@ -46,18 +46,23 @@ export default function Privacy() {
             résumé, à partir de 10 personnes. Vous seul voyez vos propres instantanés.
           </li>
           <li>
+            Votre spirale : le niveau que vous donnez à vos entrées et les noms que vous donnez aux
+            niveaux. Vous seul la voyez, sauf si vous choisissez de la montrer dans votre capsule.
+            Le site ne déduit aucun niveau de vous et ne compare pas les spirales.
+          </li>
+          <li>
             Si vous signalez un contenu : votre message, une empreinte chiffrée de votre adresse IP
             et, si vous la donnez, votre adresse e-mail pour la réponse.
           </li>
         </ul>
         <p>
-          N’écrivez dans votre espace rien que vous ne voulez pas rendre public, en particulier sur
+          N’écrivez dans votre capsule rien que vous ne voulez pas rendre public, en particulier sur
           votre santé, vos convictions ou votre vie privée.
         </p>
       </Part>
       <Part title="Pourquoi et sur quelle base">
         <p>
-          Créer votre compte et afficher votre espace : exécution du service que vous demandez
+          Créer votre compte et afficher votre capsule : exécution du service que vous demandez
           (article 6.1.b du RGPD). Limiter les abus et protéger les comptes : intérêt légitime
           (article 6.1.f). Il n’y a ni publicité, ni mesure d’audience, ni revente de données.
         </p>
@@ -86,7 +91,7 @@ export default function Privacy() {
       <Part title="Durées de conservation">
         <p>
           Lien de connexion : valable {LOGIN_TOKEN_MINUTES} minutes, effacé au bout d’un jour.
-          Session : {SESSION_DAYS} jours. Compte, espace et instantanés : jusqu’à votre demande de
+          Session : {SESSION_DAYS} jours. Compte, capsule et instantanés : jusqu’à votre demande de
           suppression.
         </p>
       </Part>
@@ -113,7 +118,7 @@ export default function Privacy() {
           <ul>
             <li>Your e-mail address, to sign you in. It is never shown on your page.</li>
             <li>
-              What you write in your space: page address, name, place, skills, description. It is
+              What you write in your capsule: page address, name, place, skills, description. It is
               public as soon as you save it.
             </li>
             <li>
@@ -125,9 +130,9 @@ export default function Privacy() {
               the technical logs of the hosting company.
             </li>
             <li>
-              Your questions and answers: public, with the name of your space. When someone asks you
-              a question or answers yours, an e-mail tells you. You can turn these e-mails off on
-              your page.
+              Your questions and answers: public, with the name of your capsule. When someone asks
+              you a question or answers yours, an e-mail tells you. You can turn these e-mails off
+              on your page.
             </li>
             <li>
               Your snapshots of a place: the position you give each level of a place. They are never
@@ -135,18 +140,23 @@ export default function Privacy() {
               Only you see your own snapshots.
             </li>
             <li>
+              Your spiral: the level you give your entries and the names you give the levels. Only
+              you see it, unless you choose to show it on your capsule. The site infers no level
+              about you and never compares spirals.
+            </li>
+            <li>
               If you report content: your message, a hashed form of your IP address and, if you give
               it, your e-mail address for the answer.
             </li>
           </ul>
           <p>
-            Do not write in your space anything you do not want to be public, in particular about
+            Do not write in your capsule anything you do not want to be public, in particular about
             your health, your beliefs or your private life.
           </p>
         </Part>
         <Part title="Why, and on what legal basis">
           <p>
-            Creating your account and showing your space: performing the service you ask for (GDPR
+            Creating your account and showing your capsule: performing the service you ask for (GDPR
             article 6.1.b). Limiting abuse and protecting accounts: legitimate interest (article
             6.1.f). There is no advertising, no audience measurement and no resale of data.
           </p>
@@ -169,7 +179,7 @@ export default function Privacy() {
         <Part title="How long">
           <p>
             Sign-in link: valid {LOGIN_TOKEN_MINUTES} minutes, erased after one day. Session:{" "}
-            {SESSION_DAYS} days. Account, space and snapshots: until you ask for deletion.
+            {SESSION_DAYS} days. Account, capsule and snapshots: until you ask for deletion.
           </p>
         </Part>
         <Part title="Your rights">

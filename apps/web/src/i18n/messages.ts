@@ -77,13 +77,13 @@ const en = {
       "Sign in next time with a fingerprint, face or device PIN instead of waiting for an e-mail.",
   },
   me: {
-    titleHave: "Your space",
-    titleMake: "Make your space",
+    titleHave: "Your capsule",
+    titleMake: "Make your capsule",
     problemTaken: "Someone already has that address. Choose another one.",
-    problemEventSpace: "Create your space first, then add to its chronology.",
+    problemEventSpace: "Create your capsule first, then add to its chronology.",
     problemEventFull: "The chronology is full. Remove an entry to add a new one.",
     hidden: (note: string) =>
-      `A moderator has hidden your space from public view${note ? `: ${note}` : "."} You can answer through the contact on the`,
+      `A moderator has hidden your capsule from public view${note ? `: ${note}` : "."} You can answer through the contact on the`,
     legalNotice: "legal notice",
     saved: "Saved. Your page:",
     addressTitle: "3 to 30 characters: Latin letters, digits and hyphens. Not an e-mail address.",
@@ -95,7 +95,7 @@ const en = {
     skillsHint: (max: number) => `What you can do, separated by commas. Up to ${max}.`,
     about: "About",
     save: "Save",
-    create: "Create my space",
+    create: "Create my capsule",
     chronology: "Chronology",
     chronologyHint:
       "What happened, what you made, what you plan. Each entry appears on your page as a light on a line.",
@@ -126,7 +126,7 @@ const en = {
   },
   community: {
     kind: "community",
-    problemSpace: "Create your space first, then join.",
+    problemSpace: "Create your capsule first, then join.",
     problemNotMember: "Join the community to add to its chronology.",
     problemFull: "The chronology is full.",
     join: "Join",
@@ -142,8 +142,9 @@ const en = {
     empty: "No communities yet. The first one can be yours.",
     start: "Start a community",
     newTitle: "Start a community",
-    problemTaken: "A space or a community already has that address. Choose another one.",
-    problemNoSpace: "Create your space first: members of a community are shown by their spaces.",
+    problemTaken: "A capsule or a community already has that address. Choose another one.",
+    problemNoSpace:
+      "Create your capsule first: members of a community are shown by their capsules.",
     problemLimit: (max: number) => `One person can start up to ${max} communities.`,
     addressHint: "areopagus.world/your-community. It cannot be changed later, for now.",
     placeHint: "Where the community lives or meets, if it has a place.",
@@ -152,10 +153,10 @@ const en = {
   },
   map: {
     title: "The map",
-    empty: "No lights yet. The first one appears when someone ties a space to a place.",
+    empty: "No lights yet. The first one appears when someone ties a capsule to a place.",
     lit: (places: number, spaces: number) =>
-      `${places} ${places === 1 ? "place is" : "places are"} lit by ${spaces} ${spaces === 1 ? "space" : "spaces"}.`,
-    aria: "Map of Europe with a light for every place that has a space",
+      `${places} ${places === 1 ? "place is" : "places are"} lit by ${spaces} ${spaces === 1 ? "capsule" : "capsules"}.`,
+    aria: "Map of Europe with a light for every place that has a capsule",
     credits: "Places: GeoNames, CC BY 4.0. Outline: Natural Earth, public domain.",
     zoomIn: "Zoom in",
     zoomOut: "Zoom out",
@@ -174,6 +175,20 @@ const en = {
     searchHere: "Search here",
     askHere: "Ask the people here",
   },
+  spiral: {
+    title: "Spiral",
+    ownTitle: "My spiral",
+    lead: "What this capsule keeps, along the eight levels of the spiral. The owner files each entry and names the levels.",
+    ownLead:
+      "Your entries along the eight levels of the spiral. You choose the level of each entry and may name the levels in your own words. Only you see this until you choose to show it. Spirals are never compared: there is no ranking and no search by level.",
+    all: "All levels",
+    filtered: (name: string) => `Only the entries of the level ${name}.`,
+    settings: "Set up the spiral",
+    show: "Show my spiral on my capsule",
+    titleLabel: (level: number, name: string) => `${level}. ${name}: your own name`,
+    save: "Save the spiral",
+    saved: "Spiral saved.",
+  },
   snapshots: {
     title: "This place, level by level",
     lead: "How the people of this place and its visitors see it, level by level: from shortage through balance to excess. A snapshot is about the place, not about people. Under each level are the deeds people marked with it here over the past year.",
@@ -191,10 +206,10 @@ const en = {
     save: "Record",
     saved: (days: number) => `Recorded. A new snapshot within ${days} days replaces this one.`,
     signIn: "Sign in to make a snapshot",
-    needSpace: "Create your space to make snapshots",
+    needSpace: "Create your capsule to make snapshots",
     problemValue: "Put the slider on a point of the scale.",
     problemLimit: (max: number) => `You can make up to ${max} snapshots a day.`,
-    problemNoSpace: "Create your space first: only people with a space make snapshots.",
+    problemNoSpace: "Create your capsule first: only people with a capsule make snapshots.",
     problemNoTarget: "That place was not found.",
     deeds: (count: number) => `Deeds here in the past year: ${count}`,
     deedsNone: "No deeds at this level here in the past year.",
@@ -280,10 +295,10 @@ const en = {
     askPlace: (place: string) => `Ask ${place}`,
     problemTitle: "Write the question itself in at least a few words.",
     problemSkill: "Name one skill, without commas, up to 40 characters.",
-    problemNoSpace: "Create your space first: questions are shown with its name.",
+    problemNoSpace: "Create your capsule first: questions are shown with its name.",
     problemLimit: (max: number) => `You can ask up to ${max} questions a day.`,
     problemNoTarget: "That person or place was not found.",
-    problemSelf: "That is your own space: ask someone else, or everyone.",
+    problemSelf: "That is your own capsule: ask someone else, or everyone.",
     notePerson: (name: string) =>
       `${name} gets an e-mail about it. The question and the answers are public.`,
     notePlace: (place: string) =>
@@ -317,7 +332,7 @@ const en = {
     all: "All questions",
     report: "Report this question",
     problemAnswer: "Write the answer before sending it.",
-    problemAnswerNoSpace: "Create your space first: answers are shown with its name.",
+    problemAnswerNoSpace: "Create your capsule first: answers are shown with its name.",
     problemAnswerLimit: (max: number) => `You can answer up to ${max} times a day.`,
   },
   report: {
@@ -360,7 +375,7 @@ const en = {
     questionSubject: "A question for you on Areopagus",
     answerSubject: "An answer to your question on Areopagus",
     footer: (settings: string) =>
-      `You get this because you have a space on Areopagus. To stop these e-mails: ${settings}`,
+      `You get this because you have a capsule on Areopagus. To stop these e-mails: ${settings}`,
   },
 };
 
@@ -440,13 +455,13 @@ const fr: Messages = {
       "La prochaine fois, connectez-vous avec votre empreinte, votre visage ou le code de l’appareil, sans attendre d’e-mail.",
   },
   me: {
-    titleHave: "Votre espace",
-    titleMake: "Créez votre espace",
+    titleHave: "Votre capsule",
+    titleMake: "Créez votre capsule",
     problemTaken: "Quelqu’un a déjà cette adresse. Choisissez-en une autre.",
-    problemEventSpace: "Créez d’abord votre espace, puis ajoutez à sa chronologie.",
+    problemEventSpace: "Créez d’abord votre capsule, puis ajoutez à sa chronologie.",
     problemEventFull: "La chronologie est pleine. Supprimez une entrée pour en ajouter une.",
     hidden: (note) =>
-      `Un modérateur a retiré votre espace de la vue publique${note ? ` : ${note}` : "."} Vous pouvez répondre via le contact indiqué dans les`,
+      `Un modérateur a retiré votre capsule de la vue publique${note ? ` : ${note}` : "."} Vous pouvez répondre via le contact indiqué dans les`,
     legalNotice: "mentions légales",
     saved: "Enregistré. Votre page :",
     addressTitle:
@@ -459,7 +474,7 @@ const fr: Messages = {
     skillsHint: (max) => `Ce que vous savez faire, séparé par des virgules. Jusqu’à ${max}.`,
     about: "À propos",
     save: "Enregistrer",
-    create: "Créer mon espace",
+    create: "Créer ma capsule",
     chronology: "Chronologie",
     chronologyHint:
       "Ce qui s’est passé, ce que vous avez fait, ce que vous prévoyez. Chaque entrée apparaît sur votre page comme une lumière sur une ligne.",
@@ -489,7 +504,7 @@ const fr: Messages = {
   },
   community: {
     kind: "communauté",
-    problemSpace: "Créez d’abord votre espace, puis rejoignez.",
+    problemSpace: "Créez d’abord votre capsule, puis rejoignez.",
     problemNotMember: "Rejoignez la communauté pour écrire dans sa chronologie.",
     problemFull: "La chronologie est pleine.",
     join: "Rejoindre",
@@ -505,9 +520,9 @@ const fr: Messages = {
     empty: "Pas encore de communauté. La première peut être la vôtre.",
     start: "Créer une communauté",
     newTitle: "Créer une communauté",
-    problemTaken: "Un espace ou une communauté a déjà cette adresse. Choisissez-en une autre.",
+    problemTaken: "Une capsule ou une communauté a déjà cette adresse. Choisissez-en une autre.",
     problemNoSpace:
-      "Créez d’abord votre espace : les membres d’une communauté apparaissent par leur espace.",
+      "Créez d’abord votre capsule : les membres d’une communauté apparaissent par leur capsule.",
     problemLimit: (max) => `Une personne peut créer jusqu’à ${max} communautés.`,
     addressHint:
       "areopagus.world/votre-communaute. Pour l’instant, elle ne pourra plus être changée.",
@@ -518,10 +533,10 @@ const fr: Messages = {
   map: {
     title: "La carte",
     empty:
-      "Pas encore de lumière. La première apparaît quand quelqu’un relie son espace à un lieu.",
+      "Pas encore de lumière. La première apparaît quand quelqu’un relie sa capsule à un lieu.",
     lit: (places, spaces) =>
-      `${places} ${places === 1 ? "lieu allumé" : "lieux allumés"} par ${spaces} ${spaces === 1 ? "espace" : "espaces"}.`,
-    aria: "Carte de l’Europe avec une lumière pour chaque lieu qui a un espace",
+      `${places} ${places === 1 ? "lieu allumé" : "lieux allumés"} par ${spaces} ${spaces === 1 ? "capsule" : "capsules"}.`,
+    aria: "Carte de l’Europe avec une lumière pour chaque lieu qui a une capsule",
     credits: "Lieux : GeoNames, CC BY 4.0. Contour : Natural Earth, domaine public.",
     zoomIn: "Zoomer",
     zoomOut: "Dézoomer",
@@ -539,6 +554,20 @@ const fr: Messages = {
     back: "Retour à la carte",
     searchHere: "Chercher ici",
     askHere: "Demander aux gens d’ici",
+  },
+  spiral: {
+    title: "Spirale",
+    ownTitle: "Ma spirale",
+    lead: "Ce que garde cette capsule, selon les huit niveaux de la spirale. Le propriétaire range chaque entrée et nomme les niveaux.",
+    ownLead:
+      "Vos entrées selon les huit niveaux de la spirale. Vous choisissez le niveau de chaque entrée et pouvez nommer les niveaux avec vos mots. Vous seul la voyez tant que vous ne choisissez pas de la montrer. Les spirales ne sont jamais comparées : ni classement, ni recherche par niveau.",
+    all: "Tous les niveaux",
+    filtered: (name: string) => `Seulement les entrées du niveau ${name}.`,
+    settings: "Régler la spirale",
+    show: "Montrer ma spirale dans ma capsule",
+    titleLabel: (level: number, name: string) => `${level}. ${name} : votre nom`,
+    save: "Enregistrer la spirale",
+    saved: "Spirale enregistrée.",
   },
   snapshots: {
     title: "Le lieu, niveau par niveau",
@@ -560,11 +589,11 @@ const fr: Messages = {
     save: "Enregistrer",
     saved: (days) => `Enregistré. Un nouvel instantané dans les ${days} jours remplace celui-ci.`,
     signIn: "Connectez-vous pour faire un instantané",
-    needSpace: "Créez votre espace pour faire des instantanés",
+    needSpace: "Créez votre capsule pour faire des instantanés",
     problemValue: "Placez le curseur sur un point de l’échelle.",
     problemLimit: (max) => `Vous pouvez faire jusqu’à ${max} instantanés par jour.`,
     problemNoSpace:
-      "Créez d’abord votre espace : seules les personnes qui en ont un font des instantanés.",
+      "Créez d’abord votre capsule : seules les personnes qui en ont une font des instantanés.",
     problemNoTarget: "Ce lieu est introuvable.",
     deeds: (count: number) => `Actions ici sur l’année écoulée : ${count}`,
     deedsNone: "Aucune action de ce niveau ici sur l’année écoulée.",
@@ -652,10 +681,10 @@ const fr: Messages = {
     askPlace: (place) => `Demander à ${place}`,
     problemTitle: "Écrivez la question elle-même, en quelques mots au moins.",
     problemSkill: "Un seul savoir-faire, sans virgule, 40 caractères au plus.",
-    problemNoSpace: "Créez d’abord votre espace : les questions apparaissent avec son nom.",
+    problemNoSpace: "Créez d’abord votre capsule : les questions apparaissent avec son nom.",
     problemLimit: (max) => `Vous pouvez poser jusqu’à ${max} questions par jour.`,
     problemNoTarget: "Cette personne ou ce lieu est introuvable.",
-    problemSelf: "C’est votre propre espace : demandez à quelqu’un d’autre, ou à tout le monde.",
+    problemSelf: "C’est votre propre capsule : demandez à quelqu’un d’autre, ou à tout le monde.",
     notePerson: (name) =>
       `${name} est prévenu par e-mail. La question et les réponses sont publiques.`,
     notePlace: (place) =>
@@ -690,7 +719,7 @@ const fr: Messages = {
     all: "Toutes les questions",
     report: "Signaler cette question",
     problemAnswer: "Écrivez la réponse avant de l’envoyer.",
-    problemAnswerNoSpace: "Créez d’abord votre espace : les réponses apparaissent avec son nom.",
+    problemAnswerNoSpace: "Créez d’abord votre capsule : les réponses apparaissent avec son nom.",
     problemAnswerLimit: (max) => `Vous pouvez répondre jusqu’à ${max} fois par jour.`,
   },
   report: {
@@ -733,7 +762,7 @@ const fr: Messages = {
     questionSubject: "Une question pour vous sur Areopagus",
     answerSubject: "Une réponse à votre question sur Areopagus",
     footer: (settings) =>
-      `Vous recevez ce message parce que vous avez un espace sur Areopagus. Pour ne plus recevoir ces e-mails : ${settings}`,
+      `Vous recevez ce message parce que vous avez une capsule sur Areopagus. Pour ne plus recevoir ces e-mails : ${settings}`,
   },
 };
 
@@ -745,7 +774,7 @@ const ru: Messages = {
     search: "Поиск",
     questions: "Вопросы",
     communities: "Сообщества",
-    me: "Мой спэйс",
+    me: "Моя капсула",
     language: "Язык",
   },
   common: {
@@ -807,13 +836,13 @@ const ru: Messages = {
     addNote: "В следующий раз входите по отпечатку, лицу или PIN устройства, не дожидаясь письма.",
   },
   me: {
-    titleHave: "Ваш спэйс",
-    titleMake: "Создайте свой спэйс",
+    titleHave: "Ваша капсула",
+    titleMake: "Создайте свою капсулу",
     problemTaken: "Этот адрес уже занят. Выберите другой.",
-    problemEventSpace: "Сначала создайте спэйс, потом добавляйте в хронологию.",
+    problemEventSpace: "Сначала создайте капсулу, потом добавляйте в хронологию.",
     problemEventFull: "Хронология заполнена. Удалите запись, чтобы добавить новую.",
     hidden: (note) =>
-      `Модератор скрыл ваш спэйс от посторонних${note ? `: ${note}` : "."} Ответить можно через контакт, указанный на странице`,
+      `Модератор скрыл вашу капсулу от посторонних${note ? `: ${note}` : "."} Ответить можно через контакт, указанный на странице`,
     legalNotice: "правовой информации",
     saved: "Сохранено. Ваша страница:",
     addressTitle: "От 3 до 30 символов: латинские буквы, цифры и дефисы. Не адрес почты.",
@@ -825,7 +854,7 @@ const ru: Messages = {
     skillsHint: (max) => `Что вы умеете, через запятую. Не больше ${max}.`,
     about: "О себе",
     save: "Сохранить",
-    create: "Создать спэйс",
+    create: "Создать капсулу",
     chronology: "Хронология",
     chronologyHint:
       "Что произошло, что вы сделали, что собираетесь сделать. Каждая запись появится на вашей странице огнём на линии.",
@@ -855,7 +884,7 @@ const ru: Messages = {
   },
   community: {
     kind: "сообщество",
-    problemSpace: "Сначала создайте спэйс, потом вступайте.",
+    problemSpace: "Сначала создайте капсулу, потом вступайте.",
     problemNotMember: "Вступите в сообщество, чтобы писать в его хронологию.",
     problemFull: "Хронология заполнена.",
     join: "Вступить",
@@ -871,8 +900,9 @@ const ru: Messages = {
     empty: "Сообществ пока нет. Первое может быть вашим.",
     start: "Создать сообщество",
     newTitle: "Создать сообщество",
-    problemTaken: "Этот адрес уже занят спэйсом или сообществом. Выберите другой.",
-    problemNoSpace: "Сначала создайте спэйс: участники сообщества показываются по своим спэйсам.",
+    problemTaken: "Этот адрес уже занят капсулой или сообществом. Выберите другой.",
+    problemNoSpace:
+      "Сначала создайте капсулу: участники сообщества показываются по своим капсулам.",
     problemLimit: (max) => `Один человек может создать не больше ${max} сообществ.`,
     addressHint: "areopagus.world/ваше-сообщество. Пока что его нельзя будет поменять.",
     placeHint: "Где сообщество живёт или собирается, если у него есть место.",
@@ -881,9 +911,9 @@ const ru: Messages = {
   },
   map: {
     title: "Карта",
-    empty: "Огней пока нет. Первый загорится, когда кто-то привяжет свой спэйс к месту.",
-    lit: (places, spaces) => `Мест с огнями: ${places}. Спэйсов: ${spaces}.`,
-    aria: "Карта Европы с огнём в каждом месте, где есть спэйс",
+    empty: "Огней пока нет. Первый загорится, когда кто-то привяжет свою капсулу к месту.",
+    lit: (places, spaces) => `Мест с огнями: ${places}. Капсул: ${spaces}.`,
+    aria: "Карта Европы с огнём в каждом месте, где есть капсула",
     credits: "Места: GeoNames, CC BY 4.0. Контур: Natural Earth, общественное достояние.",
     zoomIn: "Приблизить",
     zoomOut: "Отдалить",
@@ -902,6 +932,20 @@ const ru: Messages = {
     searchHere: "Искать здесь",
     askHere: "Спросить местных",
   },
+  spiral: {
+    title: "Спираль",
+    ownTitle: "Моя спираль",
+    lead: "Что хранит эта капсула, по восьми уровням спирали. Записи по уровням раскладывает и уровни называет сам владелец.",
+    ownLead:
+      "Ваши записи по восьми уровням спирали. Уровень каждой записи выбираете вы, назвать уровни можно своими словами. Пока вы не решите её показать, спираль видите только вы. Спирали никогда не сравниваются: рейтинга и поиска по уровням нет.",
+    all: "Все уровни",
+    filtered: (name: string) => `Только записи уровня «${name}».`,
+    settings: "Настроить спираль",
+    show: "Показывать спираль в моей капсуле",
+    titleLabel: (level: number, name: string) => `${level}. ${name}: ваше название`,
+    save: "Сохранить спираль",
+    saved: "Спираль сохранена.",
+  },
   snapshots: {
     title: "Место по уровням",
     lead: "Как это место видят его жители и как его видят со стороны, по каждому уровню: от недостатка через баланс к избытку. Снимок говорит о месте, а не о людях. Под каждым уровнем дела, которые люди отметили этим уровнем здесь за год.",
@@ -919,11 +963,11 @@ const ru: Messages = {
     saved: (days) =>
       `Снимок записан. Новый снимок в течение ${days} ${ruPlural(days, "дня", "дней", "дней")} заменит этот.`,
     signIn: "Войдите, чтобы сделать снимок",
-    needSpace: "Создайте спэйс, чтобы делать снимки",
+    needSpace: "Создайте капсулу, чтобы делать снимки",
     problemValue: "Поставьте ползунок в точку шкалы.",
     problemLimit: (max) =>
       `В день можно сделать до ${max} ${ruPlural(max, "снимка", "снимков", "снимков")}.`,
-    problemNoSpace: "Сначала создайте спэйс: снимки делают люди со спэйсом.",
+    problemNoSpace: "Сначала создайте капсулу: снимки делают люди с капсулой.",
     problemNoTarget: "Место не найдено.",
     deeds: (count: number) => `Дел здесь за год: ${count}`,
     deedsNone: "Дел этого уровня здесь за год пока нет.",
@@ -1009,10 +1053,10 @@ const ru: Messages = {
     askPlace: (place) => `Вопрос жителям: ${place}`,
     problemTitle: "Напишите сам вопрос, хотя бы в несколько слов.",
     problemSkill: "Один навык, без запятых, не длиннее 40 символов.",
-    problemNoSpace: "Сначала создайте спэйс: вопросы показываются с его именем.",
+    problemNoSpace: "Сначала создайте капсулу: вопросы показываются с её именем.",
     problemLimit: (max) => `В сутки можно задать не больше ${max} вопросов.`,
     problemNoTarget: "Такой человек или место не найдены.",
-    problemSelf: "Это ваш собственный спэйс: спросите кого-то другого или всех.",
+    problemSelf: "Это ваша собственная капсула: спросите кого-то другого или всех.",
     notePerson: (name) => `${name} получит письмо об этом. Вопрос и ответы видны всем.`,
     notePlace: (place) =>
       `Его увидит каждый, кто откроет страницу места ${place}. Вопрос и ответы видны всем.`,
@@ -1044,7 +1088,7 @@ const ru: Messages = {
     all: "Все вопросы",
     report: "Пожаловаться на вопрос",
     problemAnswer: "Напишите ответ, прежде чем отправлять.",
-    problemAnswerNoSpace: "Сначала создайте спэйс: ответы показываются с его именем.",
+    problemAnswerNoSpace: "Сначала создайте капсулу: ответы показываются с её именем.",
     problemAnswerLimit: (max) => `В сутки можно ответить не больше ${max} раз.`,
   },
   report: {
@@ -1087,7 +1131,7 @@ const ru: Messages = {
     questionSubject: "Вам задали вопрос в Ареопаге",
     answerSubject: "На ваш вопрос ответили в Ареопаге",
     footer: (settings) =>
-      `Вы получили письмо, потому что у вас есть спэйс в Ареопаге. Отключить такие письма: ${settings}`,
+      `Вы получили письмо, потому что у вас есть капсула в Ареопаге. Отключить такие письма: ${settings}`,
   },
 };
 

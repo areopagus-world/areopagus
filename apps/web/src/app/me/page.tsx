@@ -6,10 +6,13 @@ import { countPasskeys } from "@/identity/passkeys";
 import { currentUser } from "@/identity/session";
 import { recipient, rememberLocale } from "@/identity/settings";
 import { getT } from "@/i18n/server";
-import { checkLevel } from "@/snapshots/rules";
+import { checkLevel, LEVELS } from "@/snapshots/rules";
+import { levelTitle, SPIRAL_TITLE_MAX } from "@/spiral/rules";
+import { spiralOf } from "@/spiral/store";
 import { HANDLE_FIELD_PATTERN, MAX_SKILLS } from "@/spaces/rules";
 import { findSpaceByUser } from "@/spaces/store";
 import { LevelSelect } from "../level-select";
+import { SpiralView } from "../spiral";
 import { PasskeyAdd } from "../passkey-buttons";
 import { sectionTitle, Timeline } from "../timeline";
 import { button, field, Screen } from "../ui";
@@ -38,20 +41,25 @@ export default async function Me({
     added?: string;
     settings?: string;
     level?: string;
+    spiral?: string;
   }>;
 }) {
   if (!authEnabled()) notFound();
   const user = await currentUser();
   if (!user) redirect("/login");
-  const [space, { problem, saved, added, settings, level }, passkeys, events, me, { locale, t }] =
-    await Promise.all([
-      findSpaceByUser(user.id),
-      searchParams,
-      countPasskeys(user.id),
-      ownTimeline(user.id),
-      recipient(user.id),
-      getT(),
-    ]);
+  const [space, query, passkeys, events, me, spiral, { locale, t }] = await Promise.all([
+    findSpaceByUser(user.id),
+    searchParams,
+    countPasskeys(user.id),
+    ownTimeline(user.id),
+    recipient(user.id),
+    spiralOf({ userId: user.id }, "owner"),
+    getT(),
+  ]);
+  const { problem, saved, added, settings } = query;
+  // A level picked in the spiral narrows the chronology and is the level of the next entry.
+  const level = checkLevel(query.level);
+  const shown = level ? events.filter((event) => event.level === level) : events;
   // E-mails to this person go out in the language they read the network in.
   await rememberLocale(user.id, locale);
   const problems: Record<string, string> = {
@@ -139,6 +147,47 @@ export default async function Me({
           {space ? t.me.save : t.me.create}
         </button>
       </form>
+      {space && spiral ? (
+        <section id="spiral">
+          <h2 style={sectionTitle}>{t.spiral.ownTitle}</h2>
+          <p style={hint}>{t.spiral.ownLead}</p>
+          {query.spiral === "saved" ? <p>{t.spiral.saved}</p> : null}
+          <SpiralView
+            spiral={spiral}
+            t={t}
+            current={level}
+            href={(pick) => (pick ? `/me?level=${pick}#chronology` : "/me#chronology")}
+          />
+          <details style={{ margin: "22px 0 0" }}>
+            <summary style={{ cursor: "pointer" }}>{t.spiral.settings}</summary>
+            <form method="post" action="/api/spiral" style={{ margin: "18px 0 0" }}>
+              <label style={{ display: "flex", alignItems: "center", gap: 10, margin: "0 0 22px" }}>
+                <input type="checkbox" name="public" defaultChecked={spiral.public} />{" "}
+                {t.spiral.show}
+              </label>
+              {LEVELS.map((each) => {
+                const name = t.snapshots.levels[each - 1]?.name ?? "";
+                const own = spiral.levels.find((item) => item.level === each)?.title ?? "";
+                return (
+                  <label key={each}>
+                    {t.spiral.titleLabel(each, name)}
+                    <input
+                      style={field}
+                      name={`title_${each}`}
+                      defaultValue={own}
+                      placeholder={name}
+                      maxLength={SPIRAL_TITLE_MAX}
+                    />
+                  </label>
+                );
+              })}
+              <button style={button} type="submit">
+                {t.spiral.save}
+              </button>
+            </form>
+          </details>
+        </section>
+      ) : null}
       {space ? (
         <section id="chronology">
           <h2 style={sectionTitle}>{t.me.chronology}</h2>
@@ -157,7 +206,7 @@ export default async function Me({
               {t.common.details}
               <textarea style={{ ...field, minHeight: 110 }} name="body" maxLength={BODY_MAX} />
             </label>
-            <LevelSelect t={t} selected={checkLevel(level)} />
+            <LevelSelect t={t} selected={level} />
             {events.length > 0 ? (
               <label>
                 {t.me.continues}
@@ -178,8 +227,14 @@ export default async function Me({
               {t.me.addEvent}
             </button>
           </form>
+          {level ? (
+            <p style={hint}>
+              {t.spiral.filtered(levelTitle(spiral?.levels, level, t.snapshots.levels))}{" "}
+              <a href="/me#chronology">{t.spiral.all}</a>
+            </p>
+          ) : null}
           <Timeline
-            events={events}
+            events={shown}
             action={(event) => (
               <form method="post" action="/api/events/delete" style={{ margin: "10px 0 0" }}>
                 <input type="hidden" name="id" value={event.id} />
