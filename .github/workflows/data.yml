@@ -1,0 +1,57 @@
+name: data
+
+# Fetches the open data files listed in data/sources.json, as published, and keeps them in object
+# storage with their hashes. Started by hand: Actions, data, Run workflow.
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Id of one source to fetch. Empty fetches all of them."
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: data
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    if: vars.DATA_S3_BUCKET != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DATA_S3_BUCKET: ${{ vars.DATA_S3_BUCKET }}
+      DATA_S3_ENDPOINT: ${{ vars.DATA_S3_ENDPOINT || 'https://s3.fr-par.scw.cloud' }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.DATA_S3_ACCESS_KEY || secrets.BACKUP_S3_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.DATA_S3_SECRET_KEY || secrets.BACKUP_S3_SECRET_KEY }}
+      AWS_DEFAULT_REGION: ${{ vars.DATA_S3_REGION || 'fr-par' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: The bucket answers
+        run: aws --endpoint-url "$DATA_S3_ENDPOINT" s3 ls "s3://$DATA_S3_BUCKET/" >/dev/null
+
+      - name: Fetch
+        env:
+          DATA_ONLY: ${{ inputs.only }}
+        run: node scripts/data/fetch.mjs --out .data
+
+      - name: Describe
+        if: ${{ !cancelled() }}
+        run: |
+          pip install --quiet duckdb
+          mkdir -p .data/schemas
+          scripts/data/describe.sh .data > ".data/schemas/$(date -u +%Y-%m-%dT%H-%M-%SZ).md"
+          cat .data/schemas/*.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload
+        if: ${{ !cancelled() }}
+        run: |
+          aws --endpoint-url "$DATA_S3_ENDPOINT" s3 sync .data "s3://$DATA_S3_BUCKET/" --size-only --only-show-errors
+          echo "files in the bucket: $(aws --endpoint-url "$DATA_S3_ENDPOINT" s3 ls --recursive "s3://$DATA_S3_BUCKET/raw/" | wc -l)"

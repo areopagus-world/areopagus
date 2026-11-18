@@ -14,5 +14,6 @@ A decision that shapes the product or the architecture is written down here once
 | 0008 | [Snapshots describe places and are shown only as a summary](0008-place-snapshots.md)     | Accepted | 2026-11-15 |
 | 0009 | [A level belongs to a deed, never to a person](0009-levels-on-deeds.md)                  | Accepted | 2026-11-15 |
 | 0010 | [A person keeps their own spiral](0010-own-spiral.md)                                    | Accepted | 2026-11-18 |
+| 0011 | [Open data is fetched outside the app and kept unchanged](0011-open-data-raw-layer.md)   | Accepted | 2026-11-18 |
 
 To add one, copy [0000-template.md](0000-template.md), take the next number and open a pull request. Questions still open are in [open-decisions.md](../open-decisions.md).
