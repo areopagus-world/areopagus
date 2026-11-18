@@ -4,10 +4,14 @@ import { publicTimeline } from "@/chronology/store";
 import { communitiesOfSpace, findCommunity } from "@/communities/store";
 import { getT } from "@/i18n/server";
 import { recentQuestions } from "@/questions/store";
+import { checkLevel } from "@/snapshots/rules";
 import { checkHandle } from "@/spaces/rules";
 import { findSpaceByHandle } from "@/spaces/store";
+import { levelTitle } from "@/spiral/rules";
+import { spiralOf } from "@/spiral/store";
 import { CommunityList } from "../community-list";
 import { QuestionList } from "../question-list";
+import { SpiralView } from "../spiral";
 import { reportEvent, sectionTitle, Timeline } from "../timeline";
 import { CommunityPage } from "./community";
 
@@ -39,7 +43,7 @@ export default async function SpacePage({
   searchParams,
 }: {
   params: Promise<{ handle: string }>;
-  searchParams: Promise<{ problem?: string }>;
+  searchParams: Promise<{ problem?: string; level?: string }>;
 }) {
   const handle = handleOf((await params).handle);
   if (!handle) notFound();
@@ -54,12 +58,18 @@ export default async function SpacePage({
       <CommunityPage community={community} />
     );
   }
-  const [events, communities, questions, { t }] = await Promise.all([
+  const [all, communities, questions, spiral, query, { t }] = await Promise.all([
     publicTimeline(space.handle),
     communitiesOfSpace(space.handle),
     recentQuestions({ toHandle: space.handle }),
+    spiralOf({ handle: space.handle }, "public"),
+    searchParams,
     getT(),
   ]);
+  // A level picked in the spiral narrows the chronology; without a shown spiral there is no picking.
+  const level = spiral ? checkLevel(query.level) : undefined;
+  const events = level ? all.filter((event) => event.level === level) : all;
+  const levelName = level ? levelTitle(spiral?.levels, level, t.snapshots.levels) : undefined;
   return (
     <main style={{ maxWidth: 760, margin: "0 auto", padding: "12vh 20px 16vh" }}>
       <p
@@ -163,9 +173,29 @@ export default async function SpacePage({
           <CommunityList communities={communities} />
         </section>
       ) : null}
-      {events.length > 0 ? (
-        <section>
+      {spiral ? (
+        <section id="spiral">
+          <h2 style={sectionTitle}>{t.spiral.title}</h2>
+          <p style={{ color: "#a39b8f", margin: 0, maxWidth: 620 }}>{t.spiral.lead}</p>
+          <SpiralView
+            spiral={spiral}
+            t={t}
+            current={level}
+            href={(pick) =>
+              pick ? `/${space.handle}?level=${pick}#chronology` : `/${space.handle}#chronology`
+            }
+          />
+        </section>
+      ) : null}
+      {all.length > 0 ? (
+        <section id="chronology">
           <h2 style={sectionTitle}>{t.space.chronology}</h2>
+          {levelName ? (
+            <p style={{ color: "#a39b8f" }}>
+              {t.spiral.filtered(levelName)}{" "}
+              <a href={`/${space.handle}#chronology`}>{t.spiral.all}</a>
+            </p>
+          ) : null}
           <Timeline events={events} action={(event) => reportEvent(event, t.common.report)} />
         </section>
       ) : null}

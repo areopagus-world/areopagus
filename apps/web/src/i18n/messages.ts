@@ -175,6 +175,20 @@ const en = {
     searchHere: "Search here",
     askHere: "Ask the people here",
   },
+  spiral: {
+    title: "Spiral",
+    ownTitle: "My spiral",
+    lead: "What this capsule keeps, along the eight levels of the spiral. The owner files each entry and names the levels.",
+    ownLead:
+      "Your entries along the eight levels of the spiral. You choose the level of each entry and may name the levels in your own words. Only you see this until you choose to show it. Spirals are never compared: there is no ranking and no search by level.",
+    all: "All levels",
+    filtered: (name: string) => `Only the entries of the level ${name}.`,
+    settings: "Set up the spiral",
+    show: "Show my spiral on my capsule",
+    titleLabel: (level: number, name: string) => `${level}. ${name}: your own name`,
+    save: "Save the spiral",
+    saved: "Spiral saved.",
+  },
   snapshots: {
     title: "This place, level by level",
     lead: "How the people of this place and its visitors see it, level by level: from shortage through balance to excess. A snapshot is about the place, not about people. Under each level are the deeds people marked with it here over the past year.",
@@ -541,6 +555,20 @@ const fr: Messages = {
     searchHere: "Chercher ici",
     askHere: "Demander aux gens d’ici",
   },
+  spiral: {
+    title: "Spirale",
+    ownTitle: "Ma spirale",
+    lead: "Ce que garde cette capsule, selon les huit niveaux de la spirale. Le propriétaire range chaque entrée et nomme les niveaux.",
+    ownLead:
+      "Vos entrées selon les huit niveaux de la spirale. Vous choisissez le niveau de chaque entrée et pouvez nommer les niveaux avec vos mots. Vous seul la voyez tant que vous ne choisissez pas de la montrer. Les spirales ne sont jamais comparées : ni classement, ni recherche par niveau.",
+    all: "Tous les niveaux",
+    filtered: (name: string) => `Seulement les entrées du niveau ${name}.`,
+    settings: "Régler la spirale",
+    show: "Montrer ma spirale dans ma capsule",
+    titleLabel: (level: number, name: string) => `${level}. ${name} : votre nom`,
+    save: "Enregistrer la spirale",
+    saved: "Spirale enregistrée.",
+  },
   snapshots: {
     title: "Le lieu, niveau par niveau",
     lead: "Comment les gens d’ici et ceux du dehors voient ce lieu, niveau par niveau : du manque à l’excès, en passant par l’équilibre. Un instantané parle du lieu, pas des personnes. Sous chaque niveau, les actions que les gens lui ont rattachées ici au cours de l’année.",
@@ -903,6 +931,20 @@ const ru: Messages = {
     back: "К карте",
     searchHere: "Искать здесь",
     askHere: "Спросить местных",
+  },
+  spiral: {
+    title: "Спираль",
+    ownTitle: "Моя спираль",
+    lead: "Что хранит эта капсула, по восьми уровням спирали. Записи по уровням раскладывает и уровни называет сам владелец.",
+    ownLead:
+      "Ваши записи по восьми уровням спирали. Уровень каждой записи выбираете вы, назвать уровни можно своими словами. Пока вы не решите её показать, спираль видите только вы. Спирали никогда не сравниваются: рейтинга и поиска по уровням нет.",
+    all: "Все уровни",
+    filtered: (name: string) => `Только записи уровня «${name}».`,
+    settings: "Настроить спираль",
+    show: "Показывать спираль в моей капсуле",
+    titleLabel: (level: number, name: string) => `${level}. ${name}: ваше название`,
+    save: "Сохранить спираль",
+    saved: "Спираль сохранена.",
   },
   snapshots: {
     title: "Место по уровням",

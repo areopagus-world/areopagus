@@ -46,6 +46,11 @@ export default function Privacy() {
             résumé, à partir de 10 personnes. Vous seul voyez vos propres instantanés.
           </li>
           <li>
+            Votre spirale : le niveau que vous donnez à vos entrées et les noms que vous donnez aux
+            niveaux. Vous seul la voyez, sauf si vous choisissez de la montrer dans votre capsule.
+            Le site ne déduit aucun niveau de vous et ne compare pas les spirales.
+          </li>
+          <li>
             Si vous signalez un contenu : votre message, une empreinte chiffrée de votre adresse IP
             et, si vous la donnez, votre adresse e-mail pour la réponse.
           </li>
@@ -133,6 +138,11 @@ export default function Privacy() {
               Your snapshots of a place: the position you give each level of a place. They are never
               shown with your name or one by one: the site shows only a summary, from 10 people on.
               Only you see your own snapshots.
+            </li>
+            <li>
+              Your spiral: the level you give your entries and the names you give the levels. Only
+              you see it, unless you choose to show it on your capsule. The site infers no level
+              about you and never compares spirals.
             </li>
             <li>
               If you report content: your message, a hashed form of your IP address and, if you give

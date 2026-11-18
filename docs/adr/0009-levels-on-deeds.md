@@ -1,6 +1,6 @@
 # 0009. A level belongs to a deed, never to a person
 
-- Status: Accepted
+- Status: Accepted, amended by [0010](0010-own-spiral.md) for a person's own capsule
 - Date: 2026-11-15
 
 ## Context
