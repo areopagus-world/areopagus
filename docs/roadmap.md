@@ -23,6 +23,7 @@ A person can create a space, list skills, join a community, find people on the m
 - [ ] `places`: boundaries of the first place from OpenStreetMap
 - [x] `spaces`: address, name, place, skills, public page
 - [ ] `spaces`: blocks, themes, three-value visibility, export
+- [ ] `spaces`: invitations from partner programmes; the person accepts, then picks which entries come over ([ADR 0012](adr/0012-partner-invitations.md))
 - [ ] `skills`: dictionary import, levels, confirmations
 - [x] `communities`: create, join, leave, a timeline of its own
 - [ ] `communities`: roles, rules, open ledger
@@ -36,10 +37,12 @@ A person can create a space, list skills, join a community, find people on the m
 - [x] Nightly encrypted backups at a second provider (Scaleway), kept 30 days
 - [ ] Monthly restore drill on record, status page
 - [x] Open data of places fetched as published and kept with its hashes (first nine sources)
+- [ ] Privacy page: a section on entries carried from a partner programme, before the first invitation is sent
 
 ## Stage 2. Several places
 
 - [ ] `governance`: votes, delegated voices, mandates
+- [ ] Extended capsule: own domain, more storage, extended themes, priced from cost; prepaid years by voucher ([ADR 0012](adr/0012-partner-invitations.md))
 - [ ] `shop` and `payments`: shopfronts, orders, Stripe Connect, buyer reviews
 - [ ] Skill map and the profile of a place
 - [ ] `messaging`: Matrix homeserver, encrypted chats, community chats, bots
