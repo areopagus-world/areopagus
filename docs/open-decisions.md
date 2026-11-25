@@ -4,15 +4,16 @@ Questions not yet decided. Each one becomes an ADR when it is closed. "Blocks" s
 
 ## Product
 
-| #   | Question                                                        | Blocks             |
-| --- | --------------------------------------------------------------- | ------------------ |
-| 1   | Which place do we start in: one town, a département, a country? | Stage 1            |
-| 4   | How a space is confirmed: two vouches, phone, document?         | `identity`, voting |
-| 5   | Who sits on the council of keepers and how it is formed         | Statutes           |
-| 6   | Cap on entrusted voices for one leader: 10% or another share    | `governance`       |
-| 7   | Ceiling on the fee from a sale                                  | `shop`, statutes   |
-| 8   | ActivityPub federation in the first version or later            | Nothing in Stage 1 |
-| 9   | Is the earlier charter archived or rewritten for this concept?  | Nothing            |
+| #   | Question                                                                                          | Blocks                             |
+| --- | ------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| 1   | Which place do we start in: one town, a département, a country?                                   | Stage 1                            |
+| 4   | How a space is confirmed: two vouches, phone, document?                                           | `identity`, voting                 |
+| 5   | Who sits on the council of keepers and how it is formed                                           | Statutes                           |
+| 6   | Cap on entrusted voices for one leader: 10% or another share                                      | `governance`                       |
+| 7   | Ceiling on the fee from a sale                                                                    | `shop`, statutes                   |
+| 8   | ActivityPub federation in the first version or later                                              | Nothing in Stage 1                 |
+| 9   | Is the earlier charter archived or rewritten for this concept?                                    | Nothing                            |
+| 19  | Price of a year of the extended capsule, and who holds prepaid years until the association exists | Vouchers, first partner invitation |
 
 ## Architecture
 
